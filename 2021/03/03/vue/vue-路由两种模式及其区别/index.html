@@ -20,14 +20,14 @@
 <meta property="og:description" content="vue-router 有 3 种路由模式：hash、history、abstract。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-03T06:36:22.000Z">
-<meta property="article:modified_time" content="2021-03-03T13:56:14.866Z">
+<meta property="article:modified_time" content="2021-03-11T13:23:03.937Z">
 <meta property="article:author" content="tangyuxian">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1614779811535">
+  <link rel="stylesheet" href="/css/style.css?v=1615468996311">
 <meta name="generator" content="Hexo 5.3.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -51,8 +51,8 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>16</div>
-        <div><span>标签</span>3</div>
+        <div><span>文章</span>17</div>
+        <div><span>标签</span>4</div>
         <div><span>分类</span>1</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
@@ -120,7 +120,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/前端/">前端</a>
-          <span class="category-list-count">16</span>
+          <span class="category-list-count">17</span>
         </li>
 
         
@@ -134,7 +134,7 @@
   
   <div class="nexmoe-widget-wrap">
     <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 10px;">微信小程序</a>
+      <a href="/tags/JavaScript/" style="font-size: 16.67px;">JavaScript</a> <a href="/tags/es6/" style="font-size: 10px;">es6</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13.33px;">微信小程序</a>
     </div>
     
   </div>
@@ -144,7 +144,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">16</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">17</span></li></ul>
     </div>
   </div>
 
@@ -181,8 +181,8 @@
   
   <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2021年03月03日</a>
-    <a><i class="nexmoefont icon-areachart"></i>12 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>722 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
 </div>
 
   <div class="nexmoe-post-right">
@@ -193,6 +193,60 @@
     <p>vue-router 有 3 种路由模式：hash、history、abstract。</p>
 <a id="more"></a>
 
+<h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><h3 id="1-hash模式：hash-hashChange"><a href="#1-hash模式：hash-hashChange" class="headerlink" title="1) hash模式：hash + hashChange"></a>1) hash模式：hash + hashChange</h3><p>特点：hash虽然在URL中，但不被包括在HTTP请求中；用来指导浏览器动作，对服务端安全无用，hash不会重加载页面。通过监听 hash（#）的变化来执行js代码 从而实现 页面的改变。 </p>
+<p>核心代码：</p>
+<pre><code class="javascript">window.addEventListener(‘hashchange‘,function()&#123;
+
+  self.urlChange()
+
+&#125;)
+</code></pre>
+<h4 id="特点："><a href="#特点：" class="headerlink" title="特点："></a>特点：</h4><ol>
+<li><p>hash 虽然出现在 url 中，但不会被包括在 http 请求中，它是用来指导浏览器动作的，对服务器端完全无用，因此，改变 hash 不会重新加载页面。</p>
+</li>
+<li><p>可以为 hash 的改变添加监听事件：</p>
+<pre><code class="javascript">window.addEventListener(&quot;hashchange&quot;,funcRef,false)
+</code></pre>
+</li>
+<li><p>每一次改变 hash(window.localtion.hash)，都会在浏览器访问历史中增加一个记录。</p>
+<p>利用 hash 的以上特点，就可以来实现前端路由”更新视图但不重新请求页面”的功能了。</p>
+<p><strong>HashHistory</strong> 拥有两个方法，一个是 <strong>push</strong>， 一个是 <strong>replace</strong></p>
+<p>即：<strong>HashHistory.push()</strong> 和 <strong>HashHistory.replace()</strong></p>
+</li>
+</ol>
+<h3 id="2-history模式：historyApi-popState"><a href="#2-history模式：historyApi-popState" class="headerlink" title="2) history模式：historyApi + popState"></a>2) history模式：historyApi + popState</h3><p>HTML5推出的history API，由pushState()记录操作历史，监听popstate事件来监听到状态变更；</p>
+<p>因为 只要刷新 这个url（<a target="_blank" rel="noopener" href="http://www.ff.ff/jjkj/fdfd/fdf/fd%EF%BC%89%E5%B0%B1%E4%BC%9A%E8%AF%B7%E6%B1%82%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E7%84%B6%E8%80%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E6%A0%B9%E6%9C%AC%E6%B2%A1%E6%9C%89%E8%BF%99%E4%B8%AA%E8%B5%84%E6%BA%90%EF%BC%8C%E6%89%80%E4%BB%A5%E5%B0%B1%E4%BC%9A%E6%8A%A5404%EF%BC%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%B0%B1">www.ff.ff/jjkj/fdfd/fdf/fd）就会请求服务器，然而服务器上根本没有这个资源，所以就会报404，解决方案就</a> 配置一下服务器端。</p>
+<p>　<strong>History interface</strong> 是浏览器历史记录栈提供的接口，通过back()、forward()、go()等方法，我们可以读取浏览器历史记录栈的信息，进行各种跳转操作。</p>
+<p>　从 HTML5开始，<strong>History interface</strong> 提供了2个新的方法：pushState()、replaceState() 使得我们可以对浏览器历史记录栈进行修改：</p>
+<pre><code class="JavaScript">　　window.history.pushState(stateObject,title,url)
+　　window.history,replaceState(stateObject,title,url)
+</code></pre>
+<p>​        stateObject：当浏览器跳转到新的状态时，将触发 Popstate 事件，该事件将携带这个 stateObject 参数的副本</p>
+<p>　　　　title：所添加记录的标题</p>
+<p>　　　　  url：所添加记录的 url``</p>
+<p>　　　　这<code>2</code>个方法有个共同的特点：当调用他们修改浏览器历史栈后，虽然当前<code>url</code>改变了，但浏览器不会立即发送请求该<code>url</code>，这就为单页应用前端路由，更新视图但不重新请求页面提供了基础</p>
+<ol>
+<li><p>push</p>
+<p> 与hash模式类似，只是将window.hash改为history.pushState</p>
+</li>
+<li><p>replace</p>
+<p>与hash模式类似，只是将window.replace改为history.replaceState</p>
+</li>
+<li><p>监听地址变化</p>
+<p>在HTML5History的构造函数中监听popState（window.onpopstate）</p>
+</li>
+</ol>
+<p>说明：</p>
+<ol>
+<li><p>hash: 使用 URL hash 值来作路由。支持所有浏览器，包括不支持 HTML5 History Api 的浏览器；</p>
+</li>
+<li><p>history : 依赖 HTML5 History API 和服务器配置。具体可以查看 HTML5 History 模式；</p>
+</li>
+<li><p>abstract : 支持所有 JavaScript 运行环境，如 Node.js 服务器端。如果发现没有浏览器的 API，路由会自动强制进入这个模式.</p>
+</li>
+</ol>
+<hr>
+<p>参考文档:<a target="_blank" rel="noopener" href="https://www.cnblogs.com/gaosirs/p/10606266.html">博客园文章:Vue Router 路由实现原理</a></p>
 
   </article>
 
@@ -220,19 +274,15 @@
 
   <div class="nexmoe-post-footer">
     <section class="nexmoe-comment">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
-<div id="gitalk"></div>
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
-<script type="text/javascript">
-    var gitalk = new Gitalk({
-        clientID: '651127b2c415eabb72ca',
-        clientSecret: '874f24a86c051a44699dc969870d76f1dac29318',
-        id: window.location.pathname,
-        repo: 'tangyuxian.github.io',
-        owner: 'tangyuxian',
-        admin: 'tangyuxian'
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'r5zxC0st0DDjPA9auXzMV7HY-gzGzoHsz',
+        appKey: '3bqCsovpyfTPHUzTHovd3V3V'
     })
-    gitalk.render('gitalk')
 </script>
 </section>
   </div>
@@ -252,7 +302,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
- <script src="/js/app.js?v=1614779811537"></script>
+ <script src="/js/app.js?v=1615468996312"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
