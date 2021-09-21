@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
+  <title>git-Git常用操作整理 - 糖羽仙</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="这是萌糖的官方网站">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+    <!-- Site Verification -->
+    <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
+
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/head.jpg" type="image/png" />
+  <meta name="description" content="Git常用操作整理…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git-Git常用操作整理">
+<meta property="og:url" content="https://www.tangyuxian.com/2021/08/13/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/git/git-Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%95%B4%E7%90%86/index.html">
+<meta property="og:site_name" content="糖羽仙">
+<meta property="og:description" content="Git常用操作整理…">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813100147449.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813100121447.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813102546895.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813104533648.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813104738794.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813105228259.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813105329430.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813115345755.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813115526464.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813132434260.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813132632230.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813132746452.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813133729555.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813134333892.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813134601212.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813134706819.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813135718369.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813140211171.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813140902822.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813141313715.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813141558893.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813145829941.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813150225555.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813150419586.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813150550178.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813151449597.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813151548854.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813151658048.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155225050.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155241666.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155250923.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155306599.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155316585.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155333578.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155514556.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155822581.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155923526.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813160042246.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813160058861.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813160112683.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813160130746.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813160215210.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813161758028.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813162919105.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813163337230.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813163622576.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813163821444.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813165148007.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813165633739.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813170306723.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813170314683.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813170329076.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813170336371.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813170345098.png">
+<meta property="article:published_time" content="2021-08-13T01:48:56.000Z">
+<meta property="article:modified_time" content="2021-09-19T08:40:09.591Z">
+<meta property="article:author" content="tangyuxian">
+<meta property="article:tag" content="转载">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813100147449.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_cksn56jaae6.css">
+  
+  <link rel="stylesheet" href="/css/style.css?v=1632210460107">
+  <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/background/xiaomai.jpg)"></div>
+    <div class="nexmoe-small" style="background-image: url(https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/background/lihui.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="tangyuxian" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/head.jpg" alt="tangyuxian"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="tangyuxian">
+            <img src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/head.jpg" alt="tangyuxian" alt="tangyuxian">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div class="nexmoe-count-item"><span>文章</span>53 <div class="item-radius"></div><div class="item-radius item-right"></div> </div>
+        <div class="nexmoe-count-item"><span>标签</span>25<div class="item-radius"></div><div class="item-radius item-right"></div></div>
+        <div class="nexmoe-count-item"><span>分类</span>4<div class="item-radius"></div><div class="item-radius item-right"></div></div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-meishi"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-hanbao1"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于糖糖">
+            <i class="mdui-list-item-icon nexmoefont icon-jiubei1"></i>
+            <div class="mdui-list-item-content">
+                关于糖糖
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friend.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-cola"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  
+<!-- 站内搜索 -->
+
+<div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search" >
+        <form id="search-form">
+            <label><input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="input form-control" autocomplete="off" autocorrect="off"/></label>
+            <!-- 清空/重置搜索框 -->
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+        </form>
+    </div>
+    <div id="local-search-result"></div> <!-- 搜索结果区 -->
+    <!-- <p class='no-result'></p> 无匹配时显示，注意在 CSS 中设置默认隐藏 -->
+</div>
+
+
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=2120252100&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(64, 196, 255);background-color: rgba(64, 196, 255, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="mailto:tangyuxian@vip.qq.com" target="_blank" mdui-tooltip="{content: 'mail'}" style="color: rgb(249,8,8);background-color: rgba(249,8,8,.1);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="https://www.cnblogs.com/lovetangyuxian/" target="_blank" mdui-tooltip="{content: '博客园'}" style="color: rgb(66, 214, 29);background-color: rgba(66, 214, 29, .1);">
+            <i class="nexmoefont icon-bokeyuan"></i>
+        </a><a class="mdui-ripple" href="https://github.com/tangyuxian/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://gitee.com/tangyuxian" target="_blank" mdui-tooltip="{content: 'gitee'}" style="color: rgb(255, 255, 255);background-color: rgb(199,29,35);">
+            <i class="nexmoefont icon-mayun"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">37</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/后端/">后端</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/开发工具/">开发工具</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/服务器端/">服务器端</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/JavaScript/" style="font-size: 16.25px;">JavaScript</a> <a href="/tags/Jetbrains/" style="font-size: 10px;">Jetbrains</a> <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/es6/" style="font-size: 13.75px;">es6</a> <a href="/tags/git/" style="font-size: 13.75px;">git</a> <a href="/tags/http/" style="font-size: 11.25px;">http</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markerdown/" style="font-size: 11.25px;">markerdown</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 11.25px;">node</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/" style="font-size: 10px;">互联网</a> <a href="/tags/%E5%8A%A0%E5%AF%86/" style="font-size: 12.5px;">加密</a> <a href="/tags/%E5%8E%9F%E5%88%9B/" style="font-size: 11.25px;">原创</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 16.25px;">工具</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 12.5px;">微信小程序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">服务器</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 17.5px;">浏览器</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%BC%96%E8%A7%A3%E7%A0%81/" style="font-size: 10px;">编解码</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 18.75px;">转载</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">53</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 tangyuxian
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/tangyuxian/hexo-theme-tangyuxian" target="_blank">Tangyuxian</a><br/>
+        <a href="http://beian.miit.gov.cn" target="_blank">辽ICP备2021002341号</a><br/>
+        
+        <div style="font-size: 12px">
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            本站总访问量  <a id="busuanzi_value_site_pv"></a> 次<br />
+            本站访客数<a id="busuanzi_value_site_uv"></a>人次
+        </div>
+        
+        
+    </div>
+
+</div><!-- .nexmoe-drawer -->
+
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    
+        <div class="nexmoe-post-cover" style="padding-bottom: 26.666666666666668%;">
+            <img data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/git.jpg" data-sizes="auto" alt="git-Git常用操作整理"
+                 class="lazyload">
+            <h1>git-Git常用操作整理</h1>
+        </div>
+    
+
+        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年08月13日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.5k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 11 分钟</a>
+</div>
+
+        <div class="nexmoe-post-right">
+            
+        </div>
+
+        <article>
+            <p>Git常用操作整理…</p>
+<span id="more"></span>
+
+<h4 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h4><ul>
+<li><h5 id="git-clone-克隆仓库代码："><a href="#git-clone-克隆仓库代码：" class="headerlink" title="git clone 克隆仓库代码："></a>git clone 克隆仓库代码：</h5><p>git clone <a target="_blank" rel="noopener" href="https://gitee.com/houpai/git-demo.git%EF%BC%88%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80%EF%BC%89">https://gitee.com/houpai/git-demo.git（仓库地址）</a></p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813100147449.png" alt="image-20210813100147449" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813100121447.png" alt="image-20210813100121447" class="lazyload"></p>
+<ul>
+<li><h5 id="git-status查看本地工作区状态"><a href="#git-status查看本地工作区状态" class="headerlink" title="git status查看本地工作区状态"></a>git status查看本地工作区状态</h5><p>git status</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813102546895.png" alt="image-20210813102546895" class="lazyload"></p>
+<p>如图上所示Untacked files提示该文件为添加到版本追踪里</p>
+</li>
+<li><h5 id="git-add-把修改-新增等提交暂存区"><a href="#git-add-把修改-新增等提交暂存区" class="headerlink" title="git add 把修改/新增等提交暂存区"></a>git add 把修改/新增等提交暂存区</h5><p> git add . ： 提交新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件;–仅针对git版本为1.X的，目前2.X的含义是提交所有变化；</p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813104533648.png" alt="image-20210813104533648" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813104738794.png" alt="image-20210813104738794" class="lazyload"></p>
+<ul>
+<li><h5 id="git-add-–u-提交被修改-modified-和被删除-deleted-文件，不包括新文件-new"><a href="#git-add-–u-提交被修改-modified-和被删除-deleted-文件，不包括新文件-new" class="headerlink" title="git add –u :  提交被修改(modified)和被删除(deleted)文件，不包括新文件(new);"></a>git add –u :  提交被修改(modified)和被删除(deleted)文件，不包括新文件(new);</h5><p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813105228259.png" alt="image-20210813105228259" class="lazyload"></p>
+</li>
+</ul>
+<ul>
+<li><h5 id="git-add-–A-提交所有变化"><a href="#git-add-–A-提交所有变化" class="headerlink" title="git add –A : 提交所有变化"></a>git add –A : 提交所有变化</h5></li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813105329430.png" alt="image-20210813105329430" class="lazyload"></p>
+<blockquote>
+<p><code>PS：在未commit命令之前，如果想撤销add , 可以用命令：git reset；</code></p>
+</blockquote>
+<ul>
+<li><h5 id="git-commit-将暂存区的改动提交到本地仓库"><a href="#git-commit-将暂存区的改动提交到本地仓库" class="headerlink" title="git commit 将暂存区的改动提交到本地仓库"></a>git commit 将暂存区的改动提交到本地仓库</h5></li>
+</ul>
+<ol>
+<li><p>每次使用git commit 命令我们都会在本地版本库生成一个40位的哈希值，这个哈希值也叫commit-id，commit-id在版本回退的时候是非常有用的，它相当于一个快照,可以在未来的任何时候通过与git reset的组合命令回到这里；</p>
+</li>
+<li><p>git commit –amend (原来提交基础上提交，不是新的提交) </p>
+</li>
+</ol>
+<ul>
+<li><h5 id="git-log-查看提交历史"><a href="#git-log-查看提交历史" class="headerlink" title="git log 查看提交历史"></a>git log 查看提交历史</h5><p> git log : 默认不用任何参数的话，git log 会按提交时间列出所有的更新，最近的更新排在最上面。每次更新都有一个 SHA-1 校验和、作者的名字和电子邮件地址、提交时间，最后缩进一个段落显示提交说明—commit –m 里的message。</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813115345755.png" alt="image-20210813115345755" class="lazyload"></p>
+</li>
+</ul>
+<p>​    </p>
+<p>​        git log –p: 选项展开显示每次提交的内容差异        </p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813115526464.png" alt="image-20210813115526464" class="lazyload"></p>
+<blockquote>
+<p><code>PS:退出 :q</code></p>
+</blockquote>
+<p>​    git log -1 : 后面加数字，显示最近的几次提交</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813132434260.png" alt="image-20210813132434260" class="lazyload"></p>
+<p>​    git log –p –word-diff : 单词层面上的对比</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813132632230.png" alt="image-20210813132632230" class="lazyload"></p>
+<ul>
+<li><h5 id="git-pull-将本地仓更新至远程仓的最新状态，获取代码并自动合并"><a href="#git-pull-将本地仓更新至远程仓的最新状态，获取代码并自动合并" class="headerlink" title="git pull : 将本地仓更新至远程仓的最新状态，获取代码并自动合并"></a>git pull : 将本地仓更新至远程仓的最新状态，获取代码并自动合并</h5><p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813132746452.png" alt="image-20210813132746452" class="lazyload"></p>
+</li>
+</ul>
+<ul>
+<li><h5 id="git-push-将本地分支的更新，推送到远程仓库"><a href="#git-push-将本地分支的更新，推送到远程仓库" class="headerlink" title="git push : 将本地分支的更新，推送到远程仓库"></a>git push : 将本地分支的更新，推送到远程仓库</h5><p> 如果当前分支和远程分支之前存在追踪关系，则git push origin 的含义是：将当前分支推送到origin主机的对应分支上；</p>
+</li>
+</ul>
+<ul>
+<li><h5 id="git-branch-–vv-查看本地当前分支与远程分支的追踪关系"><a href="#git-branch-–vv-查看本地当前分支与远程分支的追踪关系" class="headerlink" title="git branch –vv : 查看本地当前分支与远程分支的追踪关系"></a>git branch –vv : 查看本地当前分支与远程分支的追踪关系</h5><p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813133729555.png" alt="image-20210813133729555" class="lazyload"></p>
+<blockquote>
+<p><code>更改分支名称：git branch –m 改之前的分支名称  改之后的分支名称</code></p>
+</blockquote>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813134333892.png" alt="image-20210813134333892" class="lazyload"></p>
+</li>
+</ul>
+<ul>
+<li><h5 id="git-checkout-切换分支"><a href="#git-checkout-切换分支" class="headerlink" title="git checkout : 切换分支"></a>git checkout : 切换分支</h5><p>  git checkout dev : 切换到dev 分支；</p>
+<p>  git checkout –b dev :以当前分支为源创建分支dev；</p>
+<blockquote>
+<p><code>PS: git checkout –b dev是 git branch dev  ; git checkout dev 两条命令的简写</code></p>
+</blockquote>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813134601212.png" alt="image-20210813134601212" class="lazyload"></p>
+<p>​        如果本地已经存在dev分支，则会提示；</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813134706819.png" alt="image-20210813134706819" class="lazyload">    </p>
+<blockquote>
+<p><code>PS：新创建的分支，是没有与远程关联的，需要先建立关联，把本地分支与远程建立追踪关系；git push --set-upstream origin dev</code></p>
+</blockquote>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813135718369.png" alt="image-20210813135718369" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813140211171.png" alt="image-20210813140211171" class="lazyload"></p>
+<blockquote>
+<p>​    <code>PS: git checkout --filename :该命令适用于：已经add后，后来又修改了文件，想要恢复之前add 的内容，则就可以把暂存区的内容替换到工作区了；或者没add 之前，我想把修改的内容恢复，也可以用git checkout filename;</code></p>
+</blockquote>
+<ul>
+<li><h5 id="git-revert-撤销某次操作，并把此次撤销作为新的提交-请谨慎操作！）"><a href="#git-revert-撤销某次操作，并把此次撤销作为新的提交-请谨慎操作！）" class="headerlink" title="git revert :撤销某次操作，并把此次撤销作为新的提交( 请谨慎操作！）"></a>git revert :撤销某次操作，并把此次撤销作为新的提交( 请谨慎操作！）</h5><p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813140902822.png" alt="image-20210813140902822" class="lazyload"></p>
+</li>
+</ul>
+<p>​    git revert HEAD ：撤销前一次的commit ；</p>
+<p>​    git  revert HEAD^ :撤销前前一次的commit;</p>
+<p>​    git  revert commit-id :撤销指定版本的提交；</p>
+<p>​    可以在命令中加上–no-edit参数。另一个重要的参数是-n或者–no-commit，应用这个参数会让revert 改动只限于程序员的本地仓库，而不自动进行commit</p>
+<ul>
+<li><h5 id="git-reset-用来将当前branch重置到另外一个commit的-请谨慎操作！）"><a href="#git-reset-用来将当前branch重置到另外一个commit的-请谨慎操作！）" class="headerlink" title="git reset : 用来将当前branch重置到另外一个commit的( 请谨慎操作！）"></a>git reset : 用来将当前branch重置到另外一个commit的( 请谨慎操作！）</h5><p>git reset HEAD : 重置当前分支到最近的一次提交；（HEAD这是当前分支版本顶端的别名，也就是在当前分支你最近的一个提交）</p>
+<p>git reset HEAD~1 : 将HEAD从顶端的commit往下移动一个commit；从暂存区取出，替换到工作区；</p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813141313715.png" alt="image-20210813141313715" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813141558893.png" alt="image-20210813141558893" class="lazyload"></p>
+<blockquote>
+<p><code>参数：--soft : 重置HEAD到另外一个commit，但也到此为止 , 所有变更都集中到暂存区，工作区；</code></p>
+<p><code>--hard ：危险操作，所有变更全部丢失，不管本地仓，暂存区，工作区；</code></p>
+<p><code>--mixed : 所有变更保存到工作区，本地仓，暂存区都丢失；默认参数；</code></p>
+</blockquote>
+<ul>
+<li><h5 id="git-stash-储藏变更"><a href="#git-stash-储藏变更" class="headerlink" title="git stash : 储藏变更"></a>git stash : 储藏变更</h5><p>使用场景：当前工作区有变更，且作业没完成，但是需要切换到其他分支进行其他作业，需要干净的工作区间；</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813145829941.png" alt="image-20210813145829941" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813150225555.png" alt="image-20210813150225555" class="lazyload"></p>
+</li>
+</ul>
+<p>​    查看现有的所有储存：git stash list </p>
+<p>​    <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813150419586.png" alt="image-20210813150419586" class="lazyload"></p>
+<p>其他分支作业完成后，返回之前分支，继续之前作业：git stash pop</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813150550178.png" alt="image-20210813150550178" class="lazyload"></p>
+<blockquote>
+<p><code>删除没用的储存：git stash drop stash@&#123;0&#125; / git stash clear</code></p>
+</blockquote>
+<ul>
+<li><h5 id="git-merge-合并分支到当前分支"><a href="#git-merge-合并分支到当前分支" class="headerlink" title="git merge : 合并分支到当前分支"></a>git merge : 合并分支到当前分支</h5><p>首先切换到要合并的目标分支，比如把dev分支合并到master分支上，先切到master分支；</p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813151449597.png" alt="image-20210813151449597" class="lazyload"></p>
+<p>​    git merge dev :把dev 分支合并到当前分支</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813151548854.png" alt="image-20210813151548854" class="lazyload"></p>
+<p>​     如果没有冲突的话，merge完成。有冲突的话，git会提示那个文件中有冲突，比如有如下冲突：</p>
+<p>​    <img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813151658048.png" alt="image-20210813151658048" class="lazyload"></p>
+<p>​    可以看到 ======= 隔开的上半部分，是 master 分支冲突的内容，下半部分是在 dev分支冲突的内容。</p>
+<p>​    这个时候可以解决完冲突之后再进行相关操作：git add ; git commit 等等.</p>
+<ul>
+<li><h5 id="git-rebase-对于分支做‘变基’操作，可以理解为‘重新设置基线’"><a href="#git-rebase-对于分支做‘变基’操作，可以理解为‘重新设置基线’" class="headerlink" title="git rebase : 对于分支做‘变基’操作，可以理解为‘重新设置基线’"></a>git rebase : 对于分支做‘变基’操作，可以理解为‘重新设置基线’</h5><p>该命令适应于自己本地私有分支，远程分支慎用；</p>
+<p>使用场景1：当你本地试图commit ,push 到一个remote时而因tracking branch过于陈旧而被拒绝的时候（原因是自从之前与orgin同步后，有其他人员提交了很多commit），如果强行push，会覆盖远程仓，把其他人员的commit给丢掉–谨慎，谨慎，谨慎；</p>
+<p>回到rebase之前的状态：git rebase –abort </p>
+<p>使用场景2：本地开发多次提交合并，便于管理跟踪，比如：dev 分支从master分支上创建，然后dev分支上自己提交了多个commit , </p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155225050.png" alt="image-20210813155225050" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155241666.png" alt="image-20210813155241666" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155250923.png" alt="image-20210813155250923" class="lazyload"></p>
+<p>​    我们设置第二个”pick 657a291 add 2.txt” 为” s 657a291 add 2.txt”这里的s就是squash命令的简写。</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155306599.png" alt="image-20210813155306599" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155316585.png" alt="image-20210813155316585" class="lazyload"></p>
+<p>​    删除之前的两条message(ESC dd)，设置一总的message 然后保存退出。(ESC wq)</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155333578.png" alt="image-20210813155333578" class="lazyload"></p>
+<ul>
+<li><h5 id="git-fsck-–lost-found-找回git-add-过，但是已经删除的文件内容"><a href="#git-fsck-–lost-found-找回git-add-过，但是已经删除的文件内容" class="headerlink" title="git fsck –lost-found : 找回git add 过，但是已经删除的文件内容"></a>git fsck –lost-found : 找回git add 过，但是已经删除的文件内容</h5></li>
+<li><h5 id="git-branch-查看分支情况"><a href="#git-branch-查看分支情况" class="headerlink" title="git branch : 查看分支情况"></a>git branch : 查看分支情况</h5><p>查看项目的目前存在的分支情况，包括本地和远程 : git branch -a</p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155514556.png" alt="image-20210813155514556" class="lazyload"></p>
+<p>删除本地分支 ：git branch –d dev (-d , 删除分支； -D ,强制删除分支)</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155822581.png" alt="image-20210813155822581" class="lazyload"></p>
+<p>删除远程分支: git push origin :dev</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813155923526.png" alt="image-20210813155923526" class="lazyload"></p>
+<h4 id="常用技巧"><a href="#常用技巧" class="headerlink" title="常用技巧"></a>常用技巧</h4><ul>
+<li><h5 id="修改当前的追踪关系"><a href="#修改当前的追踪关系" class="headerlink" title="修改当前的追踪关系"></a>修改当前的追踪关系</h5><p>文件修改：本地打开.git à config 文件，别用记事本，修改[branch “master”]这一项是修改本地分支‘master’的远程追踪关系分支，直接修改merge = refs/heads/master为merge = refs/heads/dev；</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813160042246.png" alt="image-20210813160042246" class="lazyload"></p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813160058861.png" alt="image-20210813160058861" class="lazyload"></p>
+<p>​    命令修改：git branch –set-upstream-to=origin/master</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813160112683.png" alt="image-20210813160112683" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813160130746.png" alt="image-20210813160130746" class="lazyload"></p>
+<ul>
+<li><h5 id="查看远程版本库信息"><a href="#查看远程版本库信息" class="headerlink" title="查看远程版本库信息"></a>查看远程版本库信息</h5><p>git remote –v:</p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813160215210.png" alt="image-20210813160215210" class="lazyload"></p>
+<ul>
+<li><h5 id="更改远程仓库连接地址"><a href="#更改远程仓库连接地址" class="headerlink" title="更改远程仓库连接地址"></a>更改远程仓库连接地址</h5><p>ssh执行：git remote set-url origin <a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#x65;&#x65;&#46;&#99;&#111;&#109;">&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#x65;&#x65;&#46;&#99;&#111;&#109;</a>:houpai/git-demo.git</p>
+<p>http执行：git remote set-url origin  <a target="_blank" rel="noopener" href="https://github.com/NECKLI/git-test.git">https://github.com/NECKLI/git-test.git</a></p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813161758028.png" alt="image-20210813161758028" class="lazyload"></p>
+<ul>
+<li><h5 id="放弃本地修改，强制更新到本地"><a href="#放弃本地修改，强制更新到本地" class="headerlink" title="放弃本地修改，强制更新到本地"></a>放弃本地修改，强制更新到本地</h5><p>git fetch –all  //只下载远程的库的内容，不做任何的合并</p>
+<p>git reset –hard origin/master  //把HEAD指向刚下载的最新版本</p>
+</li>
+</ul>
+<ul>
+<li><h5 id="查看当前分支是基于哪个分支建立的"><a href="#查看当前分支是基于哪个分支建立的" class="headerlink" title="查看当前分支是基于哪个分支建立的"></a>查看当前分支是基于哪个分支建立的</h5><p>git reflog –-date=local</p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813162919105.png" alt="image-20210813162919105" class="lazyload"></p>
+<ul>
+<li><h5 id="将某次提交合并到指定分支上"><a href="#将某次提交合并到指定分支上" class="headerlink" title="将某次提交合并到指定分支上"></a>将某次提交合并到指定分支上</h5><p>在修改分支上查看日志，找到对应的提交id</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813163337230.png" alt="image-20210813163337230" class="lazyload"></p>
+<p>切换到指定分支: git checkout master1</p>
+<p>再把指定的提交合并到当前分支：git cherry-pick commit-id</p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813163622576.png" alt="image-20210813163622576" class="lazyload"></p>
+<ul>
+<li><h5 id="版本回退"><a href="#版本回退" class="headerlink" title="版本回退"></a>版本回退</h5><p>先查看提交日志，找到要回退的版本，git log</p>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813163821444.png" alt="image-20210813163821444" class="lazyload"></p>
+<p>​    复制对应的commit id，<code>假如：e80d1d2e91b39a88908a3a0a31d15966d743c2df ；的提交； 本地版本回退：git reset --hard commit-id (如果确定不要该提交之后的提交，则可以用hard参数，如果要修改保留，则把hard参数去掉，重新提交)</code></p>
+<p>本地之前的提交会全部丢失，使用的时候要谨慎；</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813165148007.png" alt="image-20210813165148007" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813165633739.png" alt="image-20210813165633739" class="lazyload"></p>
+<p> <code>    本地强制覆盖远程，使用的时候要谨慎，谨慎，谨慎 ,会影响其他人员使用，如果某人错误覆盖，则远程的其他提交没有了记录，要找回的话，可以找其他人员没有更新之前的代码，再同步到远程，如果其他人手里也没有了，则可以使用git fsck找回，操作会麻烦，--没具体实现过（http://blog.sina.com.cn/s/blog_66cd08930102x0ln.html）</code></p>
+<ul>
+<li><h5 id="本地创建远程分支"><a href="#本地创建远程分支" class="headerlink" title="本地创建远程分支"></a>本地创建远程分支</h5><p>例子：如现在有master , dev 分支，现在本地想以dev 分支为基分支创建新分支，并推送远程仓库, git checkout –b newDev</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813170306723.png" alt="image-20210813170306723" class="lazyload"></p>
+<p>将本地newDev 分支作为远程newDev分支: git push origin newDev</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813170314683.png" alt="image-20210813170314683" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813170329076.png" alt="image-20210813170329076" class="lazyload"></p>
+<p>跟远程对应仓建立追踪关系： git branch –set-upstream-to=origin/newDev</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813170336371.png" alt="image-20210813170336371" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/houpai/hp-cdn@latest/picGo/image-20210813170345098.png" alt="image-20210813170345098" class="lazyload"></p>
+<p>这个时候创建远程仓完成；在仓库里创建新分支比较简单，方便</p>
+</li>
+</ul>
+<ul>
+<li><h5 id="本地多次提交，push之前优化commits"><a href="#本地多次提交，push之前优化commits" class="headerlink" title="本地多次提交，push之前优化commits"></a>本地多次提交，push之前优化commits</h5></li>
+</ul>
+<p>​    git log 查看日志，找到要合并的commits</p>
+<p>​    git rebase - i HEAD~2  ; //优化最近的两次提交</p>
+<p>​    对于 commit 合并可以使用 squash、fixup 指令，区别是 squash 会将该 commit 的注释添加到上一个 commit 注释中，fixup 是放弃当前 commit 的注释。</p>
+<p>​    编辑后保存退出，git 会自动压缩提交历史，如果有冲突，记得解决冲突后，使用 git rebase –continue 重新回到当前的 git 压缩过程；</p>
+<p>​    git push 推送到远程，再看git log ，提交日志就简洁多了。</p>
+<ul>
+<li><h5 id="本地全新项目，建本地仓，然后推送到远程"><a href="#本地全新项目，建本地仓，然后推送到远程" class="headerlink" title="本地全新项目，建本地仓，然后推送到远程"></a>本地全新项目，建本地仓，然后推送到远程</h5><p>远程仓库先建立一个仓库；</p>
+<p>切换到项目目录下，然后初始化本地git仓，git init ；</p>
+<p>将本地仓与远程仓进行关联，git remote add origin https://…..  .git</p>
+<p>把项目添加到本地仓，git add *  git commit –m ‘注释’;</p>
+<p>推送到远程仓，git push –u origin master ，（远程库是空的，我们第一次推送master分支时，加上了-u参数，Git不但会把本地的master分支内容推送的远程新的master分支，还会把本地的master分支和远程的master分支关联起来，在以后的推送或者拉取时就可以简化命令）。</p>
+</li>
+</ul>
+
+        </article>
+
+        
+            
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>houpai<br>
+    
+      <strong>文章来源：</strong><a href="https://houpai.top/2021/08/13/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%95%B4%E7%90%86/" title="https:&#x2F;&#x2F;houpai.top&#x2F;2021&#x2F;08&#x2F;13&#x2F;Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%95%B4%E7%90%86&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;houpai.top&#x2F;2021&#x2F;08&#x2F;13&#x2F;Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%95%B4%E7%90%86&#x2F;</a><br>
+    
+    <strong>本文链接：</strong><a href="https://www.tangyuxian.com/2021/08/13/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/git/git-Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%95%B4%E7%90%86/" title="https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;08&#x2F;13&#x2F;%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7&#x2F;git&#x2F;git-Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%95%B4%E7%90%86&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;08&#x2F;13&#x2F;%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7&#x2F;git&#x2F;git-Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%95%B4%E7%90%86&#x2F;</a><br>
+
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+        
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/">开发工具</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/git/" rel="tag">git</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E8%BD%AC%E8%BD%BD/" rel="tag">转载</a>
+    
+</div>
+
+    <div class="nexmoe-post-footer">
+        <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'r5zxC0st0DDjPA9auXzMV7HY-gzGzoHsz',
+        appKey: '3bqCsovpyfTPHUzTHovd3V3V'
+    })
+</script>
+</section>
+    </div>
+</div>
+
+
+        <div class="nexmoe-post-right">
+          
+            <div class="nexmoe-fixed">
+              <div class="nexmoe-tool">
+                <a href="#" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+              </div>
+            </div>
+          
+        </div>
+    </div>
+  </div>
+  <div id="nexmoe-pendant">
+    <div class="nexmoe-drawer mdui-drawer nexmoe-pd" id="drawer">
+        
+            <div class="nexmoe-pd-item">
+                <div class="clock">
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="needle" id="hours"></div>
+        <div class="needle" id="minutes"></div>
+        <div class="needle" id="seconds"></div>
+        <div class="clock_logo">
+
+        </div>
+
+    </div>
+<style>
+    .clock {
+        background-color: #ffffff;
+        width: 70vw;
+        height: 70vw;
+        max-width: 70vh;
+        max-height: 70vh;
+        border: solid 2.8vw #242424;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        box-sizing: border-box;
+        box-shadow: 0 1.4vw 2.8vw rgba(0, 0, 0, 0.8);
+        zoom:0.2
+    }
+
+    .memory {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+    }
+
+    .memory:nth-child(1) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(0deg) translateY(-520%);
+    }
+
+    .memory:nth-child(2) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(6deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(3) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(12deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(4) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(18deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(5) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(24deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(6) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(30deg) translateY(-520%);
+    }
+
+    .memory:nth-child(7) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(36deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(8) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(42deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(9) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(48deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(10) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(54deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(11) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(60deg) translateY(-520%);
+    }
+
+    .memory:nth-child(12) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(66deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(13) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(72deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(14) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(78deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(15) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(84deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(16) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(90deg) translateY(-520%);
+    }
+
+    .memory:nth-child(17) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(96deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(18) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(102deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(19) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(108deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(20) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(114deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(21) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(120deg) translateY(-520%);
+    }
+
+    .memory:nth-child(22) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(126deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(23) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(132deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(24) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(138deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(25) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(144deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(26) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(150deg) translateY(-520%);
+    }
+
+    .memory:nth-child(27) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(156deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(28) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(162deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(29) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(168deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(30) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(174deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(31) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(180deg) translateY(-520%);
+    }
+
+    .memory:nth-child(32) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(186deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(33) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(192deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(34) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(198deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(35) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(204deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(36) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(210deg) translateY(-520%);
+    }
+
+    .memory:nth-child(37) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(216deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(38) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(222deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(39) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(228deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(40) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(234deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(41) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(240deg) translateY(-520%);
+    }
+
+    .memory:nth-child(42) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(246deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(43) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(252deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(44) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(258deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(45) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(264deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(46) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(270deg) translateY(-520%);
+    }
+
+    .memory:nth-child(47) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(276deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(48) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(282deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(49) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(288deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(50) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(294deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(51) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(300deg) translateY(-520%);
+    }
+
+    .memory:nth-child(52) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(306deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(53) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(312deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(54) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(318deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(55) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(324deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(56) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(330deg) translateY(-520%);
+    }
+
+    .memory:nth-child(57) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(336deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(58) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(342deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(59) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(348deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(60) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(354deg) translateY(-1461%);
+    }
+
+    .needle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+    }
+
+    .needle#hours {
+        background-color: #1f1f1f;
+        width: 4%;
+        height: 30%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#hours.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#hours:after {
+        content: '';
+        background-color: #1f1f1f;
+        width: 4vw;
+        height: 4vw;
+        max-width: 4vh;
+        max-height: 4vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .needle#minutes {
+        background-color: #1f1f1f;
+        width: 2%;
+        height: 45%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#minutes.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#minutes:after {
+        content: '';
+        background-color: #1f1f1f;
+        width: 4vw;
+        height: 4vw;
+        max-width: 4vh;
+        max-height: 4vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .needle#seconds {
+        background-color: #cb2f2f;
+        width: 1%;
+        height: 50%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#seconds.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#seconds:after {
+        content: '';
+        background-color: #cb2f2f;
+        width: 2.5vw;
+        height: 2.5vw;
+        max-width: 2.5vh;
+        max-height: 2.5vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .clock_logo{
+        width: 10vw;
+        height: 10vw;
+        max-width: 10vh;
+        max-height: 10vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    @media (min-width: 100vh) {
+        .clock {
+            border: solid 2.8vh #242424;
+            box-shadow: 0 1.4vh 2.8vh rgba(0, 0, 0, 0.8);
+        }
+    }
+
+</style>
+
+
+
+
+
+            </div>
+        
+            <div class="nexmoe-pd-item">
+                <div class="qweather" >
+    <div id="he-plugin-standard"></div>
+    <div class="qweather-logo">
+
+    </div>
+
+</div>
+<style>
+    .qweather{
+        position: relative;
+    }
+    .qweather-logo{
+        position: absolute;
+        right: 0;
+        top: -15px;
+        width: 40px;
+        height: 40px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+</style>
+<script>
+  WIDGET = {
+    "CONFIG": {
+      "layout": "2",
+      "width": "260",
+      "height": "220",
+      "background": "5",
+      "dataColor": "e67249",
+      "borderRadius": "15",
+      "key": "f74d1e1690e6432d801e97fa2f05a162"
+    }
+  }
+</script>
+<script src="https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0"></script>
+
+            </div>
+        
+</div>
+<style>
+    .nexmoe-pd {
+        left: auto;
+        top: 40px;
+        right: 0;
+    }
+    .nexmoe-pd-item{
+       display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+</style>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/app.js?v=1632210460109"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+  
+
+
+
+
+
+<!-- hexo injector body_end start -->
+<script src="/js/clock.js"></script>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+<script src="/js/search.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+
+<script src="/lib/codeBlock/codeBlockFuction.js"></script>
+
+<script src="/lib/codeBlock/codeLang.js"></script>
+
+<script src="/lib/codeBlock/codeCopy.js"></script>
+
+<script src="/lib/codeBlock/codeShrink.js"></script>
+
+<link rel="stylesheet" href="/lib/codeBlock/matery.css">
+
+<script src="/js/webapp.js"></script>
+<!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/xiaomai.model.json"},"display":{"position":"left","width":200,"height":500},"mobile":{"show":false},"react":{"opacity":0.9},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/250cb4aa.js","daovoice")</script>
+<script>
+  daovoice('init', {
+    app_id: "250cb4aa"
+  });
+  daovoice('update');
+</script>
+
