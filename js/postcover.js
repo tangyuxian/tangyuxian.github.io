@@ -1,6 +1,7 @@
 module.exports =  {
   es6:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/es6.jpg",
   JavaScript:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/JavaScript.jpg",
+  TypeScript:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/TypeScript.jpg",
   css:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/css.jpg",
   node:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/nodejs.jpg",
   vue:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/vue.jpg",
