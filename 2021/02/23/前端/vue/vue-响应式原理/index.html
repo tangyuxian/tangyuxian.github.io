@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
+  <title>vue-响应式原理 - 糖羽仙</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="这是萌糖的官方网站">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+    <!-- Site Verification -->
+    <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
+
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/head.jpg" type="image/png" />
+  <meta name="description" content="vue是基于 Object.defineProperty 来实现数据响应;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue-响应式原理">
+<meta property="og:url" content="https://www.tangyuxian.com/2021/02/23/%E5%89%8D%E7%AB%AF/vue/vue-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="糖羽仙">
+<meta property="og:description" content="vue是基于 Object.defineProperty 来实现数据响应;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/2/8/1617554b425a3431?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/2/8/1617554b5e866e59?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/2/8/1617554b4aa4d4c9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="article:published_time" content="2021-02-23T05:22:13.000Z">
+<meta property="article:modified_time" content="2021-07-24T17:28:06.480Z">
+<meta property="article:author" content="tangyuxian">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/2/8/1617554b425a3431?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_7zl7b3ek8fl.css">
+  
+  <link rel="stylesheet" href="/css/style.css?v=1639833709855">
+  <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/background/xiaomai.jpg)"></div>
+    <div class="nexmoe-small" style="background-image: url(https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/background/lihui.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="tangyuxian" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/head.jpg" alt="tangyuxian"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="tangyuxian">
+            <img src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/head.jpg" alt="tangyuxian" alt="tangyuxian">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div class="nexmoe-count-item"><span>文章</span>55 <div class="item-radius"></div><div class="item-radius item-right"></div> </div>
+        <div class="nexmoe-count-item"><span>标签</span>27<div class="item-radius"></div><div class="item-radius item-right"></div></div>
+        <div class="nexmoe-count-item"><span>分类</span>4<div class="item-radius"></div><div class="item-radius item-right"></div></div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-meishi"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-hanbao1"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于糖糖">
+            <i class="mdui-list-item-icon nexmoefont icon-jiubei1"></i>
+            <div class="mdui-list-item-content">
+                关于糖糖
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friend.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-cola"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/download.html" title="下载中心">
+            <i class="mdui-list-item-icon nexmoefont icon-tangguo"></i>
+            <div class="mdui-list-item-content">
+                下载中心
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  
+<!-- 站内搜索 -->
+
+<div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search" >
+        <form id="search-form">
+            <label><input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="input form-control" autocomplete="off" autocorrect="off"/></label>
+            <!-- 清空/重置搜索框 -->
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+        </form>
+    </div>
+    <div id="local-search-result"></div> <!-- 搜索结果区 -->
+    <!-- <p class='no-result'></p> 无匹配时显示，注意在 CSS 中设置默认隐藏 -->
+</div>
+
+
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=2120252100&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(64, 196, 255);background-color: rgba(64, 196, 255, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="mailto:tangyuxian@vip.qq.com" target="_blank" mdui-tooltip="{content: 'mail'}" style="color: rgb(249,8,8);background-color: rgba(249,8,8,.1);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="https://www.cnblogs.com/lovetangyuxian/" target="_blank" mdui-tooltip="{content: '博客园'}" style="color: rgb(66, 214, 29);background-color: rgba(66, 214, 29, .1);">
+            <i class="nexmoefont icon-bokeyuan"></i>
+        </a><a class="mdui-ripple" href="https://github.com/tangyuxian/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://gitee.com/tangyuxian" target="_blank" mdui-tooltip="{content: 'gitee'}" style="color: rgb(255, 255, 255);background-color: rgb(199,29,35);">
+            <i class="nexmoefont icon-mayun"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">38</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/后端/">后端</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/开发工具/">开发工具</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/服务器端/">服务器端</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/JavaScript/" style="font-size: 16.25px;">JavaScript</a> <a href="/tags/Jetbrains/" style="font-size: 10px;">Jetbrains</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/es6/" style="font-size: 13.75px;">es6</a> <a href="/tags/git/" style="font-size: 13.75px;">git</a> <a href="/tags/http/" style="font-size: 11.25px;">http</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markerdown/" style="font-size: 11.25px;">markerdown</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 11.25px;">node</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/" style="font-size: 10px;">互联网</a> <a href="/tags/%E5%8A%A0%E5%AF%86/" style="font-size: 12.5px;">加密</a> <a href="/tags/%E5%8E%9F%E5%88%9B/" style="font-size: 12.5px;">原创</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.75px;">工具</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 12.5px;">微信小程序</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">服务器</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 17.5px;">浏览器</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15px;">算法</a> <a href="/tags/%E7%BC%96%E8%A7%A3%E7%A0%81/" style="font-size: 10px;">编解码</a> <a href="/tags/%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">记录</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 18.75px;">转载</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">55</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 tangyuxian
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/tangyuxian/hexo-theme-tangyuxian" target="_blank">Tangyuxian</a><br/>
+        <a href="http://beian.miit.gov.cn" target="_blank">辽ICP备2021002341号</a><br/>
+        
+        <div style="font-size: 12px">
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            本站总访问量  <a id="busuanzi_value_site_pv"></a> 次<br />
+            本站访客数<a id="busuanzi_value_site_uv"></a>人次
+        </div>
+        
+        
+    </div>
+
+</div><!-- .nexmoe-drawer -->
+
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    
+        <div class="nexmoe-post-cover" style="padding-bottom: 26.666666666666668%;">
+            <img data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/vue.jpg" data-sizes="auto" alt="vue-响应式原理"
+                 class="lazyload">
+            <h1>vue-响应式原理</h1>
+        </div>
+    
+
+        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年02月23日</a>
+    <a><i class="nexmoefont icon-areachart"></i>4.6k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 21 分钟</a>
+</div>
+
+        <div class="nexmoe-post-right">
+            
+        </div>
+
+        <article>
+            <p>vue是基于 Object.defineProperty 来实现数据响应;</p>
+<span id="more"></span>
+
+<h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><h4 id="根据数据类型来做不同处理，数组和对象类型当值变化时如何劫持。"><a href="#根据数据类型来做不同处理，数组和对象类型当值变化时如何劫持。" class="headerlink" title="根据数据类型来做不同处理，数组和对象类型当值变化时如何劫持。"></a>根据数据类型来做不同处理，数组和对象类型当值变化时如何劫持。</h4><ol>
+<li><p>对象内部通过defineReactive方法，使用 Object.defineProperty() 监听数据属性的 get 来进行数据依赖收集，再通过 set 来完成数据更新的派发；</p>
+</li>
+<li><p>数组则通过重写数组方法来实现的。扩展它的 7 个变更⽅法，通过监听这些方法可以做到依赖收集和派发更新；</p>
+</li>
+</ol>
+<p>多层对象是通过递归来实现劫持，vue3中是使用 proxy来实现响应式数据</p>
+<p>补充回答：</p>
+<p>内部依赖收集是怎么做到的，每个属性都拥有自己的dep属性，存放他所依赖的 watcher，当属性变化后会通知自己对应的 watcher去更新。</p>
+<h4 id="响应式流程："><a href="#响应式流程：" class="headerlink" title="响应式流程："></a>响应式流程：</h4><p>1､defineReactive  把数据定义成响应式的；</p>
+<p>2､给属性增加一个 dep，用来收集对应的那些watcher；</p>
+<p>3､等数据变化进行更新</p>
+<p>dep.depend() // get 取值：进行依赖收集</p>
+<p>dep.notify() // set 设置时：通知视图更新</p>
+<h4 id="性能优化相关的内容："><a href="#性能优化相关的内容：" class="headerlink" title="性能优化相关的内容："></a>性能优化相关的内容：</h4><p>1)对象层级过深，性能就会差。</p>
+<p>2)不需要响应数据的内容不要放在data中。</p>
+<p>3)object.freeze()  可以冻结数据。</p>
+<h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><h4 id="源码地址"><a href="#源码地址" class="headerlink" title="源码地址"></a>源码地址</h4><p><a target="_blank" rel="noopener" href="https://github.com/vuejs/vue/blob/dev/src/core/observer/index.js">https://github.com/vuejs/vue/blob/dev/src/core/observer/index.js</a></p>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><h6 id="初步"><a href="#初步" class="headerlink" title="初步"></a>初步</h6><p>最近一段时间在阅读Vue源码，从它的核心原理入手，开始了源码的学习，而其核心原理就是其数据的响应式，讲到Vue的响应式原理，我们可以从它的兼容性说起，Vue不支持IE8以下版本的浏览器，因为Vue是基于 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a> 来实现数据响应的，而        Object.defineProperty 是 ES5 中一个无法 shim 的特性，这也就是为什么 Vue 不支持 IE8 以及更低版本浏览器的原因；Vue通过Object.defineProperty的 <strong>getter/setter</strong> 对收集的依赖项进行监听,在属性被访问和修改时通知变化,进而更新视图数据；</p>
+<p>受现代JavaScript 的限制 (以及废弃 <strong>Object.observe</strong>)，Vue不能检测到对象属性的添加或删除。由于 Vue 会在初始化实例时对属性执行 <strong>getter/setter</strong> 转化过程，所以属性必须在 <strong>data</strong> 对象上存在才能让Vue转换它，这样才能让它是响应的。</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://user-gold-cdn.xitu.io/2018/2/8/1617554b425a3431?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="vue响应式" class="lazyload"></p>
+<p>我们这里是根据Vue2.3源码进行分析,Vue数据响应式变化主要涉及 <strong>Observer</strong>, <strong>Watcher</strong> , <strong>Dep</strong> 这三个主要的类；因此要弄清Vue响应式变化需要明白这个三个类之间是如何运作联系的；以及它们的原理，负责的逻辑操作。那么我们从一个简单的Vue实例的代码来分析Vue的响应式原理</p>
+<pre><code class="javascript">var vue = new Vue(&#123;
+    el: &quot;#app&quot;,
+    data: &#123;
+        name: &#39;Junga&#39;
+    &#125;,
+    created () &#123;
+        this.helloWorld()
+    &#125;,
+    methods: &#123;
+        helloWorld: function() &#123;
+            console.log(&#39;my name is&#39; + this.name)
+        &#125;
+    &#125;
+    ...
+&#125;)
+</code></pre>
+<h5 id="Vue初始化实例"><a href="#Vue初始化实例" class="headerlink" title="Vue初始化实例"></a>Vue初始化实例</h5><p>根据Vue的<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/instance.html#%E5%AE%9E%E4%BE%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90">生命周期</a>我们知道，Vue首先会进行init初始化操作；源码在<a target="_blank" rel="noopener" href="https://github.com/tangyuxian/Vue-learn/blob/master/core/instance/init.js">src/core/instance/init.js</a>中</p>
+<pre><code class="javascript">/*初始化生命周期*/
+initLifecycle(vm)
+/*初始化事件*/
+initEvents(vm)Object.defineProperty 
+/*初始化render*/
+initRender(vm)
+/*调用beforeCreate钩子函数并且触发beforeCreate钩子事件*/
+callHook(vm, &#39;beforeCreate&#39;)
+initInjections(vm) // resolve injections before data/props
+/*初始化props、methods、data、computed与watch*/
+initState(vm)
+initProvide(vm) // resolve provide after data/props
+/*调用created钩子函数并且触发created钩子事件*/
+callHook(vm, &#39;created&#39;)
+</code></pre>
+<p>以上代码可以看到 <strong>initState(vm)</strong> 是用来初始化props,methods,data,computed和watch;</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tangyuxian/Vue-learn/blob/master/core/instance/state.js">src/core/instance/state.js</a></p>
+<pre><code class="javascript">/*初始化props、methods、data、computed与watch*/
+export function initState (vm: Component) &#123;
+  vm._watchers = []
+  const opts = vm.$options
+  /*初始化props*/
+  if (opts.props) initProps(vm, opts.props)
+  /*初始化方法*/
+  if (opts.methods) initMethods(vm, opts.methods)
+  /*初始化data*/
+  if (opts.data) &#123;
+    initData(vm)
+  &#125; else &#123;
+    /*该组件没有data的时候绑定一个空对象*/
+    observe(vm._data = &#123;&#125;, true /* asRootData */)
+  &#125;
+  /*初始化computed*/
+  if (opts.computed) initComputed(vm, opts.computed)
+  /*初始化watchers*/
+  if (opts.watch) initWatch(vm, opts.watch)
+&#125;
+...
+/*初始化data*/
+function initData (vm: Component) &#123;
+  /*得到data数据*/
+  let data = vm.$options.data
+  data = vm._data = typeof data === &#39;function&#39;
+    ? getData(data, vm)
+    : data || &#123;&#125;defi
+  ...
+  //遍历data中的数据
+  while (i--) &#123;
+    /*保证data中的key不与props中的key重复，props优先，如果有冲突会产生warning*/
+    if (props &amp;&amp; hasOwn(props, keys[i])) &#123;
+      process.env.NODE_ENV !== &#39;production&#39; &amp;&amp; warn(
+        `The data property &quot;$&#123;keys[i]&#125;&quot; is already declared as a prop. ` +
+        `Use prop default value instead.`,
+        vm
+      )
+    &#125; else if (!isReserved(keys[i])) &#123;
+      /*判断是否是保留字段*/
+      /*这里是我们前面讲过的代理，将data上面的属性代理到了vm实例上*/
+      proxy(vm, `_data`, keys[i])
+    &#125;
+  &#125;
+  // observe data
+  /*这里通过observe实例化Observe对象，开始对数据进行绑定，asRootData用来根数据，用来计算实例化根数据的个数，下面会进行递归observe进行对深层对象的绑定。则asRootData为非true*/
+  observe(data, true /* asRootData */)
+&#125;
+</code></pre>
+<h6 id="1、initData"><a href="#1、initData" class="headerlink" title="1、initData"></a>1、initData</h6><p>现在我们重点分析下<strong>initData</strong>，这里主要做了两件事，一是将_data上面的数据代理到vm上，二是通过执行 observe(data, true / <em>asRootData</em> /)将所有data变成可观察的，即对data定义的每个属性进行getter/setter操作，这里就是Vue实现响应式的基础；<strong>observe</strong>的实现如下 <a target="_blank" rel="noopener" href="https://github.com/tangyuxian/Vue-learn/blob/master/core/observer/index.js">src/core/observer/index.js</a></p>
+<pre><code class="javascript"> /*尝试创建一个Observer实例（__ob__），如果成功创建Observer实例则返回新的Observer实例，如果已有Observer实例则返回现有的Observer实例。*/
+export function observe (value: any, asRootData: ?boolean): Observer | void &#123;
+  if (!isObject(value)) &#123;
+    return
+  &#125;
+  let ob: Observer | void
+  /*这里用__ob__这个属性来判断是否已经有Observer实例，如果没有Observer实例则会新建一个Observer实例并赋值给__ob__这个属性，如果已有Observer实例则直接返回该Observer实例，这里可以看Observer实例化的代码def(value, &#39;__ob__&#39;, this)*/
+  if (hasOwn(value, &#39;__ob__&#39;) &amp;&amp; value.__ob__ instanceof Observer) &#123;
+    ob = value.__ob__
+  &#125; else if (
+    /*这里的判断是为了确保value是单纯的对象，而不是函数或者是Regexp等情况。而且该对象在shouldConvert的时候才会进行Observer。这是一个标识位，避免重复对value进行Observer
+    */
+    observerState.shouldConvert &amp;&amp;
+    !isServerRendering() &amp;&amp;
+    (Array.isArray(value) || isPlainObject(value)) &amp;&amp;
+    Object.isExtensible(value) &amp;&amp;
+    !value._isVue
+  ) &#123;
+    ob = new Observer(value)
+  &#125;
+  if (asRootData &amp;&amp; ob) &#123;
+     /*如果是根数据则计数，后面Observer中的observe的asRootData非true*/
+    ob.vmCount++
+  &#125;
+  return ob
+&#125;
+</code></pre>
+<p>这里 <strong>new Observer(value)</strong> 就是实现响应式的核心方法之一了，通过它将data转变可以成观察的，而这里正是我们开头说的，用了 <strong>Object.defineProperty</strong> 实现了data的 <strong>getter/setter</strong> 操作，通过 <strong>Watcher</strong> 来观察数据的变化，进而更新到视图中。</p>
+<h6 id="2、Observer"><a href="#2、Observer" class="headerlink" title="2、Observer"></a>2、Observer</h6><p>Observer类是将每个目标对象（即data）的键值转换成getter/setter形式，用于进行依赖收集以及调度更新。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tangyuxian/Vue-learn/blob/master/core/observer/index.js">src/core/observer/index.js</a></p>
+<pre><code class="javascript">export class Observer &#123;
+  value: any;
+  dep: Dep;
+  vmCount: number; // number of vms that has this object as root $data
+  constructor (value: any) &#123;
+    this.value = value
+    this.dep = new Dep()
+    this.vmCount = 0
+    /* 将Observer实例绑定到data的__ob__属性上面去，之前说过observe的时候会先检测是否已经有__ob__对象存放Observer实例了，def方法定义可以参考/src/core/util/lang.js*/
+    def(value, &#39;__ob__&#39;, this)
+    if (Array.isArray(value)) &#123;
+      /*如果是数组，将修改后可以截获响应的数组方法替换掉该数组的原型中的原生方法，达到监听数组数据变化响应的效果。这里如果当前浏览器支持__proto__属性，则直接覆盖当前数组对象原型上的原生数组方法，如果不支持该属性，则直接覆盖数组对象的原型。*/
+      const augment = hasProto
+        ? protoAugment  /*直接覆盖原型的方法来修改目标对象*/
+        : copyAugment   /*定义（覆盖）目标对象或数组的某一个方法*/
+      augment(value, arrayMethods, arrayKeys)
+      /*如果是数组则需要遍历数组的每一个成员进行observe*/
+      this.observeArray(value)
+    &#125; else &#123;
+      /*如果是对象则直接walk进行绑定*/
+      this.walk(value)
+    &#125;,
+    walk (obj: Object) &#123;
+      const keys = Object.keys(obj)
+      /*walk方法会遍历对象的每一个属性进行defineReactive绑定*/
+      for (let i = 0; i &lt; keys.length; i++) &#123;
+        defineReactive(obj, keys[i], obj[keys[i]])
+      &#125;
+    &#125;
+  &#125;
+</code></pre>
+<ol>
+<li>首先将Observer实例绑定到data的<strong>ob</strong>属性上面去，防止重复绑定；</li>
+<li>若data为数组，先实现对应的<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/list.html#%E5%8F%98%E5%BC%82%E6%96%B9%E6%B3%95">变异方法</a>（这里变异方法是指Vue重写了数组的7种原生方法，这里不做赘述，后续再说明），再将数组的每个成员进行observe，使之成响应式数据；</li>
+<li>否则执行walk()方法，遍历data所有的数据，进行getter/setter绑定，这里的核心方法就是 <strong>defineReative(obj, keys[i], obj[keys[i]])</strong></li>
+</ol>
+<pre><code>export function defineReactive (
+  obj: Object,
+  key: string,
+  val: any,
+  customSetter?: Function
+) &#123;
+  /*在闭包中定义一个dep对象*/
+  const dep = new Dep()
+  const property = Object.getOwnPropertyDescriptor(obj, key)
+  if (property &amp;&amp; property.configurable === false) &#123;
+    return
+  &#125;
+  /*如果之前该对象已经预设了getter以及setter函数则将其取出来，新定义的getter/setter中会将其执行，保证不会覆盖之前已经定义的getter/setter。*/
+  // cater for pre-defined getter/setters
+  const getter = property &amp;&amp; property.get
+  const setter = property &amp;&amp; property.set
+  /*对象的子对象递归进行observe并返回子节点的Observer对象*/
+  let childOb = observe(val)
+  Object.defineProperty(obj, key, &#123;
+    enumerable: true,
+    configurable: true,
+    get: function reactiveGetter () &#123;
+      /*如果原本对象拥有getter方法则执行*/
+      const value = getter ? getter.call(obj) : val
+      if (Dep.target) &#123;
+        /*进行依赖收集*/
+        dep.depend()
+        if (childOb) &#123;
+          /*子对象进行依赖收集，其实就是将同一个watcher观察者实例放进了两个depend中，一个是正在本身闭包中的depend，另一个是子元素的depend*/
+          childOb.dep.depend()
+        &#125;
+        if (Array.isArray(value)) &#123;
+          /*是数组则需要对每一个成员都进行依赖收集，如果数组的成员还是数组，则递归。*/
+          dependArray(value)
+        &#125;
+      &#125;
+      return value
+    &#125;,
+    set: function reactiveSetter (newVal) &#123;
+      /*通过getter方法获取当前值，与新值进行比较，一致则不需要执行下面的操作*/
+      const value = getter ? getter.call(obj) : val
+      /* eslint-disable no-self-compare */
+      if (newVal === value || (newVal !== newVal &amp;&amp; value !== value)) &#123;
+        return
+      &#125;
+      /* eslint-enable no-self-compare */
+      if (process.env.NODE_ENV !== &#39;production&#39; &amp;&amp; customSetter) &#123;
+        customSetter()
+      &#125;
+      if (setter) &#123;
+        /*如果原本对象拥有setter方法则执行setter*/
+        setter.call(obj, newVal)
+      &#125; else &#123;
+        val = newVal
+      &#125;
+      /*新的值需要重新进行observe，保证数据响应式*/
+      childOb = observe(newVal)
+      /*dep对象通知所有的观察者*/
+      dep.notify()
+    &#125;
+  &#125;)
+&#125;复制代码
+</code></pre>
+<p>其中getter方法：</p>
+<ol>
+<li>先为每个data声明一个 <strong>Dep</strong> 实例对象，被用于getter时执行dep.depend()进行收集相关的依赖;</li>
+<li>根据Dep.target来判断是否收集依赖，还是普通取值。Dep.target是在什么时候，如何收集的后面再说明，先简单了解它的作用，</li>
+</ol>
+<p>那么问题来了，我们为啥要收集相关依赖呢？</p>
+<pre><code class="javascript">new Vue(&#123;
+    template: 
+        `&lt;div&gt;
+            &lt;span&gt;text1:&lt;/span&gt; &#123;&#123;text1&#125;&#125;
+            &lt;span&gt;text2:&lt;/span&gt; &#123;&#123;text2&#125;&#125;
+        &lt;div&gt;`,
+    data: &#123;
+        text1: &#39;text1&#39;,
+        text2: &#39;text2&#39;,
+        text3: &#39;text3&#39;
+    &#125;
+&#125;);
+</code></pre>
+<p>我们可以从以上代码看出，data中text3并没有被模板实际用到，为了提高代码执行效率，我们没有必要对其进行响应式处理，因此，依赖收集简单点理解就是收集只在实际页面中用到的data数据，然后打上标记，这里就是标记为Dep.target。</p>
+<p>在setter方法中:</p>
+<ol>
+<li>获取新的值并且进行observe，保证数据响应式；</li>
+<li>通过dep对象通知所有观察者去更新数据，从而达到响应式效果。</li>
+</ol>
+<p>在Observer类中，我们可以看到在getter时，dep会收集相关依赖，即收集依赖的watcher，然后在setter操作时候通过dep去通知watcher,此时watcher就执行变化，我们用一张图描述这三者之间的关系：<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://user-gold-cdn.xitu.io/2018/2/8/1617554b5e866e59?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="关系图" class="lazyload"></p>
+<p>从图我们可以简单理解：Dep可以看做是书店，Watcher就是书店订阅者，而Observer就是书店的书，订阅者在书店订阅书籍，就可以添加订阅者信息，一旦有新书就会通过书店给订阅者发送消息。</p>
+<h6 id="3、Watcher"><a href="#3、Watcher" class="headerlink" title="3、Watcher"></a>3、Watcher</h6><p>Watcher是一个观察者对象。依赖收集以后Watcher对象会被保存在Dep的subs中，数据变动的时候Dep会通知Watcher实例，然后由Watcher实例回调cb进行视图的更新。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tangyuxian/Vue-learn/blob/master/core/observer/watcher.js">src/core/observer/watcher.js</a></p>
+<pre><code class="javascript">export default class Watcher &#123;
+  constructor (
+    vm: Component,
+    expOrFn: string | Function,
+    cb: Function,
+    options?: Object
+  ) &#123;
+    this.vm = vm
+    /*_watchers存放订阅者实例*/
+    vm._watchers.push(this)
+    // options
+    if (options) &#123;
+      this.deep = !!options.deep
+      this.user = !!options.user
+      this.lazy = !!options.lazy
+      this.sync = !!options.sync
+    &#125; else &#123;
+      this.deep = this.user = this.lazy = this.sync = false
+    &#125;
+    this.cb = cb
+    this.id = ++uid // uid for batching
+    this.active = true
+    this.dirty = this.lazy // for lazy watchers
+    this.deps = []
+    this.newDeps = []
+    this.depIds = new Set()
+    this.newDepIds = new Set()
+    this.expression = process.env.NODE_ENV !== &#39;production&#39;
+      ? expOrFn.toString()
+      : &#39;&#39;
+    // parse expression for getter
+    /*把表达式expOrFn解析成getter*/
+    if (typeof expOrFn === &#39;function&#39;) &#123;
+      this.getter = expOrFn
+    &#125; else &#123;
+      this.getter = parsePath(expOrFn)
+      if (!this.getter) &#123;
+        this.getter = function () &#123;&#125;
+        process.env.NODE_ENV !== &#39;production&#39; &amp;&amp; warn(
+          `Failed watching path: &quot;$&#123;expOrFn&#125;&quot; ` +
+          &#39;Watcher only accepts simple dot-delimited paths. &#39; +
+          &#39;For full control, use a function instead.&#39;,
+          vm
+        )
+      &#125;
+    &#125;
+    this.value = this.lazy
+      ? undefined
+      : this.get()
+  &#125;
+  /**
+   * Evaluate the getter, and re-collect dependencies.
+   */
+   /*获得getter的值并且重新进行依赖收集*/
+  get () &#123;
+    /*将自身watcher观察者实例设置给Dep.target，用以依赖收集。*/
+    pushTarget(this)
+    let value
+    const vm = this.vm
+    /*执行了getter操作，看似执行了渲染操作，其实是执行了依赖收集。
+      在将Dep.target设置为自生观察者实例以后，执行getter操作。
+      譬如说现在的的data中可能有a、b、c三个数据，getter渲染需要依赖a跟c，
+      那么在执行getter的时候就会触发a跟c两个数据的getter函数，
+      在getter函数中即可判断Dep.target是否存在然后完成依赖收集，
+      将该观察者对象放入闭包中的Dep的subs中去。*/
+    if (this.user) &#123;
+      try &#123;
+        value = this.getter.call(vm, vm)
+      &#125; catch (e) &#123;
+        handleError(e, vm, `getter for watcher &quot;$&#123;this.expression&#125;&quot;`)
+      &#125;
+    &#125; else &#123;
+      value = this.getter.call(vm, vm)
+    &#125;
+    // &quot;touch&quot; every property so they are all tracked as
+    // dependencies for deep watching
+    /*如果存在deep，则触发每个深层对象的依赖，追踪其变化*/
+    if (this.deep) &#123;
+      /*递归每一个对象或者数组，触发它们的getter，使得对象或数组的每一个成员都被依赖收集，形成一个“深（deep）”依赖关系*/
+      traverse(value)
+    &#125;
+    /*将观察者实例从target栈中取出并设置给Dep.target*/
+    popTarget()
+    this.cleanupDeps()
+    return value
+  &#125;
+  /**
+   * Add a dependency to this directive.
+   */
+   /*添加一个依赖关系到Deps集合中*/
+  addDep (dep: Dep) &#123;
+    const id = dep.id
+    if (!this.newDepIds.has(id)) &#123;
+      this.newDepIds.add(id)
+      this.newDeps.push(dep)
+      if (!this.depIds.has(id)) &#123;
+        dep.addSub(this)
+      &#125;
+    &#125;
+  &#125;
+  /**
+   * Clean up for dependency collection.
+   */
+   /*清理依赖收集*/
+  cleanupDeps () &#123;
+    /*移除所有观察者对象*/
+    ...
+  &#125;
+  /**
+   * Subscriber interface.
+   * Will be called when a dependency changes.
+   */
+   /*
+      调度者接口，当依赖发生改变的时候进行回调。
+   */
+  update () &#123;
+    /* istanbul ignore else */
+    if (this.lazy) &#123;
+      this.dirty = true
+    &#125; else if (this.sync) &#123;
+      /*同步则执行run直接渲染视图*/
+      this.run()
+    &#125; else &#123;
+      /*异步推送到观察者队列中，下一个tick时调用。*/
+      queueWatcher(this)
+    &#125;
+  &#125;
+  /**
+   * Scheduler job interface.
+   * Will be called by the scheduler.
+   */
+   /*
+      调度者工作接口，将被调度者回调。
+    */
+  run () &#123;
+    if (this.active) &#123;
+      /* get操作在获取value本身也会执行getter从而调用update更新视图 */
+      const value = this.get()
+      if (
+        value !== this.value ||
+        // Deep watchers and watchers on Object/Arrays should fire even
+        // when the value is the same, because the value may
+        // have mutated.
+        /*
+            即便值相同，拥有Deep属性的观察者以及在对象／数组上的观察者应该被触发更新，因为它们的值可能发生改变。
+        */
+        isObject(value) ||
+        this.deep
+      ) &#123;
+        // set new value
+        const oldValue = this.value
+        /*设置新的值*/
+        this.value = value
+        /*触发回调*/
+        if (this.user) &#123;
+          try &#123;
+            this.cb.call(this.vm, value, oldValue)
+          &#125; catch (e) &#123;
+            handleError(e, this.vm, `callback for watcher &quot;$&#123;this.expression&#125;&quot;`)
+          &#125;
+        &#125; else &#123;
+          this.cb.call(this.vm, value, oldValue)
+        &#125;
+      &#125;
+    &#125;
+  &#125;
+  /**
+   * Evaluate the value of the watcher.
+   * This only gets called for lazy watchers.
+   */
+   /*获取观察者的值*/
+  evaluate () &#123;
+    this.value = this.get()
+    this.dirty = false
+  &#125;
+  /**
+   * Depend on all deps collected by this watcher.
+   */
+   /*收集该watcher的所有deps依赖*/
+  depend () &#123;
+    let i = this.deps.length
+    while (i--) &#123;
+      this.deps[i].depend()
+    &#125;
+  &#125;
+  /**
+   * Remove self from all dependencies&#39; subscriber list.
+   */
+   /*将自身从所有依赖收集订阅列表删除*/
+  teardown () &#123;
+   ...
+  &#125;
+&#125;
+</code></pre>
+<h6 id="4、Dep"><a href="#4、Dep" class="headerlink" title="4、Dep"></a>4、Dep</h6><p>被Observer的data在触发 <strong>getter</strong> 时，<strong>Dep</strong> 就会收集依赖的 <strong>Watcher</strong> ，其实 <strong>Dep</strong> 就像刚才说的是一个书店，可以接受多个订阅者的订阅，当有新书时即在data变动时，就会通过 <strong>Dep</strong> 给 <strong>Watcher</strong> 发通知进行更新。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tangyuxian/Vue-learn/blob/master/core/observer/dep.js">src/core/observer/dep.js</a></p>
+<pre><code class="javascript">export default class Dep &#123;
+  static target: ?Watcher;
+  id: number;
+  subs: Array&lt;Watcher&gt;;
+  constructor () &#123;
+    this.id = uid++
+    this.subs = []
+  &#125;
+  /*添加一个观察者对象*/
+  addSub (sub: Watcher) &#123;
+    this.subs.push(sub)
+  &#125;
+  /*移除一个观察者对象*/
+  removeSub (sub: Watcher) &#123;
+    remove(this.subs, sub)
+  &#125;
+  /*依赖收集，当存在Dep.target的时候添加观察者对象*/
+  depend () &#123;
+    if (Dep.target) &#123;
+      Dep.target.addDep(this)
+    &#125;
+  &#125;
+  /*通知所有订阅者*/
+  notify () &#123;
+    // stabilize the subscriber list first
+    const subs = this.subs.slice()
+    for (let i = 0, l = subs.length; i &lt; l; i++) &#123;
+      subs[i].update()
+    &#125;
+  &#125;
+&#125;
+</code></pre>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><p>其实在 <strong>Vue</strong> 中初始化渲染时，视图上绑定的数据就会实例化一个 <strong>Watcher</strong>，依赖收集就是是通过属性的 <strong>getter</strong> 函数完成的，文章一开始讲到的 <strong>Observer</strong> 、<strong>Watcher</strong> 、<strong>Dep</strong> 都与依赖收集相关。其中 <strong>Observer</strong> 与 <strong>Dep</strong>        是一对一的关系， <strong>Dep</strong> 与 <strong>Watcher</strong> 是多对多的关系，<strong>Dep</strong> 则是 <strong>Observer</strong> 和 <strong>Watcher</strong> 之间的纽带。依赖收集完成后，当属性变化会执行被 <strong>Observer</strong> 对象的 <strong>dep.notify()</strong> 方法，这个方法会遍历订阅者（Watcher）列表向其发送消息，        <strong>Watcher</strong> 会执行 <strong>run</strong> 方法去更新视图，我们再来看一张图总结一下：<br><img data-fancybox="gallery" data-sizes="auto" data-src="https://user-gold-cdn.xitu.io/2018/2/8/1617554b4aa4d4c9?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="关系图" class="lazyload"></p>
+<ol>
+<li><p>在 <strong>Vue</strong> 中模板编译过程中的指令或者数据绑定都会实例化一个 <strong>Watcher</strong> 实例，实例化过程中会触发 <strong>get()</strong> 将自身指向 <strong>Dep.target</strong>;</p>
+</li>
+<li><p>data在 <strong>Observer</strong> 时执行 <strong>getter</strong> 会触发 <strong>dep.depend()</strong> 进行依赖收集;依赖收集的结果：</p>
+<p>  1.data在 <strong>Observer</strong> 时闭包的dep实例的subs添加观察它的 <strong>Watcher</strong> 实例；</p>
+<p>  2.Watcher** 的deps中添加观察对象 <strong>Observer</strong> 时的闭包dep；</p>
+</li>
+<li><p>当data中被 <strong>Observer</strong> 的某个对象值变化后，触发subs中观察它的watcher执行 <strong>update()</strong> 方法，最后实际上是调用watcher的回调函数cb，进而更新视图。</p>
+</li>
+</ol>
+<hr>
+<p>参考文档:<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903561327820808">掘金文章:理解vue相应原理</a></p>
+
+        </article>
+
+        
+            
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>tangyuxian<br>
+    
+    <strong>本文链接：</strong><a href="https://www.tangyuxian.com/2021/02/23/%E5%89%8D%E7%AB%AF/vue/vue-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" title="https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;02&#x2F;23&#x2F;%E5%89%8D%E7%AB%AF&#x2F;vue&#x2F;vue-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;02&#x2F;23&#x2F;%E5%89%8D%E7%AB%AF&#x2F;vue&#x2F;vue-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86&#x2F;</a><br>
+
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+        
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/vue/" rel="tag">vue</a>
+    
+</div>
+
+    <div class="nexmoe-post-footer">
+        <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'r5zxC0st0DDjPA9auXzMV7HY-gzGzoHsz',
+        appKey: '3bqCsovpyfTPHUzTHovd3V3V'
+    })
+</script>
+</section>
+    </div>
+</div>
+
+
+        <div class="nexmoe-post-right">
+          
+            <div class="nexmoe-fixed">
+              <div class="nexmoe-tool">
+                <a href="#" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+              </div>
+            </div>
+          
+        </div>
+    </div>
+  </div>
+  <div id="nexmoe-pendant">
+    <div class="nexmoe-drawer mdui-drawer nexmoe-pd" id="drawer">
+        
+            <div class="nexmoe-pd-item">
+                <div class="clock">
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="needle" id="hours"></div>
+        <div class="needle" id="minutes"></div>
+        <div class="needle" id="seconds"></div>
+        <div class="clock_logo">
+
+        </div>
+
+    </div>
+<style>
+    .clock {
+        background-color: #ffffff;
+        width: 70vw;
+        height: 70vw;
+        max-width: 70vh;
+        max-height: 70vh;
+        border: solid 2.8vw #242424;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        box-sizing: border-box;
+        box-shadow: 0 1.4vw 2.8vw rgba(0, 0, 0, 0.8);
+        zoom:0.2
+    }
+
+    .memory {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+    }
+
+    .memory:nth-child(1) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(0deg) translateY(-520%);
+    }
+
+    .memory:nth-child(2) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(6deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(3) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(12deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(4) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(18deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(5) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(24deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(6) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(30deg) translateY(-520%);
+    }
+
+    .memory:nth-child(7) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(36deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(8) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(42deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(9) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(48deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(10) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(54deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(11) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(60deg) translateY(-520%);
+    }
+
+    .memory:nth-child(12) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(66deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(13) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(72deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(14) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(78deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(15) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(84deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(16) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(90deg) translateY(-520%);
+    }
+
+    .memory:nth-child(17) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(96deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(18) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(102deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(19) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(108deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(20) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(114deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(21) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(120deg) translateY(-520%);
+    }
+
+    .memory:nth-child(22) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(126deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(23) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(132deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(24) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(138deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(25) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(144deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(26) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(150deg) translateY(-520%);
+    }
+
+    .memory:nth-child(27) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(156deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(28) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(162deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(29) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(168deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(30) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(174deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(31) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(180deg) translateY(-520%);
+    }
+
+    .memory:nth-child(32) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(186deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(33) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(192deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(34) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(198deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(35) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(204deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(36) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(210deg) translateY(-520%);
+    }
+
+    .memory:nth-child(37) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(216deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(38) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(222deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(39) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(228deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(40) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(234deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(41) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(240deg) translateY(-520%);
+    }
+
+    .memory:nth-child(42) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(246deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(43) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(252deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(44) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(258deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(45) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(264deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(46) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(270deg) translateY(-520%);
+    }
+
+    .memory:nth-child(47) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(276deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(48) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(282deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(49) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(288deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(50) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(294deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(51) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(300deg) translateY(-520%);
+    }
+
+    .memory:nth-child(52) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(306deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(53) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(312deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(54) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(318deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(55) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(324deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(56) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(330deg) translateY(-520%);
+    }
+
+    .memory:nth-child(57) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(336deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(58) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(342deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(59) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(348deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(60) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(354deg) translateY(-1461%);
+    }
+
+    .needle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+    }
+
+    .needle#hours {
+        background-color: #1f1f1f;
+        width: 4%;
+        height: 30%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#hours.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#hours:after {
+        content: '';
+        background-color: #1f1f1f;
+        width: 4vw;
+        height: 4vw;
+        max-width: 4vh;
+        max-height: 4vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .needle#minutes {
+        background-color: #1f1f1f;
+        width: 2%;
+        height: 45%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#minutes.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#minutes:after {
+        content: '';
+        background-color: #1f1f1f;
+        width: 4vw;
+        height: 4vw;
+        max-width: 4vh;
+        max-height: 4vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .needle#seconds {
+        background-color: #cb2f2f;
+        width: 1%;
+        height: 50%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#seconds.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#seconds:after {
+        content: '';
+        background-color: #cb2f2f;
+        width: 2.5vw;
+        height: 2.5vw;
+        max-width: 2.5vh;
+        max-height: 2.5vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .clock_logo{
+        width: 10vw;
+        height: 10vw;
+        max-width: 10vh;
+        max-height: 10vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    @media (min-width: 100vh) {
+        .clock {
+            border: solid 2.8vh #242424;
+            box-shadow: 0 1.4vh 2.8vh rgba(0, 0, 0, 0.8);
+        }
+    }
+
+</style>
+
+
+
+
+
+            </div>
+        
+            <div class="nexmoe-pd-item">
+                <div class="qweather" >
+    <div id="he-plugin-standard"></div>
+    <div class="qweather-logo">
+
+    </div>
+
+</div>
+<style>
+    .qweather{
+        position: relative;
+    }
+    .qweather-logo{
+        position: absolute;
+        right: 0;
+        top: -15px;
+        width: 40px;
+        height: 40px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+</style>
+<script>
+  WIDGET = {
+    "CONFIG": {
+      "layout": "2",
+      "width": "260",
+      "height": "220",
+      "background": "5",
+      "dataColor": "e67249",
+      "borderRadius": "15",
+      "key": "f74d1e1690e6432d801e97fa2f05a162"
+    }
+  }
+</script>
+<script src="https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0"></script>
+
+            </div>
+        
+</div>
+<style>
+    .nexmoe-pd {
+        left: auto;
+        top: 40px;
+        right: 0;
+    }
+    .nexmoe-pd-item{
+       display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+</style>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/app.js?v=1639833709856"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+  
+
+
+
+
+
+<!-- hexo injector body_end start -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+
+<script src="/lib/codeBlock/codeBlockFuction.js"></script>
+
+<script src="/lib/codeBlock/codeLang.js"></script>
+
+<script src="/lib/codeBlock/codeCopy.js"></script>
+
+<script src="/lib/codeBlock/codeShrink.js"></script>
+
+<link rel="stylesheet" href="/lib/codeBlock/matery.css">
+
+<script src="/js/clock.js"></script>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+
+<script src="/js/search.js"></script>
+
+<script src="/js/webapp.js"></script>
+<!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/xiaomai.model.json"},"display":{"position":"left","width":200,"height":500},"mobile":{"show":false},"react":{"opacity":0.9},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/250cb4aa.js","daovoice")</script>
+<script>
+  daovoice('init', {
+    app_id: "250cb4aa"
+  });
+  daovoice('update');
+</script>
+
