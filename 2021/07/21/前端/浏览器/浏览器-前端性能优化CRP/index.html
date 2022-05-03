@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
+  <title>浏览器-前端性能优化CRP - 糖羽仙</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="这是萌糖的官方网站">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+    <!-- Site Verification -->
+    <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
+
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/head.jpg" type="image/png" />
+  <meta name="description" content="CRP(Critical [ˈkrɪtɪkl] Rendering [ˈrendərɪŋ] Path，关键渲染路径)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器-前端性能优化CRP">
+<meta property="og:url" content="https://www.tangyuxian.com/2021/07/21/%E5%89%8D%E7%AB%AF/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8-%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96CRP/index.html">
+<meta property="og:site_name" content="糖羽仙">
+<meta property="og:description" content="CRP(Critical [ˈkrɪtɪkl] Rendering [ˈrendərɪŋ] Path，关键渲染路径)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812144101.jpeg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812144400.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812144403.webp">
+<meta property="og:image" content="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/5/14/17212770500c8538~tplv-t2oaga2asx-watermark.awebp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812145003.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812145753.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150300.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150257.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150253.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150251.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150245.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150237.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150234.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150231.webp">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150227.webp">
+<meta property="article:published_time" content="2021-07-21T07:10:28.000Z">
+<meta property="article:modified_time" content="2021-09-19T08:40:09.582Z">
+<meta property="article:author" content="tangyuxian">
+<meta property="article:tag" content="浏览器">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812144101.jpeg">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
+  
+  <link rel="stylesheet" href="/css/style.css?v=1651549735821">
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/background/xiaomai.jpg)"></div>
+    <div class="nexmoe-small" style="background-image: url(https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/background/lihui.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="tangyuxian" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/head.jpg" alt="tangyuxian"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="tangyuxian">
+            <img src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/head.jpg" alt="tangyuxian" alt="tangyuxian">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div class="nexmoe-count-item"><span>文章</span>61 <div class="item-radius"></div><div class="item-radius item-right"></div> </div>
+        <div class="nexmoe-count-item"><span>标签</span>30<div class="item-radius"></div><div class="item-radius item-right"></div></div>
+        <div class="nexmoe-count-item"><span>分类</span>4<div class="item-radius"></div><div class="item-radius item-right"></div></div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-meishi"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-hanbao1"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于糖糖">
+            <i class="mdui-list-item-icon nexmoefont icon-jiubei1"></i>
+            <div class="mdui-list-item-content">
+                关于糖糖
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friend.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-cola"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/download.html" title="下载中心">
+            <i class="mdui-list-item-icon nexmoefont icon-tangguo"></i>
+            <div class="mdui-list-item-content">
+                下载中心
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  
+<!-- 站内搜索 -->
+
+<div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search" >
+        <form id="search-form">
+            <label><input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="input form-control" autocomplete="off" autocorrect="off"/></label>
+            <!-- 清空/重置搜索框 -->
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+        </form>
+    </div>
+    <div id="local-search-result"></div> <!-- 搜索结果区 -->
+    <!-- <p class='no-result'></p> 无匹配时显示，注意在 CSS 中设置默认隐藏 -->
+</div>
+
+
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=2120252100&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(64, 196, 255);background-color: rgba(64, 196, 255, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="mailto:tangyuxian@vip.qq.com" target="_blank" mdui-tooltip="{content: 'mail'}" style="color: rgb(249,8,8);background-color: rgba(249,8,8,.1);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="https://blog.csdn.net/qq_40621378?type=blog" target="_blank" mdui-tooltip="{content: 'CSDN'}" style="color: rgb(199,29,35);background-color: rgba(199,29,35,.1);">
+            <i class="nexmoefont icon-csdn"></i>
+        </a><a class="mdui-ripple" href="https://www.cnblogs.com/lovetangyuxian/" target="_blank" mdui-tooltip="{content: '博客园'}" style="color: rgb(66, 214, 29);background-color: rgba(66, 214, 29, .1);">
+            <i class="nexmoefont icon-bokeyuan"></i>
+        </a><a class="mdui-ripple" href="https://github.com/tangyuxian/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://gitee.com/tangyuxian" target="_blank" mdui-tooltip="{content: 'gitee'}" style="color: rgb(255, 255, 255);background-color: rgb(199,29,35);">
+            <i class="nexmoefont icon-mayun"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">44</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/后端/">后端</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/开发工具/">开发工具</a>
+          <span class="category-list-count">9</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/服务器端/">服务器端</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/JavaScript/" style="font-size: 15.56px;">JavaScript</a> <a href="/tags/Jetbrains/" style="font-size: 10px;">Jetbrains</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/UI%E5%BA%93/" style="font-size: 11.11px;">UI库</a> <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elementPlus/" style="font-size: 11.11px;">elementPlus</a> <a href="/tags/es6/" style="font-size: 13.33px;">es6</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags/http/" style="font-size: 11.11px;">http</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markerdown/" style="font-size: 11.11px;">markerdown</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/" style="font-size: 10px;">互联网</a> <a href="/tags/%E5%8A%A0%E5%AF%86/" style="font-size: 12.22px;">加密</a> <a href="/tags/%E5%8E%9F%E5%88%9B/" style="font-size: 16.67px;">原创</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 14.44px;">工具</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 12.22px;">微信小程序</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 12.22px;">总结</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">服务器</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 17.78px;">浏览器</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 14.44px;">算法</a> <a href="/tags/%E7%BC%96%E8%A7%A3%E7%A0%81/" style="font-size: 10px;">编解码</a> <a href="/tags/%E7%BE%8E%E5%8C%96/" style="font-size: 10px;">美化</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 18.89px;">转载</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">54</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 tangyuxian
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/tangyuxian/hexo-theme-tangyuxian" target="_blank">Tangyuxian</a><br/>
+        <a href="http://beian.miit.gov.cn" target="_blank">辽ICP备2021002341号</a><br/>
+        
+        <div style="font-size: 12px">
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            本站总访问量  <a id="busuanzi_value_site_pv"></a> 次<br />
+            本站访客数<a id="busuanzi_value_site_uv"></a>人次
+        </div>
+        
+        
+    </div>
+
+</div><!-- .nexmoe-drawer -->
+
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    
+        <div class="nexmoe-post-cover" style="padding-bottom: 26.666666666666668%;">
+            <img data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/browser.jpg" data-sizes="auto" alt="浏览器-前端性能优化CRP"
+                 class="lazyload">
+            <h1>浏览器-前端性能优化CRP</h1>
+        </div>
+    
+
+        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年07月21日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.3k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 10 分钟</a>
+</div>
+
+        <div class="nexmoe-post-right">
+            
+        </div>
+
+        <article>
+            <p>CRP(Critical [ˈkrɪtɪkl] Rendering [ˈrendərɪŋ] Path，关键渲染路径)</p>
+<span id="more"></span>
+
+<h2 id="总览"><a href="#总览" class="headerlink" title="总览"></a>总览</h2><p>从用户输入 url 到显卡绘制，一共分为下面这几个步骤。</p>
+<p>1、URl解析</p>
+<p>2、DNS 解析</p>
+<p>3、TCP/IP 三次握手</p>
+<p>4、发送 HTTP 请求</p>
+<p>5、服务器返回结果</p>
+<p>6、TCP/IP 四次挥手</p>
+<p>7、HTML解析，生成 DOM 树，CSS 生成 CSSOM 树，生成渲染树</p>
+<p>8、将绘制任务交给显卡</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812144101.jpeg" alt="img" class="lazyload"></p>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h4 id="1-URI解析"><a href="#1-URI解析" class="headerlink" title="1 URI解析"></a>1 URI解析</h4><ul>
+<li><p>地址解析和编码</p>
+</li>
+<li><p>HSTS （HTTP严格传输安全协议）</p>
+</li>
+<li><p>缓存检查</p>
+</li>
+<li><p>。。。</p>
+<p>浏览器首先会看是否有缓存，若没有缓存，则浏览器会直接向服务器发送请求，然后服务器返回请求结果以及缓存标识，存入缓存,然后页面加载成功</p>
+<p>如果有缓存，则看缓存是否过期(Expires 和 Cache-Control)，若缓存没过期，则直接读取缓存，然后返回缓存，最后页面加载成功</p>
+<p>如果有缓存，但是缓存过期了，则需要携带标识(if-Modified-Since和if-None-Match),向服务器发送请求，此时服务器会查看资源是否有更新，（1）若没有更新，则返回304 状态码，继续使用缓存-&gt;读取缓存-&gt;返回缓存-&gt;页面加载成功；（2）若资源已经更新，则重新返回资源和缓存标识，返回状态码为200,并存入缓存中，最后页面加载成功</p>
+</li>
+</ul>
+<h4 id="2-DNS解析"><a href="#2-DNS解析" class="headerlink" title="2 DNS解析"></a>2 DNS解析</h4><p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812144400.webp" alt="img" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812144403.webp" alt="img" class="lazyload"></p>
+<h4 id="3-TCP-IP-三次握手"><a href="#3-TCP-IP-三次握手" class="headerlink" title="3 TCP/IP 三次握手"></a>3 TCP/IP 三次握手</h4><p><img data-fancybox="gallery" data-sizes="auto" data-src="https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2020/5/14/17212770500c8538~tplv-t2oaga2asx-watermark.awebp" alt="img" class="lazyload"></p>
+<h4 id="4-发送-HTTP-请求"><a href="#4-发送-HTTP-请求" class="headerlink" title="4 发送 HTTP 请求"></a>4 发送 HTTP 请求</h4><p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812145003.png" alt="image-20210812144959118" class="lazyload"></p>
+<p>​    参考:<a target="_blank" rel="noopener" href="https://www.sohu.com/a/161201715_714863">HTTP1.0、HTTP1.1和HTTP2.0的区别</a></p>
+<h4 id="5-服务器返回结果"><a href="#5-服务器返回结果" class="headerlink" title="5 服务器返回结果"></a>5 服务器返回结果</h4><h4 id="6-TCP-IP-四次挥手"><a href="#6-TCP-IP-四次挥手" class="headerlink" title="6 TCP/IP 四次挥手"></a>6 TCP/IP 四次挥手</h4><p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812145753.webp" alt="img" class="lazyload"></p>
+<h4 id="7-HTML解析，生成-DOM-树，CSS-生成-CSSOM-树，生成渲染树"><a href="#7-HTML解析，生成-DOM-树，CSS-生成-CSSOM-树，生成渲染树" class="headerlink" title="7 HTML解析，生成 DOM 树，CSS 生成 CSSOM 树，生成渲染树"></a>7 HTML解析，生成 DOM 树，CSS 生成 CSSOM 树，生成渲染树</h4><p>参考:<a href="/2021/03/22/%E5%89%8D%E7%AB%AF/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8-%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/">浏览器-页面渲染过程</a></p>
+<h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><h3 id="关键流程一：浏览器渲染流程"><a href="#关键流程一：浏览器渲染流程" class="headerlink" title="关键流程一：浏览器渲染流程"></a>关键流程一：浏览器渲染流程</h3><h4 id="1-构建DOM树、CSSOM树、渲染树、"><a href="#1-构建DOM树、CSSOM树、渲染树、" class="headerlink" title="1. 构建DOM树、CSSOM树、渲染树、"></a>1. 构建DOM树、CSSOM树、渲染树、</h4><ul>
+<li>DOM树<ul>
+<li>转换</li>
+<li>令牌</li>
+<li>词法分析</li>
+<li>DOM构建</li>
+</ul>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150300.webp" alt="img" class="lazyload"></p>
+<p>CSSOM 树</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150257.webp" alt="img" class="lazyload"></p>
+<p>Render-Tree 渲染树</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150253.webp" alt="img" class="lazyload"></p>
+<ul>
+<li>总结步骤：<ul>
+<li>处理 HTML 标记，构建 DOM 树</li>
+<li>处理 CSS 标记，构建 CSSOM 树</li>
+<li>将 DOM 树和 CSSOM 树融合成渲染树</li>
+<li>根据生成的渲染树，计算它们在设备视口(viewport)内的确切位置和大小，这个计算的阶段就是回流 =&gt; 布局（Layout）或 重排（reflow）</li>
+<li>根据渲染树以及回流得到的几何信息，得到节点的绝对像素 =&gt; 绘制（painting）或栅格化（rasterizing）</li>
+</ul>
+</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150251.webp" alt="img" class="lazyload"></p>
+<ul>
+<li><p>优化方案：</p>
+<ul>
+<li><p>标签语义化和避免深层次嵌套</p>
+</li>
+<li><p>CSS选择器渲染是从右到左</p>
+</li>
+<li><p>尽早尽快地把CSS下载到客户端（充分利用HTTP多请求并发机制）</p>
+<ul>
+<li>style</li>
+<li>link</li>
+<li>@import</li>
+<li>放到顶部</li>
+</ul>
+</li>
+<li><p>避免阻塞的JS加载</p>
+<ul>
+<li><p>放到底部</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150245.webp" alt="img" class="lazyload"></p>
+</li>
+</ul>
+</li>
+<li><p>减少DOM的回流和重绘</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="浏览器渲染原理"><a href="#浏览器渲染原理" class="headerlink" title="浏览器渲染原理"></a>浏览器渲染原理</h4><h5 id="1-DOM的重绘和回流-Repaint-amp-Reflow"><a href="#1-DOM的重绘和回流-Repaint-amp-Reflow" class="headerlink" title="1. DOM的重绘和回流 Repaint &amp; Reflow"></a>1. DOM的重绘和回流 Repaint &amp; Reflow</h5><ul>
+<li>重绘：元素样式的改变（但宽高、大小、位置等不变）<ul>
+<li>如：outline, visibility, color, background-color等</li>
+</ul>
+</li>
+<li>回流：元素的大小或者位置发生了变化（当页面布局和几何信息发生变化的时候），触发了重新布局，导致渲染树重新计算布局和渲染<ul>
+<li>如添加或删除可见的DOM元素；元素的位置发生变化；元素的尺寸发生变化；内容发生变化（比如文本变化或者图片被另一个不同尺寸的图片所替代）；页面一开始渲染的时候（这个无法避免）；因为回流事根据视口的大小来计算元素的位置和大小的，所以浏览器的窗口尺寸变化也会引发回流。。。 <strong>注意：回流一定会触发重绘，而重绘不一定会回流</strong></li>
+</ul>
+</li>
+</ul>
+<h5 id="2-前端性能优化之：避免DOM的回流"><a href="#2-前端性能优化之：避免DOM的回流" class="headerlink" title="2. 前端性能优化之：避免DOM的回流"></a>2. 前端性能优化之：避免DOM的回流</h5><ul>
+<li>放弃传统操作DOM的时代，基于vue/react开始数据影响视图模式<ul>
+<li>mwm / mvc / virtual dom / dom diff …</li>
+</ul>
+</li>
+<li>分离读写操作（现代的浏览器都有渲染队列的机制）<ul>
+<li>offsetTop, offsetLeft, offsetWidth, offsetHeight, clientTop, clientLeft, clientWidth, clientHeight, scrollTop, scrollLeft, scrollWidth, scrollHeight, getComputedStyle, currentStyle… 会刷新渲染队列</li>
+</ul>
+</li>
+<li>样式集中改变<ul>
+<li>div.style.cssText = ‘width:20px;height:20px;’</li>
+<li>div.className = ‘box’;</li>
+</ul>
+</li>
+</ul>
+<h5 id="前端性能优化之：避免DOM的回流"><a href="#前端性能优化之：避免DOM的回流" class="headerlink" title="前端性能优化之：避免DOM的回流"></a>前端性能优化之：避免DOM的回流</h5><ul>
+<li>缓存布局信息<ul>
+<li>div.style.left= div.offsetLeft + 1 + ‘px’; div.style.top = div.offsetTop + 1 + ‘px’; =&gt; 改写为: var curLeft = div.offsetLeft; var curTop = div.offsetTop; div.style.left = curLeft + 1 + ‘px’; div.style.top = curTop + 1 + ‘px’;</li>
+</ul>
+</li>
+<li>元素批量修改<ul>
+<li>文档碎片：createDocumentFragment</li>
+<li>模版字符串拼接</li>
+</ul>
+</li>
+<li>动画效果应用到position 属性为 absolute 或 fixed 的元素上（脱离文档流）</li>
+<li>CSS3 硬件加速（GPU加速）<ul>
+<li>比起考虑如何减少回流重绘，我们更期望的事，根本不要回流重绘；transform, opacity, filters… 这些属性会触发硬件加速，不会引发回流和重绘…</li>
+<li>可能会引发的坑：过多使用会占用大量内存，性能消耗严重，有时候会导致字体模糊等</li>
+</ul>
+</li>
+<li>牺牲平滑度换取速度<ul>
+<li>每次1像素移动一个动画，但是如果此动画使用了100%的CPU，动画就会看上去事跳动的，因为浏览器正在与更新回流做斗争。每次移动3像素可能看起来平滑度低了，但它不会导致CPU 在较慢的机器中抖动</li>
+</ul>
+</li>
+<li>避免 table 布局和使用 css 的 javascript 表达式</li>
+</ul>
+<h3 id="关键流程二：网络交互层面上的优化"><a href="#关键流程二：网络交互层面上的优化" class="headerlink" title="关键流程二：网络交互层面上的优化"></a>关键流程二：网络交互层面上的优化</h3><h5 id="1-DNS方面的优化"><a href="#1-DNS方面的优化" class="headerlink" title="1. DNS方面的优化"></a>1. DNS方面的优化</h5><blockquote>
+<p>每一次DNS解析时间预计在20~120毫秒</p>
+</blockquote>
+<ul>
+<li>减少DNS请求次数</li>
+<li>DNS预获取（DNS Prefetch）</li>
+</ul>
+<pre><code>&lt;meta http-equiv=&quot;x-dns-prefetch-control&quot; content=&quot;on&quot;&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//static.360buyimg.com&quot;/&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//misc.360buyimg.com&quot;/&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//img10.360buyimg.com&quot;/&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//d.3.cn&quot;/&gt;
+&lt;link rel=&quot;dns-prefetch&quot; href=&quot;//d.jd.com&quot;/&gt;
+复制代码
+</code></pre>
+<h5 id="2-减少HTTP请求次数和请求资源大小"><a href="#2-减少HTTP请求次数和请求资源大小" class="headerlink" title="2. 减少HTTP请求次数和请求资源大小"></a>2. 减少HTTP请求次数和请求资源大小</h5><ul>
+<li>资源合并压缩</li>
+<li>字体图标</li>
+<li>Base64</li>
+<li>GZIP（一般的文件能压缩60%多）</li>
+<li>图片懒加载</li>
+<li>数据延迟分批加载</li>
+<li>CDN资源</li>
+<li>…</li>
+</ul>
+<h5 id="3-应用缓存"><a href="#3-应用缓存" class="headerlink" title="3. 应用缓存"></a>3. 应用缓存</h5><p><strong>缓存位置</strong></p>
+<ul>
+<li>Service Worker：浏览器独立线程进行缓存</li>
+<li>Memory Cache : 内存缓存</li>
+<li>Disk Cache：硬盘缓存</li>
+<li>Push Cache：推送缓存（HTTP/2中的）</li>
+</ul>
+<p>打开网页，地址栏输入地址： 查找 disk cache 中是否有匹配，如有则使用，如没有则发送网络请求。 普通刷新 (F5)：因为 TAB 并没有关闭，因此 memory cache 是可用的，会被优先使用(如果匹配的话)，其次才是 disk cache。 强制刷新 (Ctrl + F5)：浏览器不使用缓存，因此发送的请求头部均带有 Cache-control: no-cache(为了兼容，还带了 Pragma: no-cache)，服务器直接返回 200 和最新内容。</p>
+<p><strong>强缓存 Expires / Cache-Control</strong></p>
+<blockquote>
+<p>浏览器对于强缓存的处理：根据第一次请求资源时返回的响应头来确定的</p>
+</blockquote>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150237.webp" alt="img" class="lazyload"></p>
+<ul>
+<li>Expires：缓存过期时间，用来指定资源到期的时间（HTTP/1）</li>
+<li>Cache-Control：cache-control: max-age=2592000第一次拿到资源后的2592000秒内（30天），再次发送请求，读取缓存中的信息（HTTP/1.1）</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150234.webp" alt="img" class="lazyload"></p>
+<p>两者同时存在的话，Cache-Control优先级高于Expires</p>
+<p><strong>协商缓存 Last-Modified / ETag</strong></p>
+<blockquote>
+<p>协商缓存就是强制缓存失效后，浏览器携带缓存标识向服务器发起请求，由服务器根据缓存标识决定是否使用缓存的过程</p>
+</blockquote>
+<ul>
+<li>协商缓存生效，返回304和Not Modified</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150231.webp" alt="img" class="lazyload"></p>
+<ul>
+<li>协商缓存失效，返回200和请求结果</li>
+</ul>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/PicGo/20210812150227.webp" alt="img" class="lazyload"></p>
+<ol>
+<li>Last-Modified和If-Modified-Since 第一次访问资源，服务器返回资源的同时，响应头中设置 Last-Modified（服务器上的最后修改时间），浏览器接收后，缓存文件和响应头； 下一次请求这个资源，浏览器检测到有 Last-Modified，于是添加If-Modified-Since请求头，值就是Last-Modified中的值； 服务器再次收到这个资源请求，会根据 If-Modified-Since 中的值与服务器中这个资源的最后修改时间对比，如果没有变化，返回304和空的响应体，直接从缓存读取，如果If-Modified-Since的时间小于服务器中这个资源的最后修改时间，说明文件有更新，于是返回新的资源文件和200； 但是Last-Modified 只能以秒计时，如果在不可感知的时间内修改完成文件，那么服务端会认为资源还是命中了，不会返回正确的资源；</li>
+<li>ETag和If-None-Match Etag是服务器响应请求时，返回当前资源文件的一个唯一标识(由服务器生成)，只要资源有变化，Etag就会重新生成；下一次加载资源向服务器发送请求时，会将上一次返回的Etag值放到请求头If-None-Match里，服务器只需要比较客户端传来的If-None-Match跟自己服务器上该资源的ETag是否一致，就能很好地判断资源相对客户端而言是否被修改过了。如果服务器发现ETag匹配不上，那么直接以常规GET 200回包形式将新的资源（当然也包括了新的ETag）发给客户端；如果ETag是一致的，则直接返回304知会客户端直接使用本地缓存即可。</li>
+</ol>
+<p><strong>数据缓存：LocalStorage本地存储</strong></p>
+<hr>
+<p>参考文章:<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904159083233293">掘金文章:深度剖析前端性能优化CRP</a></p>
+
+        </article>
+
+        
+            
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>tangyuxian<br>
+    
+    <strong>本文链接：</strong><a href="https://www.tangyuxian.com/2021/07/21/%E5%89%8D%E7%AB%AF/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8-%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96CRP/" title="https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;07&#x2F;21&#x2F;%E5%89%8D%E7%AB%AF&#x2F;%E6%B5%8F%E8%A7%88%E5%99%A8&#x2F;%E6%B5%8F%E8%A7%88%E5%99%A8-%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96CRP&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;07&#x2F;21&#x2F;%E5%89%8D%E7%AB%AF&#x2F;%E6%B5%8F%E8%A7%88%E5%99%A8&#x2F;%E6%B5%8F%E8%A7%88%E5%99%A8-%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96CRP&#x2F;</a><br>
+
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+        
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag">浏览器</a>
+    
+</div>
+
+    <div class="nexmoe-post-footer">
+        <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src='https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'r5zxC0st0DDjPA9auXzMV7HY-gzGzoHsz',
+        appKey: '3bqCsovpyfTPHUzTHovd3V3V'
+    })
+</script>
+</section>
+    </div>
+</div>
+
+
+        <div class="nexmoe-post-right">
+          
+            <div class="nexmoe-fixed">
+              <div class="nexmoe-tool">
+                <a href="#" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+              </div>
+            </div>
+          
+        </div>
+    </div>
+  </div>
+  <div id="nexmoe-pendant">
+    <div class="nexmoe-drawer mdui-drawer nexmoe-pd" id="drawer">
+        
+            <div class="nexmoe-pd-item">
+                <div class="clock">
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="needle" id="hours"></div>
+        <div class="needle" id="minutes"></div>
+        <div class="needle" id="seconds"></div>
+        <div class="clock_logo">
+
+        </div>
+
+    </div>
+<style>
+    .clock {
+        background-color: #ffffff;
+        width: 70vw;
+        height: 70vw;
+        max-width: 70vh;
+        max-height: 70vh;
+        border: solid 2.8vw #242424;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        box-sizing: border-box;
+        box-shadow: 0 1.4vw 2.8vw rgba(0, 0, 0, 0.8);
+        zoom:0.2
+    }
+
+    .memory {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+    }
+
+    .memory:nth-child(1) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(0deg) translateY(-520%);
+    }
+
+    .memory:nth-child(2) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(6deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(3) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(12deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(4) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(18deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(5) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(24deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(6) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(30deg) translateY(-520%);
+    }
+
+    .memory:nth-child(7) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(36deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(8) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(42deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(9) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(48deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(10) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(54deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(11) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(60deg) translateY(-520%);
+    }
+
+    .memory:nth-child(12) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(66deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(13) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(72deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(14) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(78deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(15) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(84deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(16) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(90deg) translateY(-520%);
+    }
+
+    .memory:nth-child(17) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(96deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(18) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(102deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(19) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(108deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(20) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(114deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(21) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(120deg) translateY(-520%);
+    }
+
+    .memory:nth-child(22) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(126deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(23) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(132deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(24) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(138deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(25) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(144deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(26) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(150deg) translateY(-520%);
+    }
+
+    .memory:nth-child(27) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(156deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(28) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(162deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(29) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(168deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(30) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(174deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(31) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(180deg) translateY(-520%);
+    }
+
+    .memory:nth-child(32) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(186deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(33) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(192deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(34) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(198deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(35) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(204deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(36) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(210deg) translateY(-520%);
+    }
+
+    .memory:nth-child(37) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(216deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(38) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(222deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(39) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(228deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(40) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(234deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(41) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(240deg) translateY(-520%);
+    }
+
+    .memory:nth-child(42) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(246deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(43) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(252deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(44) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(258deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(45) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(264deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(46) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(270deg) translateY(-520%);
+    }
+
+    .memory:nth-child(47) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(276deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(48) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(282deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(49) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(288deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(50) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(294deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(51) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(300deg) translateY(-520%);
+    }
+
+    .memory:nth-child(52) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(306deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(53) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(312deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(54) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(318deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(55) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(324deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(56) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(330deg) translateY(-520%);
+    }
+
+    .memory:nth-child(57) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(336deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(58) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(342deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(59) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(348deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(60) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(354deg) translateY(-1461%);
+    }
+
+    .needle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+    }
+
+    .needle#hours {
+        background-color: #1f1f1f;
+        width: 4%;
+        height: 30%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#hours.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#hours:after {
+        content: '';
+        background-color: #1f1f1f;
+        width: 4vw;
+        height: 4vw;
+        max-width: 4vh;
+        max-height: 4vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .needle#minutes {
+        background-color: #1f1f1f;
+        width: 2%;
+        height: 45%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#minutes.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#minutes:after {
+        content: '';
+        background-color: #1f1f1f;
+        width: 4vw;
+        height: 4vw;
+        max-width: 4vh;
+        max-height: 4vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .needle#seconds {
+        background-color: #cb2f2f;
+        width: 1%;
+        height: 50%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#seconds.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#seconds:after {
+        content: '';
+        background-color: #cb2f2f;
+        width: 2.5vw;
+        height: 2.5vw;
+        max-width: 2.5vh;
+        max-height: 2.5vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .clock_logo{
+        width: 10vw;
+        height: 10vw;
+        max-width: 10vh;
+        max-height: 10vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    @media (min-width: 100vh) {
+        .clock {
+            border: solid 2.8vh #242424;
+            box-shadow: 0 1.4vh 2.8vh rgba(0, 0, 0, 0.8);
+        }
+    }
+
+</style>
+
+
+
+
+
+            </div>
+        
+            <div class="nexmoe-pd-item">
+                <div class="qweather" >
+    <div id="he-plugin-standard"></div>
+    <div class="qweather-logo">
+
+    </div>
+
+</div>
+<style>
+    .qweather{
+        position: relative;
+    }
+    .qweather-logo{
+        position: absolute;
+        right: 0;
+        top: -15px;
+        width: 40px;
+        height: 40px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+</style>
+<script>
+  WIDGET = {
+    "CONFIG": {
+      "layout": "2",
+      "width": "260",
+      "height": "220",
+      "background": "5",
+      "dataColor": "e67249",
+      "borderRadius": "15",
+      "key": "f74d1e1690e6432d801e97fa2f05a162"
+    }
+  }
+</script>
+<script src="https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0"></script>
+
+            </div>
+        
+</div>
+<style>
+    .nexmoe-pd {
+        left: auto;
+        top: 40px;
+        right: 0;
+    }
+    .nexmoe-pd-item{
+       display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+</style>
+
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/app.js?v=1651549735822"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+  
+
+
+
+
+
+<!-- hexo injector body_end start -->
+<script src="/js/clock.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js"></script>
+
+<script src="/lib/codeBlock/codeBlockFuction.js"></script>
+
+<script src="/lib/codeBlock/codeLang.js"></script>
+
+<script src="/lib/codeBlock/codeCopy.js"></script>
+
+<script src="/lib/codeBlock/codeShrink.js"></script>
+
+<link rel="stylesheet" href="/lib/codeBlock/matery.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<script src="/js/search.js"></script>
+
+<script src="/js/webapp.js"></script>
+<!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/xiaomai.model.json"},"display":{"position":"left","width":200,"height":500},"mobile":{"show":false},"react":{"opacity":0.9},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/250cb4aa.js","daovoice")</script>
+<script>
+  daovoice('init', {
+    app_id: "250cb4aa"
+  });
+  daovoice('update');
+</script>
+
