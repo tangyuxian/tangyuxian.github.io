@@ -13,5 +13,6 @@ module.exports =  {
   算法:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/algorithm.jpg",
   数据结构:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@latest/post/data.jpg",
   工具:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/editor.jpg",
-  UI库:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/ui.jpg"
+  UI库:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/ui.jpg",
+  美化:"https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/post/beautify.jpg"
 }
