@@ -1342,7 +1342,7 @@ photos img {
 #nexmoe-content .nexmoe-posts .nexmoe-post .nexmoe-post-top .nexmoe-post-top-img {
   width: 15px;
   height: 15px;
-  background-image: url("https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/background/cangshu.png");
+  background-image: url("/images/background/cangshu.png");
   background-size: 100% 100%;
   margin-right: 5px;
 }
@@ -1357,7 +1357,7 @@ photos img {
   background-color: #a50e00 !important;
 }
 #nexmoe-pendant .nexmoe-pd .clock .clock_logo {
-  background-image: url("https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/background/cangshu.png");
+  background-image: url("/images/background/cangshu.png");
 }
 #nexmoe-pendant .nexmoe-pd .qweather #he-plugin-standard {
   border: 2px solid #e67249;
@@ -1370,7 +1370,7 @@ photos img {
   padding: 1em 0.5em 1em;
 }
 #nexmoe-pendant .nexmoe-pd .qweather .qweather-logo {
-  background-image: url("https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/background/cangshu.png");
+  background-image: url("/images/background/cangshu.png");
 }
 article a {
   color: #e67249;
@@ -1400,7 +1400,7 @@ article pre .txt {
   color: #e67249;
 }
 #nexmoe-content .nexmoe-post .nexmoe-py .aplayer {
-  background-image: url("https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/background/chichi.jpg");
+  background-image: url("/images/background/chichi.jpg");
   background-position: center;
   background-size: auto 100%;
   background-repeat: no-repeat;
@@ -1413,7 +1413,7 @@ article pre .txt {
   background: #e67249;
 }
 #nexmoe-content .nexmoe-post .nexmoe-comment .v .veditor {
-  background-image: url("https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/background/papa.jpg");
+  background-image: url("/images/background/papa.jpg");
   background-position: right;
   background-size: auto 8.75em;
   background-repeat: no-repeat;
@@ -1488,7 +1488,7 @@ article pre .txt {
   background-color: #e67249 !important;
 }
 #daodream-container .daodream-comment-card .daodream-comment-avatar {
-  content: url("https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/head.jpg") !important;
+  content: url("/images/head/head.jpg") !important;
 }
 #daodream-container .daodream-comment-by-user .daodream-comment-body-container {
   background-color: #e67249 !important;
@@ -1499,13 +1499,13 @@ article pre .txt {
 #daodream-container .daodream-sheet-spinner {
   border-radius: 50% !important;
   overflow: hidden;
-  background-image: url("https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/call.jpg") !important;
+  background-image: url("/images/head/call.jpg") !important;
 }
 #daodream-container .daodream-launcher-button {
   width: 80px !important;
   height: 80px !important;
   background-color: #e67249 !important;
-  background-image: url("https://cdn.jsdelivr.net/gh/tangyuxian/blog_image@master/head/call.jpg") !important;
+  background-image: url("/images/head/call.jpg") !important;
   background-size: 100% 100% !important;
   border-radius: 50% !important;
   animation: mybutton 8s;
