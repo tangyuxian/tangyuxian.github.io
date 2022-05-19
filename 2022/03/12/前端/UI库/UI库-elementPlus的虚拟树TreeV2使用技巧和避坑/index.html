@@ -7,7 +7,7 @@
   <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
   <title>UI库-elementPlus的虚拟树TreeV2使用技巧和避坑 - 糖羽仙</title>
   <meta charset="UTF-8">
-  <meta name="description" content="这是萌糖的官方网站">
+  <meta name="description" content="这是一个个人小网站">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
@@ -19,21 +19,21 @@
   <meta name="description" content="总结elementPlus框架VUE3版中的虚拟树使用情况">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UI库-elementPlus的虚拟树TreeV2使用技巧和避坑">
-<meta property="og:url" content="https://www.tangyuxian.com/2022/03/12/%E5%89%8D%E7%AB%AF/UI%E5%BA%93/UI%E5%BA%93-elementPlus%E7%9A%84%E8%99%9A%E6%8B%9F%E6%A0%91TreeV2%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E9%81%BF%E5%9D%91/index.html">
+<meta property="og:url" content="https://tangyuxian.github.io/2022/03/12/%E5%89%8D%E7%AB%AF/UI%E5%BA%93/UI%E5%BA%93-elementPlus%E7%9A%84%E8%99%9A%E6%8B%9F%E6%A0%91TreeV2%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E9%81%BF%E5%9D%91/index.html">
 <meta property="og:site_name" content="糖羽仙">
 <meta property="og:description" content="总结elementPlus框架VUE3版中的虚拟树使用情况">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202203121600563.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202203121600742.png">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/202203121600563.png">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/202203121600742.png">
 <meta property="og:image" content="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201801%2F17%2F20180117134909_fyhrc.thumb.400_0.gif&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1649665724&t=bac66ff8ada0cd9c5171ae0dbfc15fb9">
 <meta property="article:published_time" content="2022-03-12T07:11:36.000Z">
-<meta property="article:modified_time" content="2022-05-17T09:36:06.009Z">
+<meta property="article:modified_time" content="2022-05-19T13:12:28.974Z">
 <meta property="article:author" content="tangyuxian">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="elementPlus">
 <meta property="article:tag" content="UI库">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.tangyuxian.com/images/PicGo/202203121600563.png">
+<meta name="twitter:image" content="https://tangyuxian.github.io/images/PicGo/202203121600563.png">
   <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.15.8/styles/atom-one-dark.css" crossorigin>
   <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
   <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
@@ -42,7 +42,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1652798002719">
+  <link rel="stylesheet" href="/css/style.css?v=1652966587263">
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body class="mdui-drawer-body-left">
@@ -275,7 +275,7 @@
 
 <h2 id="一-分析"><a href="#一-分析" class="headerlink" title="一 分析"></a>一 分析</h2><p>vue2时期PC端的UI库封神之作elementUI随着vue3的到来,发布了其续作elementPlus,并在2022年发布正式版本(根据更新日志的信息,全新的稳定版2.0.0于2022-02-07发布).<a target="_blank" rel="noopener" href="https://element-plus.gitee.io/">点这里一键跳转至官方网站</a>.</p>
 <p>在elementPlus中,为了解决普通树形组件无法容纳大量数据的情况,提供了一款新的组件,来解决大量数据用树形组件展示问题,该组件便是我们今天要介绍的主角,<a target="_blank" rel="noopener" href="https://element-plus.gitee.io/zh-CN/component/tree-v2.html">Tree V2 虚拟化树形控件</a>.</p>
-<p>一般来说,在处理大量数据的渲染问题,我们一般采用两种方式,要么”<a href="https://www.tangyuxian.com/2021/04/16/%E5%89%8D%E7%AB%AF/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8-%E9%AB%98%E6%80%A7%E8%83%BD%E6%B8%B2%E6%9F%93%E5%8D%81%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE-%E6%97%B6%E9%97%B4%E5%88%86%E7%89%87/">时间分片</a>“,要么”虚拟列表”,虚拟树组件则采用<a href="https://www.tangyuxian.com/2021/04/16/%E5%89%8D%E7%AB%AF/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8-%E9%AB%98%E6%80%A7%E8%83%BD%E6%B8%B2%E6%9F%93%E5%8D%81%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE-%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">“虚拟列表”</a>技术,避免一次性展示大量数据造成dom渲染过多最后导致浏览器崩溃问题.不过相对于普通的树组件,虚拟树组件虽然部分api相同,但是需要注意的是,虚拟树因为其”虚拟”的特性,要比普通树组件缺少一些功能,这些功能都主要与DOM操作有关.</p>
+<p>一般来说,在处理大量数据的渲染问题,我们一般采用两种方式,要么”<a target="_blank" rel="noopener" href="https://www.tangyuxian.com/2021/04/16/%E5%89%8D%E7%AB%AF/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8-%E9%AB%98%E6%80%A7%E8%83%BD%E6%B8%B2%E6%9F%93%E5%8D%81%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE-%E6%97%B6%E9%97%B4%E5%88%86%E7%89%87/">时间分片</a>“,要么”虚拟列表”,虚拟树组件则采用<a target="_blank" rel="noopener" href="https://www.tangyuxian.com/2021/04/16/%E5%89%8D%E7%AB%AF/%E6%B5%8F%E8%A7%88%E5%99%A8/%E6%B5%8F%E8%A7%88%E5%99%A8-%E9%AB%98%E6%80%A7%E8%83%BD%E6%B8%B2%E6%9F%93%E5%8D%81%E4%B8%87%E6%9D%A1%E6%95%B0%E6%8D%AE-%E8%99%9A%E6%8B%9F%E5%88%97%E8%A1%A8/">“虚拟列表”</a>技术,避免一次性展示大量数据造成dom渲染过多最后导致浏览器崩溃问题.不过相对于普通的树组件,虚拟树组件虽然部分api相同,但是需要注意的是,虚拟树因为其”虚拟”的特性,要比普通树组件缺少一些功能,这些功能都主要与DOM操作有关.</p>
 <p>在普通树组件中通过提供的<code>node-click</code>事件,可以获得当前树的真实dom节点信息:</p>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202203121600563.png" alt="image-20220312154903653" class="lazyload"></p>
 <p>对比虚拟树组件</p>
@@ -310,11 +310,11 @@ getSimpleCheckedNodes(tree.value.store);// el-tree的ref是tree
 <h4 id="1-获取子节点全选的父节点信息"><a href="#1-获取子节点全选的父节点信息" class="headerlink" title="1 获取子节点全选的父节点信息"></a>1 获取子节点全选的父节点信息</h4><pre><code class="javascript">const getSimpleCheckedNodes = (checkedNodes)=&gt;&#123;
   const traverse = (list) =&gt; &#123;
     list.forEach(item=&gt;&#123;
-      if(item.children)&#123;
-        item.forEach(childItem=&gt;&#123;
+      if(item.children &amp;&amp; item.children.length&gt;0)&#123;
+        item.children.forEach(childItem=&gt;&#123;
           let checkedNodesIndex = checkedNodes.findIndex(e=&gt;e &amp;&amp; e.id == childItem.id)
            if(checkedNodesIndex &gt;= 0)&#123;
-             Reflect.defineProperty(checkedNodes,checkedNodesIndex)
+             Reflect.deleteProperty(checkedNodes,checkedNodesIndex)
            &#125;
         &#125;)
         traverse(item.children)
@@ -348,7 +348,7 @@ tree.value.getCheckedNodes(false) //默认是true,传入false则只获取子节�
   <div class="nexmoe-post-copyright">
     <strong>本文作者：</strong>tangyuxian<br>
     
-    <strong>本文链接：</strong><a href="https://www.tangyuxian.com/2022/03/12/%E5%89%8D%E7%AB%AF/UI%E5%BA%93/UI%E5%BA%93-elementPlus%E7%9A%84%E8%99%9A%E6%8B%9F%E6%A0%91TreeV2%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E9%81%BF%E5%9D%91/" title="https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2022&#x2F;03&#x2F;12&#x2F;%E5%89%8D%E7%AB%AF&#x2F;UI%E5%BA%93&#x2F;UI%E5%BA%93-elementPlus%E7%9A%84%E8%99%9A%E6%8B%9F%E6%A0%91TreeV2%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E9%81%BF%E5%9D%91&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2022&#x2F;03&#x2F;12&#x2F;%E5%89%8D%E7%AB%AF&#x2F;UI%E5%BA%93&#x2F;UI%E5%BA%93-elementPlus%E7%9A%84%E8%99%9A%E6%8B%9F%E6%A0%91TreeV2%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E9%81%BF%E5%9D%91&#x2F;</a><br>
+    <strong>本文链接：</strong><a href="https://tangyuxian.github.io/2022/03/12/%E5%89%8D%E7%AB%AF/UI%E5%BA%93/UI%E5%BA%93-elementPlus%E7%9A%84%E8%99%9A%E6%8B%9F%E6%A0%91TreeV2%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E9%81%BF%E5%9D%91/" title="https:&#x2F;&#x2F;tangyuxian.github.io&#x2F;2022&#x2F;03&#x2F;12&#x2F;%E5%89%8D%E7%AB%AF&#x2F;UI%E5%BA%93&#x2F;UI%E5%BA%93-elementPlus%E7%9A%84%E8%99%9A%E6%8B%9F%E6%A0%91TreeV2%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E9%81%BF%E5%9D%91&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;tangyuxian.github.io&#x2F;2022&#x2F;03&#x2F;12&#x2F;%E5%89%8D%E7%AB%AF&#x2F;UI%E5%BA%93&#x2F;UI%E5%BA%93-elementPlus%E7%9A%84%E8%99%9A%E6%8B%9F%E6%A0%91TreeV2%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E9%81%BF%E5%9D%91&#x2F;</a><br>
 
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
@@ -1097,7 +1097,7 @@ tree.value.getCheckedNodes(false) //默认是true,传入false则只获取子节�
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1652798002721"></script>
+<script src="/js/app.js?v=1652966587264"></script>
 
 <script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>

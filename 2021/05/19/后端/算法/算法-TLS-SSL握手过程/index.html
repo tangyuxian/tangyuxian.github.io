@@ -7,7 +7,7 @@
   <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
   <title>算法-TLS/SSL握手过程 - 糖羽仙</title>
   <meta charset="UTF-8">
-  <meta name="description" content="这是萌糖的官方网站">
+  <meta name="description" content="这是一个个人小网站">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
@@ -19,32 +19,32 @@
   <meta name="description" content="TLS握手的过程，其实就是秘钥交换的过程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法-TLS&#x2F;SSL握手过程">
-<meta property="og:url" content="https://www.tangyuxian.com/2021/05/19/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95-TLS-SSL%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B/index.html">
+<meta property="og:url" content="https://tangyuxian.github.io/2021/05/19/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95-TLS-SSL%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B/index.html">
 <meta property="og:site_name" content="糖羽仙">
 <meta property="og:description" content="TLS握手的过程，其实就是秘钥交换的过程">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154823.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154830.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154836.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154843.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154850.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154855.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154900.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154906.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154912.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154925.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154931.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519154950.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519155016.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519155021.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519155106.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210519155047.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154823.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154830.png">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154836.png">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154843.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154850.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154855.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154900.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154906.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154912.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154925.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154931.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519154950.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519155016.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519155021.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519155106.jpg">
+<meta property="og:image" content="https://tangyuxian.github.io/images/PicGo/20210519155047.jpg">
 <meta property="article:published_time" content="2021-05-19T06:37:33.000Z">
 <meta property="article:modified_time" content="2022-05-17T09:36:05.984Z">
 <meta property="article:author" content="tangyuxian">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.tangyuxian.com/images/PicGo/20210519154823.jpg">
+<meta name="twitter:image" content="https://tangyuxian.github.io/images/PicGo/20210519154823.jpg">
   <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.15.8/styles/atom-one-dark.css" crossorigin>
   <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
   <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
@@ -53,7 +53,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1652798002764">
+  <link rel="stylesheet" href="/css/style.css?v=1652966587316">
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body class="mdui-drawer-body-left">
@@ -360,7 +360,7 @@
     
       <strong>文章来源：</strong><a href="https://liuhuaqiang.blog.csdn.net/" title="https:&#x2F;&#x2F;liuhuaqiang.blog.csdn.net&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;liuhuaqiang.blog.csdn.net&#x2F;</a><br>
     
-    <strong>本文链接：</strong><a href="https://www.tangyuxian.com/2021/05/19/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95-TLS-SSL%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B/" title="https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;05&#x2F;19&#x2F;%E5%90%8E%E7%AB%AF&#x2F;%E7%AE%97%E6%B3%95&#x2F;%E7%AE%97%E6%B3%95-TLS-SSL%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;05&#x2F;19&#x2F;%E5%90%8E%E7%AB%AF&#x2F;%E7%AE%97%E6%B3%95&#x2F;%E7%AE%97%E6%B3%95-TLS-SSL%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B&#x2F;</a><br>
+    <strong>本文链接：</strong><a href="https://tangyuxian.github.io/2021/05/19/%E5%90%8E%E7%AB%AF/%E7%AE%97%E6%B3%95/%E7%AE%97%E6%B3%95-TLS-SSL%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B/" title="https:&#x2F;&#x2F;tangyuxian.github.io&#x2F;2021&#x2F;05&#x2F;19&#x2F;%E5%90%8E%E7%AB%AF&#x2F;%E7%AE%97%E6%B3%95&#x2F;%E7%AE%97%E6%B3%95-TLS-SSL%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;tangyuxian.github.io&#x2F;2021&#x2F;05&#x2F;19&#x2F;%E5%90%8E%E7%AB%AF&#x2F;%E7%AE%97%E6%B3%95&#x2F;%E7%AE%97%E6%B3%95-TLS-SSL%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B&#x2F;</a><br>
 
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
@@ -1109,7 +1109,7 @@
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1652798002766"></script>
+<script src="/js/app.js?v=1652966587319"></script>
 
 <script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
