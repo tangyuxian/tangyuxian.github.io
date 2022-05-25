@@ -1258,10 +1258,8 @@ photos img {
   border-radius: 15px;
   overflow: auto;
   box-shadow: 0 2px 12px #e67249;
-  border-top: 1px solid #fff;
   animation: anim 0.5s;
   max-height: 200px;
-  padding: 5px;
 }
 #nexmoe-header #local-search-result .search-result-list .search-result-list-item {
   box-sizing: border-box;

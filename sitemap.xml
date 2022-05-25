@@ -653,7 +653,7 @@
   </url>
   
   <url>
-    <loc>https://www.tangyuxian.com/tags/css/</loc>
+    <loc>https://www.tangyuxian.com/tags/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2022-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -674,7 +674,7 @@
   </url>
   
   <url>
-    <loc>https://www.tangyuxian.com/tags/%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://www.tangyuxian.com/tags/css/</loc>
     <lastmod>2022-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -751,6 +751,20 @@
   </url>
   
   <url>
+    <loc>https://www.tangyuxian.com/tags/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2022-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.tangyuxian.com/tags/%E5%8A%A0%E5%AF%86/</loc>
+    <lastmod>2022-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://www.tangyuxian.com/tags/java/</loc>
     <lastmod>2022-05-25</lastmod>
     <changefreq>weekly</changefreq>
@@ -786,28 +800,7 @@
   </url>
   
   <url>
-    <loc>https://www.tangyuxian.com/tags/%E7%AE%97%E6%B3%95/</loc>
-    <lastmod>2022-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.tangyuxian.com/tags/%E5%8A%A0%E5%AF%86/</loc>
-    <lastmod>2022-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://www.tangyuxian.com/tags/git/</loc>
-    <lastmod>2022-05-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.tangyuxian.com/tags/markerdown/</loc>
     <lastmod>2022-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -829,6 +822,13 @@
   
   <url>
     <loc>https://www.tangyuxian.com/tags/%E4%BA%92%E8%81%94%E7%BD%91/</loc>
+    <lastmod>2022-05-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.tangyuxian.com/tags/markerdown/</loc>
     <lastmod>2022-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
