@@ -7,7 +7,7 @@
   <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
   <title>微信小程序-Object.entries is not a function解决办法 - 糖羽仙</title>
   <meta charset="UTF-8">
-  <meta name="description" content="这是一个个人小网站">
+  <meta name="description" content="这是萌糖的官方网站">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
@@ -19,7 +19,7 @@
   <meta name="description" content="在部分机型上打开开发的小程序,vcosole显示Object.entries is not a function这类错误,可以使用以下方法手动添加Object.entries polyfill解决">
 <meta property="og:type" content="article">
 <meta property="og:title" content="微信小程序-Object.entries is not a function解决办法">
-<meta property="og:url" content="https://tangyuxian.github.io/2021/02/20/%E5%89%8D%E7%AB%AF/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-Object.entries%20is%20not%20a%20function%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html">
+<meta property="og:url" content="https://www.tangyuxian.com/2021/02/20/%E5%89%8D%E7%AB%AF/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-Object.entries%20is%20not%20a%20function%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/index.html">
 <meta property="og:site_name" content="糖羽仙">
 <meta property="og:description" content="在部分机型上打开开发的小程序,vcosole显示Object.entries is not a function这类错误,可以使用以下方法手动添加Object.entries polyfill解决">
 <meta property="og:locale" content="zh_CN">
@@ -36,7 +36,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1652966784059">
+  <link rel="stylesheet" href="/css/style.css?v=1653473423945">
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body class="mdui-drawer-body-left">
@@ -285,7 +285,7 @@
   <div class="nexmoe-post-copyright">
     <strong>本文作者：</strong>tangyuxian<br>
     
-    <strong>本文链接：</strong><a href="https://tangyuxian.github.io/2021/02/20/%E5%89%8D%E7%AB%AF/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-Object.entries%20is%20not%20a%20function%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" title="https:&#x2F;&#x2F;tangyuxian.github.io&#x2F;2021&#x2F;02&#x2F;20&#x2F;%E5%89%8D%E7%AB%AF&#x2F;%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F&#x2F;%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-Object.entries%20is%20not%20a%20function%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;tangyuxian.github.io&#x2F;2021&#x2F;02&#x2F;20&#x2F;%E5%89%8D%E7%AB%AF&#x2F;%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F&#x2F;%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-Object.entries%20is%20not%20a%20function%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95&#x2F;</a><br>
+    <strong>本文链接：</strong><a href="https://www.tangyuxian.com/2021/02/20/%E5%89%8D%E7%AB%AF/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-Object.entries%20is%20not%20a%20function%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" title="https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;02&#x2F;20&#x2F;%E5%89%8D%E7%AB%AF&#x2F;%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F&#x2F;%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-Object.entries%20is%20not%20a%20function%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;02&#x2F;20&#x2F;%E5%89%8D%E7%AB%AF&#x2F;%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F&#x2F;%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F-Object.entries%20is%20not%20a%20function%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95&#x2F;</a><br>
 
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
@@ -1034,7 +1034,7 @@
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1652966784060"></script>
+<script src="/js/app.js?v=1653473423947"></script>
 
 <script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
