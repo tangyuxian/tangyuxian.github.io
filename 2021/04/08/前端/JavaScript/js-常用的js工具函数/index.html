@@ -1,0 +1,1798 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
+  <title>js-常用的js工具函数 - 糖羽仙</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="这是萌糖的官方网站">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+    <!-- Site Verification -->
+    <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
+
+  <link rel="shortcut icon" href="/images/head/head.jpg" type="image/png" />
+  <meta name="description" content="整理一下前端开发中常用的工具方法，有了这些工具函数就可以高效的处理任务和信息了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js-常用的js工具函数">
+<meta property="og:url" content="https://www.tangyuxian.com/2021/04/08/%E5%89%8D%E7%AB%AF/JavaScript/js-%E5%B8%B8%E7%94%A8%E7%9A%84js%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="糖羽仙">
+<meta property="og:description" content="整理一下前端开发中常用的工具方法，有了这些工具函数就可以高效的处理任务和信息了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-08T07:17:56.000Z">
+<meta property="article:modified_time" content="2021-07-24T17:28:06.470Z">
+<meta property="article:author" content="tangyuxian">
+<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+  <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.15.8/styles/atom-one-dark.css" crossorigin>
+  <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
+  <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+  <link rel="stylesheet" href="/lib/fancybox/css/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
+  
+  <link rel="stylesheet" href="/css/style.css?v=1653732570800">
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/images/background/xiaomai.jpg)"></div>
+    <div class="nexmoe-small" style="background-image: url(/images/background/lihui.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="tangyuxian" class="mdui-btn mdui-btn-icon"><img src="/images/head/head.jpg" alt="tangyuxian"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="tangyuxian">
+            <img src="/images/head/head.jpg" alt="tangyuxian" alt="tangyuxian">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div class="nexmoe-count-item"><span>文章</span>66 <div class="item-radius"></div><div class="item-radius item-right"></div> </div>
+        <div class="nexmoe-count-item"><span>标签</span>33<div class="item-radius"></div><div class="item-radius item-right"></div></div>
+        <div class="nexmoe-count-item"><span>分类</span>5<div class="item-radius"></div><div class="item-radius item-right"></div></div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-meishi"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-hanbao1"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于糖糖">
+            <i class="mdui-list-item-icon nexmoefont icon-jiubei1"></i>
+            <div class="mdui-list-item-content">
+                关于糖糖
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friend.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-cola"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/download.html" title="下载中心">
+            <i class="mdui-list-item-icon nexmoefont icon-tangguo"></i>
+            <div class="mdui-list-item-content">
+                下载中心
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  
+<!-- 站内搜索 -->
+
+<div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search" >
+        <form id="search-form">
+            <label><input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="input form-control" autocomplete="off" autocorrect="off"/></label>
+            <!-- 清空/重置搜索框 -->
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+        </form>
+    </div>
+    <div id="local-search-result"></div> <!-- 搜索结果区 -->
+    <!-- <p class='no-result'></p> 无匹配时显示，注意在 CSS 中设置默认隐藏 -->
+</div>
+
+
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=2120252100&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(64, 196, 255);background-color: rgba(64, 196, 255, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="mailto:tangyuxian@vip.qq.com" target="_blank" mdui-tooltip="{content: 'mail'}" style="color: rgb(249,8,8);background-color: rgba(249,8,8,.1);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="https://blog.csdn.net/qq_40621378?type=blog" target="_blank" mdui-tooltip="{content: 'CSDN'}" style="color: rgb(199,29,35);background-color: rgba(199,29,35,.1);">
+            <i class="nexmoefont icon-csdn"></i>
+        </a><a class="mdui-ripple" href="https://www.cnblogs.com/lovetangyuxian/" target="_blank" mdui-tooltip="{content: '博客园'}" style="color: rgb(66, 214, 29);background-color: rgba(66, 214, 29, .1);">
+            <i class="nexmoefont icon-bokeyuan"></i>
+        </a><a class="mdui-ripple" href="https://github.com/tangyuxian/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://gitee.com/tangyuxian" target="_blank" mdui-tooltip="{content: 'gitee'}" style="color: rgb(255, 255, 255);background-color: rgb(199,29,35);">
+            <i class="nexmoefont icon-mayun"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/其它/">其它</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">47</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/后端/">后端</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/开发工具/">开发工具</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/服务器端/">服务器端</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/JavaScript/" style="font-size: 15.56px;">JavaScript</a> <a href="/tags/Jetbrains/" style="font-size: 10px;">Jetbrains</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/UI%E5%BA%93/" style="font-size: 11.11px;">UI库</a> <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/elementPlus/" style="font-size: 11.11px;">elementPlus</a> <a href="/tags/es6/" style="font-size: 13.33px;">es6</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags/http/" style="font-size: 11.11px;">http</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markerdown/" style="font-size: 11.11px;">markerdown</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 11.11px;">node</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/xuex/" style="font-size: 10px;">xuex</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E6%B5%81/" style="font-size: 10px;">事件流</a> <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/" style="font-size: 10px;">互联网</a> <a href="/tags/%E5%8A%A0%E5%AF%86/" style="font-size: 12.22px;">加密</a> <a href="/tags/%E5%8E%9F%E5%88%9B/" style="font-size: 17.78px;">原创</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 14.44px;">工具</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 12.22px;">微信小程序</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 12.22px;">总结</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">服务器</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 16.67px;">浏览器</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 14.44px;">算法</a> <a href="/tags/%E7%BC%96%E8%A7%A3%E7%A0%81/" style="font-size: 10px;">编解码</a> <a href="/tags/%E7%BE%8E%E5%8C%96/" style="font-size: 11.11px;">美化</a> <a href="/tags/%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">记录</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 18.89px;">转载</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">54</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 tangyuxian
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/tangyuxian/hexo-theme-tangyuxian" target="_blank">Tangyuxian</a><br/>
+        <a href="http://beian.miit.gov.cn" target="_blank">辽ICP备2021002341号</a><br/>
+        
+        <div style="font-size: 12px">
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            本站总访问量  <a id="busuanzi_value_site_pv"></a> 次<br />
+            本站访客数<a id="busuanzi_value_site_uv"></a>人次
+        </div>
+        
+        
+    </div>
+
+</div><!-- .nexmoe-drawer -->
+
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    
+        <div class="nexmoe-post-cover" style="padding-bottom: 26.666666666666668%;">
+            <img data-src="/images/post/JavaScript.jpg" data-sizes="auto" alt="js-常用的js工具函数"
+                 class="lazyload">
+            <h1>js-常用的js工具函数</h1>
+        </div>
+    
+
+        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月08日</a>
+    <a><i class="nexmoefont icon-areachart"></i>4.1k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 23 分钟</a>
+</div>
+
+        <div class="nexmoe-post-right">
+            
+        </div>
+
+        <article>
+            <p>整理一下前端开发中常用的工具方法，有了这些工具函数就可以高效的处理任务和信息了。</p>
+<span id="more"></span>
+<h4 id="1-邮箱"><a href="#1-邮箱" class="headerlink" title="1.邮箱"></a>1.邮箱</h4><pre><code class="javascript">export const isEmail = (s) =&gt; &#123;
+    return /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+((.[a-zA-Z0-9_-]&#123;2,3&#125;)&#123;1,2&#125;)$/.test(s)
+&#125;
+</code></pre>
+<h4 id="2-手机号码"><a href="#2-手机号码" class="headerlink" title="2.手机号码"></a>2.手机号码</h4><pre><code class="javascript">export const isMobile = (s) =&gt; &#123;
+    return /^1[0-9]&#123;10&#125;$/.test(s)
+&#125;
+</code></pre>
+<h4 id="3-电话号码"><a href="#3-电话号码" class="headerlink" title="3.电话号码"></a>3.电话号码</h4><pre><code class="javascript">export const isPhone = (s) =&gt; &#123;
+    return /^([0-9]&#123;3,4&#125;-)?[0-9]&#123;7,8&#125;$/.test(s)
+&#125;
+</code></pre>
+<h4 id="4-是否为url地址"><a href="#4-是否为url地址" class="headerlink" title="4.是否为url地址"></a>4.是否为url地址</h4><pre><code class="javascript">export const isURL = (s) =&gt; &#123;
+    return /^http[s]?:\/\/.*/.test(s)
+&#125;
+</code></pre>
+<h4 id="5-是否字符串"><a href="#5-是否字符串" class="headerlink" title="5.是否字符串"></a>5.是否字符串</h4><pre><code class="javascript">export const isString = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;String&#39;
+&#125;
+</code></pre>
+<h4 id="6-是否数字"><a href="#6-是否数字" class="headerlink" title="6.是否数字"></a>6.是否数字</h4><pre><code class="javascript">export const isNumber = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Number&#39;
+&#125;
+</code></pre>
+<h4 id="7-是否为boolean"><a href="#7-是否为boolean" class="headerlink" title="7.是否为boolean"></a>7.是否为boolean</h4><pre><code class="javascript">export const isBoolean = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Boolean&#39;
+&#125;
+</code></pre>
+<h4 id="8-是否为函数"><a href="#8-是否为函数" class="headerlink" title="8.是否为函数"></a>8.是否为函数</h4><pre><code class="javascript">export const isFunction = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Function&#39;
+&#125;
+</code></pre>
+<h4 id="9-是否为null"><a href="#9-是否为null" class="headerlink" title="9.是否为null"></a>9.是否为null</h4><pre><code class="javascript">export const isNull = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Null&#39;
+&#125;
+</code></pre>
+<h4 id="10-是否为undefined"><a href="#10-是否为undefined" class="headerlink" title="10.是否为undefined"></a>10.是否为undefined</h4><pre><code class="javascript">export const isUndefined = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Undefined&#39;
+&#125;
+</code></pre>
+<h4 id="11-是否为对象"><a href="#11-是否为对象" class="headerlink" title="11.是否为对象"></a>11.是否为对象</h4><pre><code class="javascript">export const isObj = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Object&#39;
+&#125;
+</code></pre>
+<h4 id="12-是否为数组"><a href="#12-是否为数组" class="headerlink" title="12.是否为数组"></a>12.是否为数组</h4><pre><code class="javascript">export const isArray = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Array&#39;
+&#125;
+</code></pre>
+<h4 id="13-是否为时间"><a href="#13-是否为时间" class="headerlink" title="13.是否为时间"></a>13.是否为时间</h4><pre><code class="javascript">export const isDate = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Date&#39;
+&#125;
+</code></pre>
+<h4 id="14-是否为正则"><a href="#14-是否为正则" class="headerlink" title="14.是否为正则"></a>14.是否为正则</h4><pre><code class="javascript">export const isRegExp = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;RegExp&#39;
+&#125;
+</code></pre>
+<h4 id="15-是否为错误对象"><a href="#15-是否为错误对象" class="headerlink" title="15.是否为错误对象"></a>15.是否为错误对象</h4><pre><code class="javascript">export const isError = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Error&#39;
+&#125;
+</code></pre>
+<h4 id="16-是否为Symbol函数"><a href="#16-是否为Symbol函数" class="headerlink" title="16.是否为Symbol函数"></a>16.是否为Symbol函数</h4><pre><code class="javascript">export const isSymbol = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Symbol&#39;
+&#125;
+</code></pre>
+<h4 id="17-是否为Promise对象"><a href="#17-是否为Promise对象" class="headerlink" title="17.是否为Promise对象"></a>17.是否为Promise对象</h4><pre><code class="javascript">export const isPromise = (o) =&gt; &#123;
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Promise&#39;
+&#125;
+</code></pre>
+<h4 id="18-是否为Set对象"><a href="#18-是否为Set对象" class="headerlink" title="18.是否为Set对象"></a>18.是否为Set对象</h4><pre><code class="javascript">export const isSet = (o) =&gt; &#123;    
+    return Object.prototype.toString.call(o).slice(8, -1) === &#39;Set&#39; 
+&#125; 
+</code></pre>
+<h4 id="19-是否是微信浏览器"><a href="#19-是否是微信浏览器" class="headerlink" title="19.是否是微信浏览器"></a>19.是否是微信浏览器</h4><pre><code class="javascript">export const isWeiXin = () =&gt; &#123;
+    return (navigator.userAgent.toLowerCase()).match(/microMessenger/i) == &#39;micromessenger&#39;
+&#125;
+</code></pre>
+<h4 id="20-是否为移动端"><a href="#20-是否为移动端" class="headerlink" title="20.是否为移动端"></a>20.是否为移动端</h4><pre><code class="javascript">export const isDeviceMobile = () =&gt; &#123;
+    return /android|webos|iphone|ipod|balckberry/i.test(ua)
+&#125;
+</code></pre>
+<h4 id="21-是否是QQ浏览器"><a href="#21-是否是QQ浏览器" class="headerlink" title="21.是否是QQ浏览器"></a>21.是否是QQ浏览器</h4><pre><code class="javascript">export const isQQBrowser = () =&gt; &#123;
+    return !!ua.match(/mqqbrowser|qzone|qqbrowser|qbwebviewtype/i)
+&#125;
+</code></pre>
+<h4 id="22-是否为ios"><a href="#22-是否为ios" class="headerlink" title="22.是否为ios"></a>22.是否为ios</h4><pre><code class="javascript">export const isIos = () =&gt; &#123;
+  var u = navigator.userAgent;
+  if (u.indexOf(&#39;Android&#39;) &gt; -1 || u.indexOf(&#39;Linux&#39;) &gt; -1) &#123;  
+    // 安卓手机
+    return false
+  &#125; else if (u.indexOf(&#39;iPhone&#39;) &gt; -1) &#123;
+    // 苹果手机
+    return true
+  &#125; else if (u.indexOf(&#39;iPad&#39;) &gt; -1) &#123; 
+    // iPad
+    return false
+  &#125; else if (u.indexOf(&#39;Windows Phone&#39;) &gt; -1) &#123;
+    //winphone手机
+    return false
+  &#125; else &#123;
+    return false
+  &#125;
+&#125;
+</code></pre>
+<h4 id="23-是否为PC端"><a href="#23-是否为PC端" class="headerlink" title="23.是否为PC端"></a>23.是否为PC端</h4><pre><code class="javascript">export const isPC = () =&gt; &#123;
+  var userAgentInfo = navigator.userAgent;
+  var Agents = [&quot;Android&quot;, &quot;iPhone&quot;,
+    &quot;SymbianOS&quot;, &quot;Windows Phone&quot;,
+    &quot;iPad&quot;, &quot;iPod&quot;];
+  var flag = true;
+  for (var v = 0; v &lt; Agents.length; v++) &#123;
+    if (userAgentInfo.indexOf(Agents[v]) &gt; 0) &#123;
+      flag = false;
+      break;
+    &#125;
+  &#125;
+  return flag;
+&#125;
+</code></pre>
+<h4 id="24-去除html标签"><a href="#24-去除html标签" class="headerlink" title="24.去除html标签"></a>24.去除html标签</h4><pre><code class="javascript">export const removeHtmltag = (str) =&gt; &#123;
+    return str.replace(/&lt;[^&gt;]+&gt;/g, &#39;&#39;)
+&#125;
+</code></pre>
+<h4 id="25-获取url参数"><a href="#25-获取url参数" class="headerlink" title="25.获取url参数"></a>25.获取url参数</h4><pre><code class="javascript">export const getQueryString = (name) =&gt; &#123;
+  const reg = new RegExp(&#39;(^|&amp;)&#39; + name + &#39;=([^&amp;]*)(&amp;|$)&#39;, &#39;i&#39;);
+  const search = window.location.search.split(&#39;?&#39;)[1] || &#39;&#39;;
+  const r = search.match(reg) || [];
+  return r[2];
+&#125;
+</code></pre>
+<h4 id="26-动态引入js"><a href="#26-动态引入js" class="headerlink" title="26.动态引入js"></a>26.动态引入js</h4><pre><code class="javascript">export const injectScript = (src) =&gt; &#123;
+  const s = document.createElement(&#39;script&#39;);
+  s.type = &#39;text/javascript&#39;;
+  s.async = true;
+  s.src = src;
+  const t = document.getElementsByTagName(&#39;script&#39;)[0];
+  t.parentNode.insertBefore(s, t);
+&#125;
+</code></pre>
+<h4 id="27-根据url地址下载"><a href="#27-根据url地址下载" class="headerlink" title="27.根据url地址下载"></a>27.根据url地址下载</h4><pre><code class="javascript">export const download = (url) =&gt; &#123;
+  var isChrome = navigator.userAgent.toLowerCase().indexOf(&#39;chrome&#39;) &gt; -1;
+  var isSafari = navigator.userAgent.toLowerCase().indexOf(&#39;safari&#39;) &gt; -1;
+  if (isChrome || isSafari) &#123;
+    var link = document.createElement(&#39;a&#39;);
+    link.href = url;
+    if (link.download !== undefined) &#123;
+      var fileName = url.substring(url.lastIndexOf(&#39;/&#39;) + 1, url.length);
+      link.download = fileName;
+    &#125;
+    if (document.createEvent) &#123;
+      var e = document.createEvent(&#39;MouseEvents&#39;);
+      e.initEvent(&#39;click&#39;, true, true);
+      link.dispatchEvent(e);
+      return true;
+    &#125;
+  &#125;
+  if (url.indexOf(&#39;?&#39;) === -1) &#123;
+    url += &#39;?download&#39;;
+  &#125;
+  window.open(url, &#39;_self&#39;);
+  return true;
+&#125;
+</code></pre>
+<h4 id="28-el是否包含某个class"><a href="#28-el是否包含某个class" class="headerlink" title="28.el是否包含某个class"></a>28.el是否包含某个class</h4><pre><code class="javascript">export const hasClass = (el, className) =&gt; &#123;
+  let reg = new RegExp(&#39;(^|\\s)&#39; + className + &#39;(\\s|$)&#39;)
+  return reg.test(el.className)
+&#125;
+</code></pre>
+<h4 id="29-el添加某个class"><a href="#29-el添加某个class" class="headerlink" title="29.el添加某个class"></a>29.el添加某个class</h4><pre><code class="javascript">export const addClass = (el, className) =&gt; &#123;
+  if (hasClass(el, className)) &#123;
+    return
+  &#125;
+  let newClass = el.className.split(&#39; &#39;)
+  newClass.push(className)
+  el.className = newClass.join(&#39; &#39;)
+&#125;
+</code></pre>
+<h4 id="30-el去除某个class"><a href="#30-el去除某个class" class="headerlink" title="30.el去除某个class"></a>30.el去除某个class</h4><pre><code class="javascript">export const removeClass = (el, className) =&gt; &#123;
+  if (!hasClass(el, className)) &#123;
+    return
+  &#125;
+  let reg = new RegExp(&#39;(^|\\s)&#39; + className + &#39;(\\s|$)&#39;, &#39;g&#39;)
+  el.className = el.className.replace(reg, &#39; &#39;)
+&#125;
+</code></pre>
+<h4 id="31-获取滚动的坐标"><a href="#31-获取滚动的坐标" class="headerlink" title="31.获取滚动的坐标"></a>31.获取滚动的坐标</h4><pre><code class="javascript">export const getScrollPosition = (el = window) =&gt; (&#123;
+  x: el.pageXOffset !== undefined ? el.pageXOffset : el.scrollLeft,
+  y: el.pageYOffset !== undefined ? el.pageYOffset : el.scrollTop
+&#125;);
+</code></pre>
+<h4 id="32-滚动到顶部"><a href="#32-滚动到顶部" class="headerlink" title="32.滚动到顶部"></a>32.滚动到顶部</h4><pre><code class="javascript">export const scrollToTop = () =&gt; &#123;
+  const c = document.documentElement.scrollTop || document.body.scrollTop;
+  if (c &gt; 0) &#123;
+    window.requestAnimationFrame(scrollToTop);
+    window.scrollTo(0, c - c / 8);
+  &#125;
+&#125;
+</code></pre>
+<h4 id="33-el是否在视口范围内"><a href="#33-el是否在视口范围内" class="headerlink" title="33.el是否在视口范围内"></a>33.el是否在视口范围内</h4><pre><code class="javascript">export const elementIsVisibleInViewport = (el, partiallyVisible = false) =&gt; &#123;
+  const &#123; top, left, bottom, right &#125; = el.getBoundingClientRect();
+  const &#123; innerHeight, innerWidth &#125; = window;
+  return partiallyVisible
+    ? ((top &gt; 0 &amp;&amp; top &lt; innerHeight) || (bottom &gt; 0 &amp;&amp; bottom &lt; innerHeight)) &amp;&amp;
+    ((left &gt; 0 &amp;&amp; left &lt; innerWidth) || (right &gt; 0 &amp;&amp; right &lt; innerWidth))
+    : top &gt;= 0 &amp;&amp; left &gt;= 0 &amp;&amp; bottom &lt;= innerHeight &amp;&amp; right &lt;= innerWidth;
+&#125;
+</code></pre>
+<h4 id="34-洗牌算法随机"><a href="#34-洗牌算法随机" class="headerlink" title="34.洗牌算法随机"></a>34.洗牌算法随机</h4><pre><code class="javascript">export const shuffle = (arr) =&gt; &#123;
+  var result = [],
+    random;
+  while (arr.length &gt; 0) &#123;
+    random = Math.floor(Math.random() * arr.length);
+    result.push(arr[random])
+    arr.splice(random, 1)
+  &#125;
+  return result;
+&#125;
+</code></pre>
+<h4 id="35-劫持粘贴板"><a href="#35-劫持粘贴板" class="headerlink" title="35.劫持粘贴板"></a>35.劫持粘贴板</h4><pre><code class="javascript">export const copyTextToClipboard = (value) =&gt; &#123;
+  var textArea = document.createElement(&quot;textarea&quot;);
+  textArea.style.background = &#39;transparent&#39;;
+  textArea.value = value;
+  document.body.appendChild(textArea);
+  textArea.select();
+  try &#123;
+    var successful = document.execCommand(&#39;copy&#39;);
+  &#125; catch (err) &#123;
+    console.log(&#39;Oops, unable to copy&#39;);
+  &#125;
+  document.body.removeChild(textArea);
+&#125;
+</code></pre>
+<h4 id="36-判断类型集合"><a href="#36-判断类型集合" class="headerlink" title="36.判断类型集合"></a>36.判断类型集合</h4><pre><code class="javascript">export const checkStr = (str, type) =&gt; &#123;
+  switch (type) &#123;
+    case &#39;phone&#39;:   //手机号码
+      return /^1[3|4|5|6|7|8|9][0-9]&#123;9&#125;$/.test(str);
+    case &#39;tel&#39;:     //座机
+      return /^(0\d&#123;2,3&#125;-\d&#123;7,8&#125;)(-\d&#123;1,4&#125;)?$/.test(str);
+    case &#39;card&#39;:    //身份证
+      return /(^\d&#123;15&#125;$)|(^\d&#123;18&#125;$)|(^\d&#123;17&#125;(\d|X|x)$)/.test(str);
+    case &#39;pwd&#39;:     //密码以字母开头，长度在6~18之间，只能包含字母、数字和下划线
+      return /^[a-zA-Z]\w&#123;5,17&#125;$/.test(str)
+    case &#39;postal&#39;:  //邮政编码
+      return /[1-9]\d&#123;5&#125;(?!\d)/.test(str);
+    case &#39;QQ&#39;:      //QQ号
+      return /^[1-9][0-9]&#123;4,9&#125;$/.test(str);
+    case &#39;email&#39;:   //邮箱
+      return /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/.test(str);
+    case &#39;money&#39;:   //金额(小数点2位)
+      return /^\d*(?:\.\d&#123;0,2&#125;)?$/.test(str);
+    case &#39;URL&#39;:     //网址
+      return /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/.test(str)
+    case &#39;IP&#39;:      //IP
+      return /((?:(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d)\\.)&#123;3&#125;(?:25[0-5]|2[0-4]\\d|[01]?\\d?\\d))/.test(str);
+    case &#39;date&#39;:    //日期时间
+      return /^(\d&#123;4&#125;)\-(\d&#123;2&#125;)\-(\d&#123;2&#125;) (\d&#123;2&#125;)(?:\:\d&#123;2&#125;|:(\d&#123;2&#125;):(\d&#123;2&#125;))$/.test(str) || /^(\d&#123;4&#125;)\-(\d&#123;2&#125;)\-(\d&#123;2&#125;)$/.test(str)
+    case &#39;number&#39;:  //数字
+      return /^[0-9]$/.test(str);
+    case &#39;english&#39;: //英文
+      return /^[a-zA-Z]+$/.test(str);
+    case &#39;chinese&#39;: //中文
+      return /^[\\u4E00-\\u9FA5]+$/.test(str);
+    case &#39;lower&#39;:   //小写
+      return /^[a-z]+$/.test(str);
+    case &#39;upper&#39;:   //大写
+      return /^[A-Z]+$/.test(str);
+    case &#39;HTML&#39;:    //HTML标记
+      return /&lt;(&quot;[^&quot;]*&quot;|&#39;[^&#39;]*&#39;|[^&#39;&quot;&gt;])*&gt;/.test(str);
+    default:
+      return true;
+  &#125;
+&#125;
+</code></pre>
+<h4 id="37-严格的身份证校验"><a href="#37-严格的身份证校验" class="headerlink" title="37.严格的身份证校验"></a>37.严格的身份证校验</h4><pre><code class="javascript">export const isCardID = (sId) =&gt; &#123;
+  if (!/(^\d&#123;15&#125;$)|(^\d&#123;17&#125;(\d|X|x)$)/.test(sId)) &#123;
+    console.log(&#39;你输入的身份证长度或格式错误&#39;)
+    return false
+  &#125;
+  //身份证城市
+  var aCity = &#123; 11: &quot;北京&quot;, 12: &quot;天津&quot;, 13: &quot;河北&quot;, 14: &quot;山西&quot;, 15: &quot;内蒙古&quot;, 21: &quot;辽宁&quot;, 22: &quot;吉林&quot;, 23: &quot;黑龙江&quot;, 31: &quot;上海&quot;, 32: &quot;江苏&quot;, 33: &quot;浙江&quot;, 34: &quot;安徽&quot;, 35: &quot;福建&quot;, 36: &quot;江西&quot;, 37: &quot;山东&quot;, 41: &quot;河南&quot;, 42: &quot;湖北&quot;, 43: &quot;湖南&quot;, 44: &quot;广东&quot;, 45: &quot;广西&quot;, 46: &quot;海南&quot;, 50: &quot;重庆&quot;, 51: &quot;四川&quot;, 52: &quot;贵州&quot;, 53: &quot;云南&quot;, 54: &quot;西藏&quot;, 61: &quot;陕西&quot;, 62: &quot;甘肃&quot;, 63: &quot;青海&quot;, 64: &quot;宁夏&quot;, 65: &quot;新疆&quot;, 71: &quot;台湾&quot;, 81: &quot;香港&quot;, 82: &quot;澳门&quot;, 91: &quot;国外&quot; &#125;;
+  if (!aCity[parseInt(sId.substr(0, 2))]) &#123;
+    console.log(&#39;你的身份证地区非法&#39;)
+    return false
+  &#125;
+
+  // 出生日期验证
+  var sBirthday = (sId.substr(6, 4) + &quot;-&quot; + Number(sId.substr(10, 2)) + &quot;-&quot; + Number(sId.substr(12, 2))).replace(/-/g, &quot;/&quot;),
+    d = new Date(sBirthday)
+  if (sBirthday != (d.getFullYear() + &quot;/&quot; + (d.getMonth() + 1) + &quot;/&quot; + d.getDate())) &#123;
+    console.log(&#39;身份证上的出生日期非法&#39;)
+    return false
+  &#125;
+
+  // 身份证号码校验
+  var sum = 0,
+    weights = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2],
+    codes = &quot;10X98765432&quot;
+  for (var i = 0; i &lt; sId.length - 1; i++) &#123;
+    sum += sId[i] * weights[i];
+  &#125;
+  var last = codes[sum % 11]; //计算出来的最后一位身份证号码
+  if (sId[sId.length - 1] != last) &#123;
+    console.log(&#39;你输入的身份证号非法&#39;)
+    return false
+  &#125;
+
+  return true
+&#125;
+</code></pre>
+<h4 id="38-随机数范围"><a href="#38-随机数范围" class="headerlink" title="38.随机数范围"></a>38.随机数范围</h4><pre><code class="javascript">export const random = (min, max) =&gt; &#123;
+  if (arguments.length === 2) &#123;
+    return Math.floor(min + Math.random() * ((max + 1) - min))
+  &#125; else &#123;
+    return null;
+  &#125;
+&#125;
+</code></pre>
+<h4 id="39-将阿拉伯数字翻译成中文的大写数字"><a href="#39-将阿拉伯数字翻译成中文的大写数字" class="headerlink" title="39.将阿拉伯数字翻译成中文的大写数字"></a>39.将阿拉伯数字翻译成中文的大写数字</h4><pre><code class="javascript">export const numberToChinese = (num) =&gt; &#123;
+  var AA = new Array(&quot;零&quot;, &quot;一&quot;, &quot;二&quot;, &quot;三&quot;, &quot;四&quot;, &quot;五&quot;, &quot;六&quot;, &quot;七&quot;, &quot;八&quot;, &quot;九&quot;, &quot;十&quot;);
+  var BB = new Array(&quot;&quot;, &quot;十&quot;, &quot;百&quot;, &quot;仟&quot;, &quot;萬&quot;, &quot;億&quot;, &quot;点&quot;, &quot;&quot;);
+  var a = (&quot;&quot; + num).replace(/(^0*)/g, &quot;&quot;).split(&quot;.&quot;),
+    k = 0,
+    re = &quot;&quot;;
+  for (var i = a[0].length - 1; i &gt;= 0; i--) &#123;
+    switch (k) &#123;
+      case 0:
+        re = BB[7] + re;
+        break;
+      case 4:
+        if (!new RegExp(&quot;0&#123;4&#125;//d&#123;&quot; + (a[0].length - i - 1) + &quot;&#125;$&quot;)
+          .test(a[0]))
+          re = BB[4] + re;
+        break;
+      case 8:
+        re = BB[5] + re;
+        BB[7] = BB[5];
+        k = 0;
+        break;
+    &#125;
+    if (k % 4 == 2 &amp;&amp; a[0].charAt(i + 2) != 0 &amp;&amp; a[0].charAt(i + 1) == 0)
+      re = AA[0] + re;
+    if (a[0].charAt(i) != 0)
+      re = AA[a[0].charAt(i)] + BB[k % 4] + re;
+    k++;
+  &#125;
+
+  if (a.length &gt; 1) // 加上小数部分(如果有小数部分)
+  &#123;
+    re += BB[6];
+    for (var i = 0; i &lt; a[1].length; i++)
+      re += AA[a[1].charAt(i)];
+  &#125;
+  if (re == &#39;一十&#39;)
+    re = &quot;十&quot;;
+  if (re.match(/^一/) &amp;&amp; re.length == 3)
+    re = re.replace(&quot;一&quot;, &quot;&quot;);
+  return re;
+&#125;
+</code></pre>
+<h4 id="40-将数字转换为大写金额"><a href="#40-将数字转换为大写金额" class="headerlink" title="40.将数字转换为大写金额"></a>40.将数字转换为大写金额</h4><pre><code class="javascript">export const changeToChinese = (Num) =&gt; &#123;
+  //判断如果传递进来的不是字符的话转换为字符
+  if (typeof Num == &quot;number&quot;) &#123;
+    Num = new String(Num);
+  &#125;;
+  Num = Num.replace(/,/g, &quot;&quot;) //替换tomoney()中的“,”
+  Num = Num.replace(/ /g, &quot;&quot;) //替换tomoney()中的空格
+  Num = Num.replace(/￥/g, &quot;&quot;) //替换掉可能出现的￥字符
+  if (isNaN(Num)) &#123; //验证输入的字符是否为数字
+    //alert(&quot;请检查小写金额是否正确&quot;);
+    return &quot;&quot;;
+  &#125;;
+  //字符处理完毕后开始转换，采用前后两部分分别转换
+  var part = String(Num).split(&quot;.&quot;);
+  var newchar = &quot;&quot;;
+  //小数点前进行转化
+  for (var i = part[0].length - 1; i &gt;= 0; i--) &#123;
+    if (part[0].length &gt; 10) &#123;
+      return &quot;&quot;;
+      //若数量超过拾亿单位，提示
+    &#125;
+    var tmpnewchar = &quot;&quot;
+    var perchar = part[0].charAt(i);
+    switch (perchar) &#123;
+      case &quot;0&quot;:
+        tmpnewchar = &quot;零&quot; + tmpnewchar;
+        break;
+      case &quot;1&quot;:
+        tmpnewchar = &quot;壹&quot; + tmpnewchar;
+        break;
+      case &quot;2&quot;:
+        tmpnewchar = &quot;贰&quot; + tmpnewchar;
+        break;
+      case &quot;3&quot;:
+        tmpnewchar = &quot;叁&quot; + tmpnewchar;
+        break;
+      case &quot;4&quot;:
+        tmpnewchar = &quot;肆&quot; + tmpnewchar;
+        break;
+      case &quot;5&quot;:
+        tmpnewchar = &quot;伍&quot; + tmpnewchar;
+        break;
+      case &quot;6&quot;:
+        tmpnewchar = &quot;陆&quot; + tmpnewchar;
+        break;
+      case &quot;7&quot;:
+        tmpnewchar = &quot;柒&quot; + tmpnewchar;
+        break;
+      case &quot;8&quot;:
+        tmpnewchar = &quot;捌&quot; + tmpnewchar;
+        break;
+      case &quot;9&quot;:
+        tmpnewchar = &quot;玖&quot; + tmpnewchar;
+        break;
+    &#125;
+    switch (part[0].length - i - 1) &#123;
+      case 0:
+        tmpnewchar = tmpnewchar + &quot;元&quot;;
+        break;
+      case 1:
+        if (perchar != 0) tmpnewchar = tmpnewchar + &quot;拾&quot;;
+        break;
+      case 2:
+        if (perchar != 0) tmpnewchar = tmpnewchar + &quot;佰&quot;;
+        break;
+      case 3:
+        if (perchar != 0) tmpnewchar = tmpnewchar + &quot;仟&quot;;
+        break;
+      case 4:
+        tmpnewchar = tmpnewchar + &quot;万&quot;;
+        break;
+      case 5:
+        if (perchar != 0) tmpnewchar = tmpnewchar + &quot;拾&quot;;
+        break;
+      case 6:
+        if (perchar != 0) tmpnewchar = tmpnewchar + &quot;佰&quot;;
+        break;
+      case 7:
+        if (perchar != 0) tmpnewchar = tmpnewchar + &quot;仟&quot;;
+        break;
+      case 8:
+        tmpnewchar = tmpnewchar + &quot;亿&quot;;
+        break;
+      case 9:
+        tmpnewchar = tmpnewchar + &quot;拾&quot;;
+        break;
+    &#125;
+    var newchar = tmpnewchar + newchar;
+  &#125;
+  //小数点之后进行转化
+  if (Num.indexOf(&quot;.&quot;) != -1) &#123;
+    if (part[1].length &gt; 2) &#123;
+      // alert(&quot;小数点之后只能保留两位,系统将自动截断&quot;);
+      part[1] = part[1].substr(0, 2)
+    &#125;
+    for (i = 0; i &lt; part[1].length; i++) &#123;
+      tmpnewchar = &quot;&quot;
+      perchar = part[1].charAt(i)
+      switch (perchar) &#123;
+        case &quot;0&quot;:
+          tmpnewchar = &quot;零&quot; + tmpnewchar;
+          break;
+        case &quot;1&quot;:
+          tmpnewchar = &quot;壹&quot; + tmpnewchar;
+          break;
+        case &quot;2&quot;:
+          tmpnewchar = &quot;贰&quot; + tmpnewchar;
+          break;
+        case &quot;3&quot;:
+          tmpnewchar = &quot;叁&quot; + tmpnewchar;
+          break;
+        case &quot;4&quot;:
+          tmpnewchar = &quot;肆&quot; + tmpnewchar;
+          break;
+        case &quot;5&quot;:
+          tmpnewchar = &quot;伍&quot; + tmpnewchar;
+          break;
+        case &quot;6&quot;:
+          tmpnewchar = &quot;陆&quot; + tmpnewchar;
+          break;
+        case &quot;7&quot;:
+          tmpnewchar = &quot;柒&quot; + tmpnewchar;
+          break;
+        case &quot;8&quot;:
+          tmpnewchar = &quot;捌&quot; + tmpnewchar;
+          break;
+        case &quot;9&quot;:
+          tmpnewchar = &quot;玖&quot; + tmpnewchar;
+          break;
+      &#125;
+      if (i == 0) tmpnewchar = tmpnewchar + &quot;角&quot;;
+      if (i == 1) tmpnewchar = tmpnewchar + &quot;分&quot;;
+      newchar = newchar + tmpnewchar;
+    &#125;
+  &#125;
+  //替换所有无用汉字
+  while (newchar.search(&quot;零零&quot;) != -1)
+    newchar = newchar.replace(&quot;零零&quot;, &quot;零&quot;);
+  newchar = newchar.replace(&quot;零亿&quot;, &quot;亿&quot;);
+  newchar = newchar.replace(&quot;亿万&quot;, &quot;亿&quot;);
+  newchar = newchar.replace(&quot;零万&quot;, &quot;万&quot;);
+  newchar = newchar.replace(&quot;零元&quot;, &quot;元&quot;);
+  newchar = newchar.replace(&quot;零角&quot;, &quot;&quot;);
+  newchar = newchar.replace(&quot;零分&quot;, &quot;&quot;);
+  if (newchar.charAt(newchar.length - 1) == &quot;元&quot;) &#123;
+    newchar = newchar + &quot;整&quot;
+  &#125;
+  return newchar;
+&#125;
+</code></pre>
+<h4 id="41-判断一个元素是否在数组中"><a href="#41-判断一个元素是否在数组中" class="headerlink" title="41.判断一个元素是否在数组中"></a>41.判断一个元素是否在数组中</h4><pre><code class="javascript">export const contains = (arr, val) =&gt; &#123;
+    return arr.indexOf(val) != -1 ? true : false;
+&#125;
+</code></pre>
+<h4 id="42-数组排序-type-1：从小到大-2：从大到小-3：随机"><a href="#42-数组排序-type-1：从小到大-2：从大到小-3：随机" class="headerlink" title="42.数组排序, {type} 1：从小到大 2：从大到小 3：随机"></a>42.数组排序, {type} 1：从小到大 2：从大到小 3：随机</h4><pre><code class="javascript">export const sort = (arr, type = 1) =&gt; &#123;
+  return arr.sort((a, b) =&gt; &#123;
+    switch (type) &#123;
+    case 1:
+      return a - b;
+    case 2:
+      return b - a;
+    case 3:
+      return Math.random() - 0.5;
+    default:
+      return arr;
+    &#125;
+  &#125;)
+&#125;
+</code></pre>
+<h4 id="43-数组去重"><a href="#43-数组去重" class="headerlink" title="43.数组去重"></a>43.数组去重</h4><pre><code class="javascript">export const unique = (arr) =&gt; &#123;
+  if (Array.hasOwnProperty(&#39;from&#39;)) &#123;
+    return Array.from(new Set(arr));
+  &#125; else &#123;
+    var n = &#123;&#125;, r = [];
+    for (var i = 0; i &lt; arr.length; i++) &#123;
+      if (!n[arr[i]]) &#123;
+        n[arr[i]] = true;
+        r.push(arr[i]);
+      &#125;
+    &#125;
+    return r;
+  &#125;
+&#125;
+</code></pre>
+<h4 id="44-求两个集合的并集"><a href="#44-求两个集合的并集" class="headerlink" title="44.求两个集合的并集"></a>44.求两个集合的并集</h4><pre><code class="javascript">export const union = (a, b) =&gt; &#123;
+  var newArr = a.concat(b);
+  return this.unique(newArr); // 见43
+&#125;
+</code></pre>
+<h4 id="45-求两个集合的交集"><a href="#45-求两个集合的交集" class="headerlink" title="45.求两个集合的交集"></a>45.求两个集合的交集</h4><pre><code class="javascript">export const intersect = (a, b) =&gt; &#123;
+  var _this = this;
+  a = this.unique(a);
+  return this.map(a, function (o) &#123;
+    return _this.contains(b, o) ? o : null; // contains方法见41
+  &#125;);
+&#125;
+</code></pre>
+<h4 id="46-删除数组指定元素"><a href="#46-删除数组指定元素" class="headerlink" title="46.删除数组指定元素"></a>46.删除数组指定元素</h4><pre><code class="javascript">export const remove = (arr, ele) =&gt; &#123;
+  var index = arr.indexOf(ele);
+  if (index &gt; -1) &#123;
+    arr.splice(index, 1);
+  &#125;
+  return arr;
+&#125;
+</code></pre>
+<h4 id="47-将类数组转换为数组"><a href="#47-将类数组转换为数组" class="headerlink" title="47.将类数组转换为数组"></a>47.将类数组转换为数组</h4><pre><code class="javascript">export const formArray = (ary) =&gt; &#123;
+  var arr = [];
+  if (Array.isArray(ary)) &#123;
+    arr = ary;
+  &#125; else &#123;
+    arr = Array.prototype.slice.call(ary);
+  &#125;;
+  return arr;
+&#125;
+</code></pre>
+<h4 id="48-找出数组最大值"><a href="#48-找出数组最大值" class="headerlink" title="48.找出数组最大值"></a>48.找出数组最大值</h4><pre><code class="javascript">export const max = (arr) =&gt; &#123;
+  return Math.max.apply(null, arr);
+&#125;
+</code></pre>
+<h4 id="49-找出数组最小值"><a href="#49-找出数组最小值" class="headerlink" title="49.找出数组最小值"></a>49.找出数组最小值</h4><pre><code class="javascript">export const min = (arr) =&gt; &#123;
+    return Math.min.apply(null, arr);
+&#125;
+</code></pre>
+<h4 id="50-数组求和"><a href="#50-数组求和" class="headerlink" title="50.数组求和"></a>50.数组求和</h4><pre><code class="javascript">export const sum = (arr) =&gt; &#123;
+    return arr.reduce((pre, cur) =&gt; &#123;
+        return pre + cur
+    &#125;)
+&#125;
+</code></pre>
+<h4 id="51-数组平均数"><a href="#51-数组平均数" class="headerlink" title="51.数组平均数"></a>51.数组平均数</h4><pre><code class="javascript">export const average = (arr) =&gt; &#123;
+    return this.sum(arr) / arr.length
+&#125;
+</code></pre>
+<h4 id="52-去除空格-type-1-所有空格-2-前后空格-3-前空格-4-后空格"><a href="#52-去除空格-type-1-所有空格-2-前后空格-3-前空格-4-后空格" class="headerlink" title="52.去除空格,type: 1-所有空格 2-前后空格 3-前空格 4-后空格"></a>52.去除空格,<code>type: 1-所有空格 2-前后空格 3-前空格 4-后空格</code></h4><pre><code class="javascript">export const trim = (str, type) =&gt; &#123;
+  type = type || 1
+  switch (type) &#123;
+    case 1:
+      return str.replace(/\s+/g, &quot;&quot;);
+    case 2:
+      return str.replace(/(^\s*)|(\s*$)/g, &quot;&quot;);
+    case 3:
+      return str.replace(/(^\s*)/g, &quot;&quot;);
+    case 4:
+      return str.replace(/(\s*$)/g, &quot;&quot;);
+    default:
+      return str;
+  &#125;
+&#125;
+</code></pre>
+<h4 id="53-字符转换-type-1-首字母大写-2：首字母小写-3：大小写转换-4：全部大写-5：全部小写"><a href="#53-字符转换-type-1-首字母大写-2：首字母小写-3：大小写转换-4：全部大写-5：全部小写" class="headerlink" title="53.字符转换,type: 1:首字母大写 2：首字母小写 3：大小写转换 4：全部大写 5：全部小写"></a>53.字符转换,type: 1:首字母大写 2：首字母小写 3：大小写转换 4：全部大写 5：全部小写</h4><pre><code class="javascript">export const changeCase = (str, type) =&gt; &#123;
+  type = type || 4
+  switch (type) &#123;
+    case 1:
+      return str.replace(/\b\w+\b/g, function (word) &#123;
+        return word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
+
+      &#125;);
+    case 2:
+      return str.replace(/\b\w+\b/g, function (word) &#123;
+        return word.substring(0, 1).toLowerCase() + word.substring(1).toUpperCase();
+      &#125;);
+    case 3:
+      return str.split(&#39;&#39;).map(function (word) &#123;
+        if (/[a-z]/.test(word)) &#123;
+          return word.toUpperCase();
+        &#125; else &#123;
+          return word.toLowerCase()
+        &#125;
+      &#125;).join(&#39;&#39;)
+    case 4:
+      return str.toUpperCase();
+    case 5:
+      return str.toLowerCase();
+    default:
+      return str;
+  &#125;
+&#125;
+</code></pre>
+<h4 id="54-检测密码强度"><a href="#54-检测密码强度" class="headerlink" title="54.检测密码强度"></a>54.检测密码强度</h4><pre><code class="javascript">export const checkPwd = (str) =&gt; &#123;
+  var Lv = 0;
+  if (str.length &lt; 6) &#123;
+    return Lv
+  &#125;
+  if (/[0-9]/.test(str)) &#123;
+    Lv++
+  &#125;
+  if (/[a-z]/.test(str)) &#123;
+    Lv++
+  &#125;
+  if (/[A-Z]/.test(str)) &#123;
+    Lv++
+  &#125;
+  if (/[\.|-|_]/.test(str)) &#123;
+    Lv++
+  &#125;
+  return Lv;
+&#125;
+</code></pre>
+<h4 id="55-函数节流器"><a href="#55-函数节流器" class="headerlink" title="55.函数节流器"></a>55.函数节流器</h4><pre><code class="javascript">export const debouncer = (fn, time, interval = 200) =&gt; &#123;
+  if (time - (window.debounceTimestamp || 0) &gt; interval) &#123;
+    fn &amp;&amp; fn();
+    window.debounceTimestamp = time;
+  &#125;
+&#125;
+</code></pre>
+<h4 id="56-在字符串中插入新字符串"><a href="#56-在字符串中插入新字符串" class="headerlink" title="56.在字符串中插入新字符串"></a>56.在字符串中插入新字符串</h4><pre><code class="javascript">export const insertStr = (soure, index, newStr) =&gt; &#123;
+  var str = soure.slice(0, index) + newStr + soure.slice(index);
+  return str;
+&#125;
+</code></pre>
+<h4 id="57-判断两个对象是否键值相同"><a href="#57-判断两个对象是否键值相同" class="headerlink" title="57.判断两个对象是否键值相同"></a>57.判断两个对象是否键值相同</h4><pre><code class="javascript">export const isObjectEqual = (a, b) =&gt; &#123;
+  var aProps = Object.getOwnPropertyNames(a);
+  var bProps = Object.getOwnPropertyNames(b);
+
+  if (aProps.length !== bProps.length) &#123;
+    return false;
+  &#125;
+
+  for (var i = 0; i &lt; aProps.length; i++) &#123;
+    var propName = aProps[i];
+
+    if (a[propName] !== b[propName]) &#123;
+      return false;
+    &#125;
+  &#125;
+  return true;
+&#125;
+</code></pre>
+<h4 id="58-16进制颜色转RGBRGBA字符串"><a href="#58-16进制颜色转RGBRGBA字符串" class="headerlink" title="58.16进制颜色转RGBRGBA字符串"></a>58.16进制颜色转RGBRGBA字符串</h4><pre><code class="javascript">export const colorToRGB = (val, opa) =&gt; &#123;
+
+  var pattern = /^(#?)[a-fA-F0-9]&#123;6&#125;$/; //16进制颜色值校验规则
+  var isOpa = typeof opa == &#39;number&#39;; //判断是否有设置不透明度
+
+  if (!pattern.test(val)) &#123; //如果值不符合规则返回空字符
+    return &#39;&#39;;
+  &#125;
+
+  var v = val.replace(/#/, &#39;&#39;); //如果有#号先去除#号
+  var rgbArr = [];
+  var rgbStr = &#39;&#39;;
+
+  for (var i = 0; i &lt; 3; i++) &#123;
+    var item = v.substring(i * 2, i * 2 + 2);
+    var num = parseInt(item, 16);
+    rgbArr.push(num);
+  &#125;
+
+  rgbStr = rgbArr.join();
+  rgbStr = &#39;rgb&#39; + (isOpa ? &#39;a&#39; : &#39;&#39;) + &#39;(&#39; + rgbStr + (isOpa ? &#39;,&#39; + opa : &#39;&#39;) + &#39;)&#39;;
+  return rgbStr;
+&#125;
+</code></pre>
+<h4 id="59-追加url参数"><a href="#59-追加url参数" class="headerlink" title="59.追加url参数"></a>59.追加url参数</h4><pre><code class="javascript">export const appendQuery = (url, key, value) =&gt; &#123;
+  var options = key;
+  if (typeof options == &#39;string&#39;) &#123;
+    options = &#123;&#125;;
+    options[key] = value;
+  &#125;
+  options = $.param(options);
+  if (url.includes(&#39;?&#39;)) &#123;
+    url += &#39;&amp;&#39; + options
+  &#125; else &#123;
+    url += &#39;?&#39; + options
+  &#125;
+  return url;
+&#125;
+</code></pre>
+
+        </article>
+
+        
+            
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>tangyuxian<br>
+    
+    <strong>本文链接：</strong><a href="https://www.tangyuxian.com/2021/04/08/%E5%89%8D%E7%AB%AF/JavaScript/js-%E5%B8%B8%E7%94%A8%E7%9A%84js%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0/" title="https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;04&#x2F;08&#x2F;%E5%89%8D%E7%AB%AF&#x2F;JavaScript&#x2F;js-%E5%B8%B8%E7%94%A8%E7%9A%84js%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2021&#x2F;04&#x2F;08&#x2F;%E5%89%8D%E7%AB%AF&#x2F;JavaScript&#x2F;js-%E5%B8%B8%E7%94%A8%E7%9A%84js%E5%B7%A5%E5%85%B7%E5%87%BD%E6%95%B0&#x2F;</a><br>
+
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+        
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/JavaScript/" rel="tag">JavaScript</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a>
+    
+</div>
+
+    <div class="nexmoe-post-footer">
+        <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src="https://unpkg.com/leancloud-storage/dist/av-min.js"></script>
+<script src='https://unpkg.com/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'r5zxC0st0DDjPA9auXzMV7HY-gzGzoHsz',
+        appKey: '3bqCsovpyfTPHUzTHovd3V3V'
+    })
+</script>
+</section>
+    </div>
+</div>
+
+
+        <div class="nexmoe-post-right">
+          
+            <div class="nexmoe-fixed">
+              <div class="nexmoe-tool">
+                <a href="#" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+              </div>
+            </div>
+          
+        </div>
+    </div>
+  </div>
+  <div id="nexmoe-pendant">
+    <div class="nexmoe-drawer mdui-drawer nexmoe-pd" id="drawer">
+        
+            <div class="nexmoe-pd-item">
+                <div class="clock">
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="needle" id="hours"></div>
+        <div class="needle" id="minutes"></div>
+        <div class="needle" id="seconds"></div>
+        <div class="clock_logo">
+
+        </div>
+
+    </div>
+<style>
+    .clock {
+        background-color: #ffffff;
+        width: 70vw;
+        height: 70vw;
+        max-width: 70vh;
+        max-height: 70vh;
+        border: solid 2.8vw #242424;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        box-sizing: border-box;
+        box-shadow: 0 1.4vw 2.8vw rgba(0, 0, 0, 0.8);
+        zoom:0.2
+    }
+
+    .memory {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+    }
+
+    .memory:nth-child(1) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(0deg) translateY(-520%);
+    }
+
+    .memory:nth-child(2) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(6deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(3) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(12deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(4) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(18deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(5) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(24deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(6) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(30deg) translateY(-520%);
+    }
+
+    .memory:nth-child(7) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(36deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(8) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(42deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(9) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(48deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(10) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(54deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(11) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(60deg) translateY(-520%);
+    }
+
+    .memory:nth-child(12) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(66deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(13) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(72deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(14) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(78deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(15) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(84deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(16) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(90deg) translateY(-520%);
+    }
+
+    .memory:nth-child(17) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(96deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(18) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(102deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(19) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(108deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(20) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(114deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(21) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(120deg) translateY(-520%);
+    }
+
+    .memory:nth-child(22) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(126deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(23) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(132deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(24) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(138deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(25) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(144deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(26) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(150deg) translateY(-520%);
+    }
+
+    .memory:nth-child(27) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(156deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(28) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(162deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(29) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(168deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(30) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(174deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(31) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(180deg) translateY(-520%);
+    }
+
+    .memory:nth-child(32) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(186deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(33) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(192deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(34) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(198deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(35) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(204deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(36) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(210deg) translateY(-520%);
+    }
+
+    .memory:nth-child(37) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(216deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(38) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(222deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(39) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(228deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(40) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(234deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(41) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(240deg) translateY(-520%);
+    }
+
+    .memory:nth-child(42) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(246deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(43) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(252deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(44) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(258deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(45) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(264deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(46) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(270deg) translateY(-520%);
+    }
+
+    .memory:nth-child(47) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(276deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(48) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(282deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(49) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(288deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(50) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(294deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(51) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(300deg) translateY(-520%);
+    }
+
+    .memory:nth-child(52) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(306deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(53) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(312deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(54) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(318deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(55) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(324deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(56) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(330deg) translateY(-520%);
+    }
+
+    .memory:nth-child(57) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(336deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(58) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(342deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(59) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(348deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(60) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(354deg) translateY(-1461%);
+    }
+
+    .needle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+    }
+
+    .needle#hours {
+        background-color: #1f1f1f;
+        width: 4%;
+        height: 30%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#hours.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#hours:after {
+        content: '';
+        background-color: #1f1f1f;
+        width: 4vw;
+        height: 4vw;
+        max-width: 4vh;
+        max-height: 4vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .needle#minutes {
+        background-color: #1f1f1f;
+        width: 2%;
+        height: 45%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#minutes.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#minutes:after {
+        content: '';
+        background-color: #1f1f1f;
+        width: 4vw;
+        height: 4vw;
+        max-width: 4vh;
+        max-height: 4vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .needle#seconds {
+        background-color: #cb2f2f;
+        width: 1%;
+        height: 50%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#seconds.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#seconds:after {
+        content: '';
+        background-color: #cb2f2f;
+        width: 2.5vw;
+        height: 2.5vw;
+        max-width: 2.5vh;
+        max-height: 2.5vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .clock_logo{
+        width: 10vw;
+        height: 10vw;
+        max-width: 10vh;
+        max-height: 10vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    @media (min-width: 100vh) {
+        .clock {
+            border: solid 2.8vh #242424;
+            box-shadow: 0 1.4vh 2.8vh rgba(0, 0, 0, 0.8);
+        }
+    }
+
+</style>
+
+
+
+
+
+            </div>
+        
+            <div class="nexmoe-pd-item">
+                <div class="qweather" >
+    <div id="he-plugin-standard"></div>
+    <div class="qweather-logo">
+
+    </div>
+
+</div>
+<style>
+    .qweather{
+        position: relative;
+    }
+    .qweather-logo{
+        position: absolute;
+        right: 0;
+        top: -15px;
+        width: 40px;
+        height: 40px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+</style>
+<script>
+  WIDGET = {
+    "CONFIG": {
+      "layout": "2",
+      "width": "260",
+      "height": "220",
+      "background": "5",
+      "dataColor": "e67249",
+      "borderRadius": "15",
+      "key": "f74d1e1690e6432d801e97fa2f05a162"
+    }
+  }
+</script>
+<script src="https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0"></script>
+
+            </div>
+        
+</div>
+<style>
+    .nexmoe-pd {
+        left: auto;
+        top: 40px;
+        right: 0;
+    }
+    .nexmoe-pd-item{
+       display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+</style>
+
+  </div>
+  <script src="https://unpkg.com/lazysizes@5.1.0/lazysizes.min.js"></script>
+<script src="https://cdn.staticfile.org/highlight.js/10.0.0/highlight.min.js"></script>
+<script src="https://unpkg.com/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://unpkg.com/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/app.js?v=1653732570801"></script>
+
+<script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+  
+
+
+
+
+
+<!-- hexo injector body_end start -->
+<script src="https://unpkg.com/clipboard@2.0.8/dist/clipboard.min.js"></script>
+
+<script src="/lib/codeBlock/codeBlockFuction.js"></script>
+
+<script src="/lib/codeBlock/codeLang.js"></script>
+
+<script src="/lib/codeBlock/codeCopy.js"></script>
+
+<script src="/lib/codeBlock/codeShrink.js"></script>
+
+<link rel="stylesheet" href="/lib/codeBlock/matery.css">
+
+<script src="/js/clock.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<script src="/js/search.js"></script>
+
+<script src="/js/webapp.js"></script>
+<!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/xiaomai.model.json"},"display":{"position":"left","width":200,"height":500},"mobile":{"show":false},"react":{"opacity":0.9},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/250cb4aa.js","daovoice")</script>
+<script>
+  daovoice('init', {
+    app_id: "250cb4aa"
+  });
+  daovoice('update');
+</script>
+
