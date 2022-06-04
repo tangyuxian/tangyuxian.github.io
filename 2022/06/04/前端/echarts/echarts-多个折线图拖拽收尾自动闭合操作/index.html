@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
+  <title>echarts-多个折线图拖拽收尾自动闭合操作 - 糖羽仙</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="这是萌糖的官方网站">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+
+    <!-- Site Verification -->
+    <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
+
+  <link rel="shortcut icon" href="/images/head/head.jpg" type="image/png" />
+  <meta name="description" content="拖拽折线图的收尾自动闭合成面积图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="echarts-多个折线图拖拽收尾自动闭合操作">
+<meta property="og:url" content="https://www.tangyuxian.com/2022/06/04/%E5%89%8D%E7%AB%AF/echarts/echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:site_name" content="糖羽仙">
+<meta property="og:description" content="拖拽折线图的收尾自动闭合成面积图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/image-20220604163530022.png">
+<meta property="og:image" content="https://img0.baidu.com/it/u=999648122,2374306559&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400">
+<meta property="article:published_time" content="2022-06-04T08:31:11.000Z">
+<meta property="article:modified_time" content="2022-06-04T09:29:14.596Z">
+<meta property="article:author" content="tangyuxian">
+<meta property="article:tag" content="原创">
+<meta property="article:tag" content="echarts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.tangyuxian.com/images/PicGo/image-20220604163530022.png">
+  <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.15.8/styles/atom-one-dark.css" crossorigin>
+  <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
+  <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+  <link rel="stylesheet" href="/lib/fancybox/css/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
+  
+  <link rel="stylesheet" href="/css/style.css?v=1654338396083">
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body class="mdui-drawer-body-left">
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(/images/background/xiaomai.jpg)"></div>
+    <div class="nexmoe-small" style="background-image: url(/images/background/lihui.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="tangyuxian" class="mdui-btn mdui-btn-icon"><img src="/images/head/head.jpg" alt="tangyuxian"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="tangyuxian">
+            <img src="/images/head/head.jpg" alt="tangyuxian" alt="tangyuxian">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div class="nexmoe-count-item"><span>文章</span>69 <div class="item-radius"></div><div class="item-radius item-right"></div> </div>
+        <div class="nexmoe-count-item"><span>标签</span>34<div class="item-radius"></div><div class="item-radius item-right"></div></div>
+        <div class="nexmoe-count-item"><span>分类</span>5<div class="item-radius"></div><div class="item-radius item-right"></div></div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-meishi"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-hanbao1"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于糖糖">
+            <i class="mdui-list-item-icon nexmoefont icon-jiubei1"></i>
+            <div class="mdui-list-item-content">
+                关于糖糖
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/friend.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-cola"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/download.html" title="下载中心">
+            <i class="mdui-list-item-icon nexmoefont icon-tangguo"></i>
+            <div class="mdui-list-item-content">
+                下载中心
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+  
+<!-- 站内搜索 -->
+
+<div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search" >
+        <form id="search-form">
+            <label><input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="input form-control" autocomplete="off" autocorrect="off"/></label>
+            <!-- 清空/重置搜索框 -->
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+        </form>
+    </div>
+    <div id="local-search-result"></div> <!-- 搜索结果区 -->
+    <!-- <p class='no-result'></p> 无匹配时显示，注意在 CSS 中设置默认隐藏 -->
+</div>
+
+
+  
+  <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="http://wpa.qq.com/msgrd?v=3&uin=2120252100&site=qq&menu=yes" target="_blank" mdui-tooltip="{content: 'QQ'}" style="color: rgb(64, 196, 255);background-color: rgba(64, 196, 255, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="mailto:tangyuxian@vip.qq.com" target="_blank" mdui-tooltip="{content: 'mail'}" style="color: rgb(249,8,8);background-color: rgba(249,8,8,.1);">
+            <i class="nexmoefont icon-mail-fill"></i>
+        </a><a class="mdui-ripple" href="https://blog.csdn.net/qq_40621378?type=blog" target="_blank" mdui-tooltip="{content: 'CSDN'}" style="color: rgb(199,29,35);background-color: rgba(199,29,35,.1);">
+            <i class="nexmoefont icon-csdn"></i>
+        </a><a class="mdui-ripple" href="https://www.cnblogs.com/lovetangyuxian/" target="_blank" mdui-tooltip="{content: '博客园'}" style="color: rgb(66, 214, 29);background-color: rgba(66, 214, 29, .1);">
+            <i class="nexmoefont icon-bokeyuan"></i>
+        </a><a class="mdui-ripple" href="https://github.com/tangyuxian/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a><a class="mdui-ripple" href="https://gitee.com/tangyuxian" target="_blank" mdui-tooltip="{content: 'gitee'}" style="color: rgb(255, 255, 255);background-color: rgb(199,29,35);">
+            <i class="nexmoefont icon-mayun"></i>
+        </a>
+    </div>
+</div>
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/其它/">其它</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/前端/">前端</a>
+          <span class="category-list-count">50</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/后端/">后端</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/开发工具/">开发工具</a>
+          <span class="category-list-count">10</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/服务器端/">服务器端</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/JavaScript/" style="font-size: 17.14px;">JavaScript</a> <a href="/tags/Jetbrains/" style="font-size: 10px;">Jetbrains</a> <a href="/tags/TypeScript/" style="font-size: 10px;">TypeScript</a> <a href="/tags/UI%E5%BA%93/" style="font-size: 11.43px;">UI库</a> <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/css/" style="font-size: 10px;">css</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/echarts/" style="font-size: 10px;">echarts</a> <a href="/tags/elementPlus/" style="font-size: 11.43px;">elementPlus</a> <a href="/tags/es6/" style="font-size: 14.29px;">es6</a> <a href="/tags/git/" style="font-size: 14.29px;">git</a> <a href="/tags/http/" style="font-size: 11.43px;">http</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/markerdown/" style="font-size: 11.43px;">markerdown</a> <a href="/tags/nginx/" style="font-size: 10px;">nginx</a> <a href="/tags/node/" style="font-size: 11.43px;">node</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/webpack/" style="font-size: 10px;">webpack</a> <a href="/tags/xuex/" style="font-size: 10px;">xuex</a> <a href="/tags/%E4%BA%8B%E4%BB%B6%E6%B5%81/" style="font-size: 10px;">事件流</a> <a href="/tags/%E4%BA%92%E8%81%94%E7%BD%91/" style="font-size: 10px;">互联网</a> <a href="/tags/%E5%8A%A0%E5%AF%86/" style="font-size: 12.86px;">加密</a> <a href="/tags/%E5%8E%9F%E5%88%9B/" style="font-size: 18.57px;">原创</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 15.71px;">工具</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 12.86px;">微信小程序</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 12.86px;">总结</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 10px;">数据结构</a> <a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">服务器</a> <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" style="font-size: 17.14px;">浏览器</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 15.71px;">算法</a> <a href="/tags/%E7%BC%96%E8%A7%A3%E7%A0%81/" style="font-size: 10px;">编解码</a> <a href="/tags/%E7%BE%8E%E5%8C%96/" style="font-size: 11.43px;">美化</a> <a href="/tags/%E8%AE%B0%E5%BD%95/" style="font-size: 10px;">记录</a> <a href="/tags/%E8%BD%AC%E8%BD%BD/" style="font-size: 18.57px;">转载</a>
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">54</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2022 tangyuxian
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/tangyuxian/hexo-theme-tangyuxian" target="_blank">Tangyuxian</a><br/>
+        <a href="http://beian.miit.gov.cn" target="_blank">辽ICP备2021002341号</a><br/>
+        
+        <div style="font-size: 12px">
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            本站总访问量  <a id="busuanzi_value_site_pv"></a> 次<br />
+            本站访客数<a id="busuanzi_value_site_uv"></a>人次
+        </div>
+        
+        
+    </div>
+
+</div><!-- .nexmoe-drawer -->
+
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+    
+        <div class="nexmoe-post-cover" style="padding-bottom: 26.666666666666668%;">
+            <img data-src="/images/post/echarts.jpg" data-sizes="auto" alt="echarts-多个折线图拖拽收尾自动闭合操作"
+                 class="lazyload">
+            <h1>echarts-多个折线图拖拽收尾自动闭合操作</h1>
+        </div>
+    
+
+        <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2022年06月04日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 10 分钟</a>
+</div>
+
+        <div class="nexmoe-post-right">
+            
+        </div>
+
+        <article>
+            <p>拖拽折线图的收尾自动闭合成面积图</p>
+<span id="more"></span>
+<p>目前有这样一个需求,在一个统计图中,会有多条可拖拽的折线图,当某条折线图的首尾相连时会自动填充内部变成面积图,分开又变回折线图,如下图</p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/image-20220604163530022.png" alt="image-20220604163530022" class="lazyload"></p>
+<p>图1和图2都是4个端点,当第一个端点和最后一个端点通过拖拽相连后变回变成图2的效果,并自动填充其中颜色</p>
+<h2 id="一-分析"><a href="#一-分析" class="headerlink" title="一 分析"></a>一 分析</h2><p>首先思考的几个问题:</p>
+<ol>
+<li>如何拖拽折线图;</li>
+<li>首个端点和最后一个端点如何正好重合(当数据过大,很难通过拖拽情况下恰好让两个端点的数值完全相同);</li>
+<li>如何填充颜色;</li>
+</ol>
+<p>以下是官方示例</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://echarts.apache.org/examples/zh/editor.html?c=line-simple">一条普通的折线图示例</a></li>
+<li><a target="_blank" rel="noopener" href="https://echarts.apache.org/examples/zh/editor.html?c=line-draggable">一条可拖拽节点的折线图示例</a></li>
+<li><a target="_blank" rel="noopener" href="https://echarts.apache.org/examples/zh/editor.html?c=area-basic">基础面积图示例</a></li>
+</ol>
+<h2 id="二-准备工作"><a href="#二-准备工作" class="headerlink" title="二 准备工作"></a>二 准备工作</h2><h4 id="1-如何实现拖拽"><a href="#1-如何实现拖拽" class="headerlink" title="1 如何实现拖拽"></a>1 如何实现拖拽</h4><p>从官方的示例中我们可以发现,它采用的是<code>graphic</code>属性.根据<a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/option.html#graphic">官方手册</a>我们可以发现,这个属性可以让我们在<code>echarts</code>图上自由绘制图形区域,以及这些图形的鼠标按下,抬起,鼠标经过,拖拽等等操作回调,借助<a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/api.html#echartsInstance.convertToPixel"><code>echartsInstance.convertToPixel</code></a>可进行坐标转换,将每个端点的坐标转换成像素坐标,为我们定点;</p>
+<p>定点实现后后借助<code>graphic</code>中的<code>ondrag</code>回调函数便可知我们目前已拖拽的点的坐标,拿到的是像素坐标,再借助<a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/api.html#echartsInstance.convertFromPixel"><code>echartsInstance.convertFromPixel</code></a>将坐标转换成我们目前可用数值</p>
+<h4 id="2-如何实现首尾相连"><a href="#2-如何实现首尾相连" class="headerlink" title="2 如何实现首尾相连"></a>2 如何实现首尾相连</h4><p>如果单靠拖拽来实现首尾两个坐标点一致太难了,因为这中间会产生特别小的误差使其无法完全一致</p>
+<p>可借助下面这个函数算出两个坐标点的距离,可在距离小于一定数值后让两个坐标点相连</p>
+<pre><code class="javascript">    function distant(a, b) &#123;
+        let dx = Number(a[0]) - Number(b[0])
+        let dy = Number(a[1]) - Number(b[1])
+        return Math.pow(dx * dx + dy * dy, .5)
+    &#125;
+</code></pre>
+<h4 id="3-如何实现内容填充"><a href="#3-如何实现内容填充" class="headerlink" title="3 如何实现内容填充"></a>3 如何实现内容填充</h4><p>根据官方手册<a target="_blank" rel="noopener" href="https://echarts.apache.org/zh/option.html#series-line.areaStyle"><code>series-line.areaStyle</code></a>的配置项可自定义填充颜色,因为存在首尾坐标在拖拽下合并或者分开两种情况随时变换,当我们给这个属性<code>null</code>时会让填充失效,当给<code>&#123;&#125;</code>则会使用默认的填充配置</p>
+<h4 id="4-多条折线图存在的注意事项"><a href="#4-多条折线图存在的注意事项" class="headerlink" title="4 多条折线图存在的注意事项"></a>4 多条折线图存在的注意事项</h4><p>官方示例中均为单条折线,但是在多条线中,我们要考虑的问题便增加了,在拖拽的时候要注意我们拖拽的是第几条线,拖拽完毕还要将拖拽后的数值回填到定义的数据源中</p>
+<h4 id="5-限制拖拽端点数值"><a href="#5-限制拖拽端点数值" class="headerlink" title="5 限制拖拽端点数值"></a>5 限制拖拽端点数值</h4><p>若限制端点拖拽到坐标外,可在<code>ondrag</code>获取到当前数值的最大值最小值判定,然后<code>return</code>即可</p>
+<h2 id="三-示例"><a href="#三-示例" class="headerlink" title="三 示例"></a>三 示例</h2><p>本糖已经开出来有人看的还是有点懵,于是完整代码在下面了,复制到本地运行看看吧;</p>
+<p>也可点击 <a href="https://www.tangyuxian.com/web/line-draggable.html">在线示例</a> ,不过在线示例是放在本糖的服务器上,哪天本糖穷到没钱续费服务器就访问不到了,还是复制到本地看最保险</p>
+<pre><code class="html">&lt;!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=line-draggable&amp;code=MYewdgzgLgBBCeBbARiANgZQJYC8CmMAvDAEwAMA3AFCiSwAmAhlI0TANpUwcAsZANDAC0ARjIBdflw5CAzAOEBWSdPZCA7ADYAdIsHkV3NZtm7BfQzJIltIwYolVx1EAAcoWcGwDe0j1DQ8AC4YX25uKDwADygQgHIAFQAneBgAESTGAHMsrDAsmCgACzwIAgAFEDyoCDipcJhAgDNYmDjgPDBIpLjpAF96wpB0D1cQsPCoJKwcvCSAeTB4sHA8OuluJpAkxGZukKaAVzBgDy8ACldGTMQIAEpQjfCkvChDpLAYc6eGuIANeIwADUP3CVxuEG0TBY7Ak2igIAAYlgonh6OcSA8QQ1fgAeZBJAB8AE1AdicdxwYxblDmIx2CJxPCkSi0Ri7qC7tQGn1-oMstN6OMngixm0ABwAUnWDVQUARiHiIhI0r50iiAEEolgIMKGog8iFRGQBE9dlEQupTQ0oPBXME2gA3RhoQ5rQbcRjaiAAGTyDu8MHAAC05iADi6yjBedwBtJ4FqdXrwgalsJ5B6YOaQpprZM7Q64s7Xe6nl6dX6wAGg2BQ0lwzAmpGCDHo4NoYxg8NFRwnhMbQX4hA0Fh6HMZTjNd6AJJgMcWmB5hpNLBoboAWRAY-Wq16PMz_fz9qHI7HPUz3ATM7n0RCS_CK7Xc0327aKyre_CcYah4ig7aeQQKOpYUlOOqzvOd4Xo2q4bluhbvmsTzfuEv6FP-cSAcBE4NFe4E3gu96bLBz7wTuH7IdIlhlNMpQhJwP6gqO8SMDhR6FiOH7QRAiDDMUIRTG60HXHgjAYLagTJhS2wzIacSdPQn77qCCAoOg2D4CEqmoJguB4NBHYhB2lHcOIVB9NQZRQAkWCIHgICHFA5xHCcZyfOcDwTAA9F5MAavQ9BwEUjD0CAADuMDAFgSTAIEEBfGFRRYMARQwDqMArLAjo6lgyCBA8CIwJ0jB5QQ9CZFk2jSIg8AAMLBUkUDaFZ8zuJ4YDnIeAqMK4SXAEZdLaLsrjOccpztV8WCRIgggdhB0SeaCLxvB8jwUn-x5tFFMWBGxDSuCAQFuSENX1dcTW0I6czWSA5Ssmg5xxAKo51Gl013NB3AQMFm1oQ0wCEZ94TAPAUGgg0SRaUgOkaQQvkkODbaI3k2VAaVAlJEJiPldkWQlZJhSY_piPgDjWQHGNblfPQUSzfAi3reE4CVNUGS43kWTnHNBGCOwxQ6totOFElkLwOIXKIyh0lgLxhxlLxV0U65E0eWtjNBeFCTDGuWAjdz84S4zUs4uAstlA5rQueNFwM-rSVjlrIy61zdLzVEhvrcbDQ4CEYhkKCFnIRysYSwMi4S2FeShWF2ghfQACiV1dH60CdHMj0vEB-CvYcrjQnglRHe1EunQ1TXgI9HZdiAiA53nzAF4dU3F9QVtU7n-eF83Fe26X53Na8rVuZ1Tzdb1yUDSwQ09aNysXFNeAzTA-sLWrEOvO8nx_TAB1F-AJ11WX2iXddWt3aiD1PYKr0L4gwc4oHPL330odUG3E3fZr2ujC7LBu73h9-70B1FcKAKUNTWw6oeW0m04ifzCjZVwbEaJYFKG7MGDQV4Liwf0V-78vD2zwI7HWetXYEQAWdRqUIQHMHAZAkeA5YGEMQZ-F-1BeT4M-MzKoXQ2Y5A5r_RgbtBC71th2dgWDxBsD7lQk-jVET1kQOfPAl9nqKREYdD2PkYAAFV66RGXnSaqgCqEtTahXQ8KC6K9gpNvZibRWJA0MoYlgAcnhmRDuwoAA
+    请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+--&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;zh-CN&quot; style=&quot;height: 100%&quot;&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;style&gt;
+        body &#123;
+            height: 100%;
+        &#125;
+
+        .main &#123;
+            height: 70%;
+        &#125;
+
+        #container &#123;
+            flex: 1;
+            height: 100%;
+            margin: 0
+        &#125;
+
+        .tip &#123;
+            padding: 10px 100px;
+        &#125;
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div class=&quot;main&quot;&gt;
+    &lt;div id=&quot;container&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;tip&quot;&gt;
+        &lt;b&gt;说明:&lt;/b&gt;做了一个简单的示例,可以随意拖拽,拖拽后收尾相连开始判定可围成一个区域,首尾相连过程中会通过坐标计算两点距离,距离小于2时会自动吸附连接&lt;/br&gt;
+        圈定的范围颜色是根据线的颜色变化&lt;/br&gt;
+        首尾相连后可一起拖拽,快速拖拽可分离收尾连接,同时判定圈定范围失效&lt;/br&gt;
+        注意多条线的拖拽逻辑是将所有可拖拽线的点压到一个数组里,处理拖拽后逻辑要根据原始数组下标确定是拖动了哪条线
+    &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://fastly.jsdelivr.net/npm/echarts@5.3.0/dist/echarts.min.js&quot;&gt;&lt;/script&gt;
+&lt;!-- Uncomment this line if you want to dataTool extension
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://fastly.jsdelivr.net/npm/echarts@5.3.2/dist/extension/dataTool.min.js&quot;&gt;&lt;/script&gt;
+--&gt;
+&lt;!-- Uncomment this line if you want to use gl extension
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://fastly.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js&quot;&gt;&lt;/script&gt;
+--&gt;
+&lt;!-- Uncomment this line if you want to echarts-stat extension
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://fastly.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js&quot;&gt;&lt;/script&gt;
+--&gt;
+&lt;!-- Uncomment this line if you want to use map
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/china.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js&quot;&gt;&lt;/script&gt;
+--&gt;
+&lt;!-- Uncomment these two lines if you want to use bmap extension
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://api.map.baidu.com/api?v=3.0&amp;ak=YOUR_API_KEY&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://fastly.jsdelivr.net/npm/echarts@5.3.2/dist/extension/bmap.min.js&quot;&gt;&lt;/script&gt;
+--&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var dom = document.getElementById(&#39;container&#39;);
+    var myChart = echarts.init(dom, null, &#123;
+        renderer: &#39;canvas&#39;,
+        useDirtyRect: false
+    &#125;);
+    var app = &#123;&#125;;
+    var option;
+    const symbolSize = 20;
+    const data = [
+        [
+            [10, 56],
+            [14, 80],
+            [17, 63],
+            [22, 60],
+        ],
+        [
+            [47, 156],
+            [34, 140],
+            [37, 100],
+            [40, 80],
+            [52, 90]
+        ],
+        [
+            [10, 149],
+            [5, 109],
+            [20, 100],
+            [16, 145],
+        ]
+    ];
+    option = &#123;
+        color: [&#39;green&#39;, &#39;red&#39;,&#39;blue&#39;],
+        title: &#123;
+            text: &#39;拖拽示例&#39;,
+            left: &#39;left&#39;
+        &#125;,
+        legend: &#123;
+            data: data.map((e,i)=&gt;&#39;图&#39;+(i+1))
+        &#125;,
+        tooltip: &#123;
+            triggerOn: &#39;none&#39;,
+            formatter: function (params) &#123;
+                return (
+                    &#39;X: &#39; +
+                    params.data[0].toFixed(2) +
+                    &#39;&lt;br&gt;Y: &#39; +
+                    params.data[1].toFixed(2)
+                );
+            &#125;
+        &#125;,
+        grid: &#123;
+            top: &#39;8%&#39;,
+            bottom: &#39;12%&#39;
+        &#125;,
+        xAxis: &#123;
+            min: -90,
+            max: 90,
+            type: &#39;value&#39;,
+            axisLine: &#123;onZero: false&#125;
+        &#125;,
+        yAxis: &#123;
+            min: -180,
+            max: 180,
+            type: &#39;value&#39;,
+            axisLine: &#123;onZero: false&#125;
+        &#125;,
+        dataZoom: [
+            // &#123;
+            //     type: &#39;slider&#39;,
+            //     xAxisIndex: 0,
+            //     filterMode: &#39;none&#39;
+            // &#125;,
+            // &#123;
+            //     type: &#39;slider&#39;,
+            //     yAxisIndex: 0,
+            //     filterMode: &#39;none&#39;
+            // &#125;,
+            &#123;
+                type: &#39;inside&#39;,
+                xAxisIndex: 0,
+                start: 30,
+                filterMode: &#39;none&#39;,
+            &#125;,
+            &#123;
+                type: &#39;inside&#39;,
+                yAxisIndex: 0,
+                start: 40,
+                filterMode: &#39;none&#39;
+            &#125;
+        ],
+        series: data.map((item,index)=&gt;&#123;
+            return  &#123;
+                id: &#39;obj&#39;+index,
+                name: &#39;图&#39;+(index+1),
+                type: &#39;line&#39;,
+                smooth: true,
+                areaStyle: null,
+                symbolSize: symbolSize,
+                data: data[index]
+            &#125;
+        &#125;)
+    &#125;;
+
+    // Add shadow circles (which is not visible) to enable drag.
+    dragListener()
+
+    function dragListener() &#123;
+        setTimeout(function () &#123;
+            let graphicList = []
+             data.map((dataItem,dataIndex)=&gt;&#123;
+                 graphicList=[...graphicList,...dataItem.map(function (item, index) &#123;
+                     return &#123;
+                         type: &#39;circle&#39;,
+                         position: myChart.convertToPixel(&#39;grid&#39;, item),
+                         shape: &#123;
+                             cx: 0,
+                             cy: 0,
+                             r: symbolSize / 2
+                         &#125;,
+                         invisible: true,
+                         draggable: true,
+                         ondrag: function (dx, dy) &#123;
+                             onPointDragging(dataIndex, index, [this.x, this.y]);
+                         &#125;,
+                         onmousemove: function () &#123;
+                             showTooltip(dataIndex,index);
+                         &#125;,
+                         onmouseout: function () &#123;
+                             hideTooltip(index);
+                         &#125;,
+                         z: 100
+                     &#125;;
+                 &#125;)]
+             &#125;)
+            myChart.setOption(&#123;
+                graphic:graphicList
+            &#125;);
+        &#125;, 0);
+    &#125;
+
+    function showTooltip(dataIndex,index) &#123;
+        myChart.dispatchAction(&#123;
+            type: &#39;showTip&#39;,
+            seriesIndex: dataIndex,
+            dataIndex: index
+        &#125;);
+    &#125;
+
+    function hideTooltip(dataIndex) &#123;
+        myChart.dispatchAction(&#123;
+            type: &#39;hideTip&#39;
+        &#125;);
+    &#125;
+
+    function distant(a, b) &#123;
+        let dx = Number(a[0]) - Number(b[0])
+        let dy = Number(a[1]) - Number(b[1])
+        return Math.pow(dx * dx + dy * dy, .5)
+    &#125;
+
+    function onPointDragging(dataIndex, index, pos) &#123;
+        let dataPos = myChart.convertFromPixel(&#39;grid&#39;, pos);
+        if (dataPos[0] &gt; option.xAxis.max || dataPos[0] &lt; option.xAxis.min || dataPos[1] &gt; option.yAxis.max || dataPos[1] &lt; option.yAxis.min) &#123;
+            return dragListener()
+        &#125;
+        data[dataIndex][index] = myChart.convertFromPixel(&#39;grid&#39;, pos);
+        if (distant(data[dataIndex][0], data[dataIndex][data[dataIndex].length - 1]) &lt; 2) &#123;
+            data[dataIndex][0] = data[dataIndex][data[dataIndex].length - 1];
+        &#125;
+        // Update data
+        option.series[dataIndex].data = data[dataIndex]
+        option.series[dataIndex].areaStyle = distant(data[dataIndex][0], data[dataIndex][data[dataIndex].length - 1]) == 0 ? &#123;&#125; : null
+        myChart.setOption(&#123;
+            series: option.series
+        &#125;);
+        dragListener()
+    &#125;
+
+    if (option &amp;&amp; typeof option === &#39;object&#39;) &#123;
+        myChart.setOption(option);
+    &#125;
+
+    window.addEventListener(&#39;resize&#39;, dragListener);
+    myChart.on(&#39;dataZoom&#39;, dragListener);
+    window.addEventListener(&#39;resize&#39;, myChart.resize);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="https://img0.baidu.com/it/u=999648122,2374306559&fm=253&fmt=auto&app=138&f=JPEG?w=400&h=400" alt="小埋" class="lazyload"></p>
+
+        </article>
+
+        
+            
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>tangyuxian<br>
+    
+    <strong>本文链接：</strong><a href="https://www.tangyuxian.com/2022/06/04/%E5%89%8D%E7%AB%AF/echarts/echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C/" title="https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2022&#x2F;06&#x2F;04&#x2F;%E5%89%8D%E7%AB%AF&#x2F;echarts&#x2F;echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2022&#x2F;06&#x2F;04&#x2F;%E5%89%8D%E7%AB%AF&#x2F;echarts&#x2F;echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C&#x2F;</a><br>
+
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+        
+
+        <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/echarts/" rel="tag">echarts</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag">原创</a>
+    
+</div>
+
+    <div class="nexmoe-post-footer">
+        <section class="nexmoe-comment">
+    <div class="valine"></div>
+<script src="https://unpkg.com/leancloud-storage/dist/av-min.js"></script>
+<script src='https://unpkg.com/valine@1.3.9/dist/Valine.min.js'></script>
+<script>
+    // 使用方法 https://valine.js.org/quickstart.html
+    new Valine({
+        el: '.valine',
+        appId: 'r5zxC0st0DDjPA9auXzMV7HY-gzGzoHsz',
+        appKey: '3bqCsovpyfTPHUzTHovd3V3V'
+    })
+</script>
+</section>
+    </div>
+</div>
+
+
+        <div class="nexmoe-post-right">
+          
+            <div class="nexmoe-fixed">
+              <div class="nexmoe-tool">
+                <a href="#" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+              </div>
+            </div>
+          
+        </div>
+    </div>
+  </div>
+  <div id="nexmoe-pendant">
+    <div class="nexmoe-drawer mdui-drawer nexmoe-pd" id="drawer">
+        
+            <div class="nexmoe-pd-item">
+                <div class="clock">
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="memory"></div>
+        <div class="needle" id="hours"></div>
+        <div class="needle" id="minutes"></div>
+        <div class="needle" id="seconds"></div>
+        <div class="clock_logo">
+
+        </div>
+
+    </div>
+<style>
+    .clock {
+        background-color: #ffffff;
+        width: 70vw;
+        height: 70vw;
+        max-width: 70vh;
+        max-height: 70vh;
+        border: solid 2.8vw #242424;
+        position: relative;
+        overflow: hidden;
+        border-radius: 50%;
+        box-sizing: border-box;
+        box-shadow: 0 1.4vw 2.8vw rgba(0, 0, 0, 0.8);
+        zoom:0.2
+    }
+
+    .memory {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+    }
+
+    .memory:nth-child(1) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(0deg) translateY(-520%);
+    }
+
+    .memory:nth-child(2) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(6deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(3) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(12deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(4) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(18deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(5) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(24deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(6) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(30deg) translateY(-520%);
+    }
+
+    .memory:nth-child(7) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(36deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(8) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(42deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(9) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(48deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(10) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(54deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(11) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(60deg) translateY(-520%);
+    }
+
+    .memory:nth-child(12) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(66deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(13) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(72deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(14) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(78deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(15) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(84deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(16) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(90deg) translateY(-520%);
+    }
+
+    .memory:nth-child(17) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(96deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(18) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(102deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(19) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(108deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(20) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(114deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(21) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(120deg) translateY(-520%);
+    }
+
+    .memory:nth-child(22) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(126deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(23) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(132deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(24) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(138deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(25) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(144deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(26) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(150deg) translateY(-520%);
+    }
+
+    .memory:nth-child(27) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(156deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(28) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(162deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(29) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(168deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(30) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(174deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(31) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(180deg) translateY(-520%);
+    }
+
+    .memory:nth-child(32) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(186deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(33) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(192deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(34) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(198deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(35) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(204deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(36) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(210deg) translateY(-520%);
+    }
+
+    .memory:nth-child(37) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(216deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(38) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(222deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(39) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(228deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(40) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(234deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(41) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(240deg) translateY(-520%);
+    }
+
+    .memory:nth-child(42) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(246deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(43) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(252deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(44) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(258deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(45) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(264deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(46) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(270deg) translateY(-520%);
+    }
+
+    .memory:nth-child(47) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(276deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(48) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(282deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(49) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(288deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(50) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(294deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(51) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(300deg) translateY(-520%);
+    }
+
+    .memory:nth-child(52) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(306deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(53) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(312deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(54) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(318deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(55) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(324deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(56) {
+        background-color: #424242;
+        width: 2%;
+        height: 8%;
+        transform: translate(-50%, -50%) rotate(330deg) translateY(-520%);
+    }
+
+    .memory:nth-child(57) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(336deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(58) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(342deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(59) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(348deg) translateY(-1461%);
+    }
+
+    .memory:nth-child(60) {
+        background-color: #949494;
+        width: 1%;
+        height: 3%;
+        transform: translate(-50%, -50%) rotate(354deg) translateY(-1461%);
+    }
+
+    .needle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: center;
+    }
+
+    .needle#hours {
+        background-color: #1f1f1f;
+        width: 4%;
+        height: 30%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#hours.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#hours:after {
+        content: '';
+        background-color: #1f1f1f;
+        width: 4vw;
+        height: 4vw;
+        max-width: 4vh;
+        max-height: 4vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .needle#minutes {
+        background-color: #1f1f1f;
+        width: 2%;
+        height: 45%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#minutes.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#minutes:after {
+        content: '';
+        background-color: #1f1f1f;
+        width: 4vw;
+        height: 4vw;
+        max-width: 4vh;
+        max-height: 4vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .needle#seconds {
+        background-color: #cb2f2f;
+        width: 1%;
+        height: 50%;
+        transform-origin: center 75%;
+        transform: translate(-50%, -75%);
+    }
+
+    .needle#seconds.moving {
+        transition: transform 150ms ease-out;
+    }
+
+    .needle#seconds:after {
+        content: '';
+        background-color: #cb2f2f;
+        width: 2.5vw;
+        height: 2.5vw;
+        max-width: 2.5vh;
+        max-height: 2.5vh;
+        display: block;
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .clock_logo{
+        width: 10vw;
+        height: 10vw;
+        max-width: 10vh;
+        max-height: 10vh;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        box-sizing: border-box;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    @media (min-width: 100vh) {
+        .clock {
+            border: solid 2.8vh #242424;
+            box-shadow: 0 1.4vh 2.8vh rgba(0, 0, 0, 0.8);
+        }
+    }
+
+</style>
+
+
+
+
+
+            </div>
+        
+            <div class="nexmoe-pd-item">
+                <div class="qweather" >
+    <div id="he-plugin-standard"></div>
+    <div class="qweather-logo">
+
+    </div>
+
+</div>
+<style>
+    .qweather{
+        position: relative;
+    }
+    .qweather-logo{
+        position: absolute;
+        right: 0;
+        top: -15px;
+        width: 40px;
+        height: 40px;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+</style>
+<script>
+  WIDGET = {
+    "CONFIG": {
+      "layout": "2",
+      "width": "260",
+      "height": "220",
+      "background": "5",
+      "dataColor": "e67249",
+      "borderRadius": "15",
+      "key": "f74d1e1690e6432d801e97fa2f05a162"
+    }
+  }
+</script>
+<script src="https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0"></script>
+
+            </div>
+        
+</div>
+<style>
+    .nexmoe-pd {
+        left: auto;
+        top: 40px;
+        right: 0;
+    }
+    .nexmoe-pd-item{
+       display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+</style>
+
+  </div>
+  <script src="https://unpkg.com/lazysizes@5.1.0/lazysizes.min.js"></script>
+<script src="https://cdn.staticfile.org/highlight.js/10.0.0/highlight.min.js"></script>
+<script src="https://unpkg.com/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://unpkg.com/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
+
+
+<script src="/js/app.js?v=1654338396084"></script>
+
+<script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+  
+
+
+
+
+
+<!-- hexo injector body_end start -->
+<script src="/js/clock.js"></script>
+
+<script src="https://unpkg.com/clipboard@2.0.8/dist/clipboard.min.js"></script>
+
+<script src="/lib/codeBlock/codeBlockFuction.js"></script>
+
+<script src="/lib/codeBlock/codeLang.js"></script>
+
+<script src="/lib/codeBlock/codeCopy.js"></script>
+
+<script src="/lib/codeBlock/codeShrink.js"></script>
+
+<link rel="stylesheet" href="/lib/codeBlock/matery.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<script src="/js/search.js"></script>
+
+<script src="/js/webapp.js"></script>
+<!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/xiaomai.model.json"},"display":{"position":"left","width":200,"height":500},"mobile":{"show":false},"react":{"opacity":0.9},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+
+<script>(function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/250cb4aa.js","daovoice")</script>
+<script>
+  daovoice('init', {
+    app_id: "250cb4aa"
+  });
+  daovoice('update');
+</script>
+
