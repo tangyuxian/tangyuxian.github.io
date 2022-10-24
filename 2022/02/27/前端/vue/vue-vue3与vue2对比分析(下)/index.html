@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="糖羽仙">
 <meta property="og:description" content="从使用和原理两方面分析">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202203012024549.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202203022038548.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202203012024549.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202203022038548.png">
 <meta property="article:published_time" content="2022-02-27T10:04:09.000Z">
-<meta property="article:modified_time" content="2022-05-17T09:36:05.972Z">
+<meta property="article:modified_time" content="2022-10-24T10:43:53.491Z">
 <meta property="article:author" content="tangyuxian">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.tangyuxian.com/images/PicGo/202203012024549.png">
+<meta name="twitter:image" content="http://cdn.tangyuxian.com/PicGoImages/202203012024549.png">
   <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.15.8/styles/atom-one-dark.css" crossorigin>
   <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
   <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
@@ -41,7 +41,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1658498761565">
+  <link rel="stylesheet" href="/css/style.css?v=1666616413034">
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body class="mdui-drawer-body-left">
@@ -282,7 +282,7 @@
 <h4 id="2-打包优化tree-shaking"><a href="#2-打包优化tree-shaking" class="headerlink" title="2 打包优化tree-shaking"></a>2 打包优化tree-shaking</h4><p><code>Tree shaking</code>是一种通过清除多余代码方式来优化项目打包体积的技术，专业术语叫 <code>Dead code elimination</code>,它是基于<code>ES6</code>模板语法（<code>import</code>与<code>exports</code>）,主要是借助<code>ES6</code>模块的静态编译思想，在编译时利用<code>ES6 Module</code>确定模块加载情况,以及它们的依赖关系,确认未被使用或引用的模块和变量,进而进行删除.</p>
 <p>进一步了解tree-shaking: <a target="_blank" rel="noopener" href="https://github.com/wuomzfx/tree-shaking-test">tree-shaking-test</a></p>
 <h4 id="3-静态标记PatchFlag"><a href="#3-静态标记PatchFlag" class="headerlink" title="3 静态标记PatchFlag"></a>3 静态标记PatchFlag</h4><p>在Vue3.0中，模版编译时，编译器会在动态标签末尾加上 <code>/* TEXT*/</code> PatchFlag。也就是在生成VNode的时候，同时打上标记，在这个基础上再进行核心的diff算法,并且 PatchFlag 会标识动态的属性类型有哪些;而Vue2.x的diff算法，会不断地递归调用 patchVNode，不断堆叠而成的几毫秒，最终就会造成 VNode 更新缓慢</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202203012024549.png" alt="img" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202203012024549.png" alt="img" class="lazyload"></p>
 <p>进一步了解diff算法:<a href="https://www.tangyuxian.com/2021/07/14/%E5%89%8D%E7%AB%AF/vue/vue-diff%E7%AE%97%E6%B3%95/">vue-diff算法</a></p>
 <h4 id="4-静态提升hoistStatic"><a href="#4-静态提升hoistStatic" class="headerlink" title="4 静态提升hoistStatic"></a>4 静态提升hoistStatic</h4><p>在Vue中无论元素是否参与更新，每次都会重新创建，然后再渲染。如下图所示，每次都会createVNode;在Vue3中使用了静态提升后，对于不参与更新的元素，只会被创建一次，并打上打上 <code>/*#__PURE__*/</code> 标记在渲染时直接复用即可</p>
 <pre><code class="javascript">const &#123; createVNode: _createVNode, createStaticVNode: _createStaticVNode, openBlock: _openBlock, createBlock: _createBlock &#125; = Vue
@@ -295,7 +295,7 @@ return function render(_ctx, _cache) &#123;
   ]))
 &#125;
 </code></pre>
-<h4 id="5-事件缓存cacheHandler"><a href="#5-事件缓存cacheHandler" class="headerlink" title="5 事件缓存cacheHandler"></a>5 事件缓存cacheHandler</h4><p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202203022038548.png" alt="img" class="lazyload"></p>
+<h4 id="5-事件缓存cacheHandler"><a href="#5-事件缓存cacheHandler" class="headerlink" title="5 事件缓存cacheHandler"></a>5 事件缓存cacheHandler</h4><p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202203022038548.png" alt="img" class="lazyload"></p>
 <p>在vue3中,cacheHandler在首次渲染后缓存事件,并打上<code>/*PROIPS*/</code>标记</p>
 
         </article>
@@ -1054,7 +1054,7 @@ return function render(_ctx, _cache) &#123;
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1658498761569"></script>
+<script src="/js/app.js?v=1666616413036"></script>
 
 <script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -1071,8 +1071,6 @@ return function render(_ctx, _cache) &#123;
 
 
 <!-- hexo injector body_end start -->
-<script src="/js/clock.js"></script>
-
 <script src="https://unpkg.com/clipboard@2.0.8/dist/clipboard.min.js"></script>
 
 <script src="/lib/codeBlock/codeBlockFuction.js"></script>
@@ -1084,6 +1082,8 @@ return function render(_ctx, _cache) &#123;
 <script src="/lib/codeBlock/codeShrink.js"></script>
 
 <link rel="stylesheet" href="/lib/codeBlock/matery.css">
+
+<script src="/js/clock.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 

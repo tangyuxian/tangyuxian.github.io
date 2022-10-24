@@ -23,20 +23,20 @@
 <meta property="og:site_name" content="糖羽仙">
 <meta property="og:description" content="使用脚本注入方式个性化处理搜索结果,屏蔽推广">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202205030928615.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202205030929583.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202205031144059.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202205030938743.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202205030940133.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202205030948660.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202205030953988.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202205030928615.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202205030929583.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202205031144059.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202205030938743.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202205030940133.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202205030948660.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202205030953988.png">
 <meta property="article:published_time" content="2022-05-03T01:24:12.000Z">
-<meta property="article:modified_time" content="2022-05-17T09:36:05.989Z">
+<meta property="article:modified_time" content="2022-10-24T10:43:53.408Z">
 <meta property="article:author" content="tangyuxian">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="美化">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.tangyuxian.com/images/PicGo/202205030928615.png">
+<meta name="twitter:image" content="http://cdn.tangyuxian.com/PicGoImages/202205030928615.png">
   <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.15.8/styles/atom-one-dark.css" crossorigin>
   <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
   <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
@@ -45,7 +45,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1658498761557">
+  <link rel="stylesheet" href="/css/style.css?v=1666616413026">
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body class="mdui-drawer-body-left">
@@ -277,23 +277,23 @@
 <span id="more"></span>
 
 <p>首先来两张美图,提前预览下最终效果</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202205030928615.png" alt="image-20220503092849142" class="lazyload"></p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202205030929583.png" alt="image-20220503092912031" class="lazyload"></p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202205031144059.png" alt="image-20220503114405105" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202205030928615.png" alt="image-20220503092849142" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202205030929583.png" alt="image-20220503092912031" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202205031144059.png" alt="image-20220503114405105" class="lazyload"></p>
 <p>能够看出来,经过美化后的搜索结果,更清新更美观,而且不仅仅是美观这么简单,还屏蔽掉系统推广等信息.</p>
 <p>接下来简单说下实现步骤</p>
 <h2 id="一-依赖工具"><a href="#一-依赖工具" class="headerlink" title="一 依赖工具"></a>一 依赖工具</h2><p>这种可以修改网页内容信息其实通过的是脚本注入的方式实现,将我们当前的脚本注入到指定网站当中,替换和抓取当前网站元素,然后替换或追加信息,从而实现个性化自定义功能.</p>
 <p>这里采用的是<a target="_blank" rel="noopener" href="https://www.tampermonkey.net/">tampermonkey</a>这是一款免费的<strong>用户脚本管理器</strong>,可以通过它来创建脚本,在网站载入时执行.</p>
 <p>除了通过官网下载,也可通过浏览器带的扩展程序市场下载:</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202205030938743.png" alt="image-20220503093818755" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202205030938743.png" alt="image-20220503093818755" class="lazyload"></p>
 <h2 id="二-获取和添加脚本"><a href="#二-获取和添加脚本" class="headerlink" title="二 获取和添加脚本"></a>二 获取和添加脚本</h2><p>安装好依赖后,便准备开始添加脚本信息.在浏览器顶部位置点击该扩展程序,会有如下界面:</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202205030940133.png" alt="image-20220503094044319" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202205030940133.png" alt="image-20220503094044319" class="lazyload"></p>
 <p>在管理面板中可随时管理已下载安装的脚本.</p>
 <p>接下来简单说说创建脚本信息.</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202205030948660.png" alt="image-20220503094833076" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202205030948660.png" alt="image-20220503094833076" class="lazyload"></p>
 <p>创建脚本信息本质是在自执行函数中编写JavaScript脚本,在该脚本中可获取dom元素,追加样式信息来实现一些屏蔽和美化的功能.</p>
 <p>写好的脚本保存好后,注意别忘记设置要注入的网站,</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202205030953988.png" alt="image-20220503095259577" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202205030953988.png" alt="image-20220503095259577" class="lazyload"></p>
 <h2 id="三-进一步美化"><a href="#三-进一步美化" class="headerlink" title="三 进一步美化"></a>三 进一步美化</h2><h4 id="以下是对百度搜索结果的部分美化"><a href="#以下是对百度搜索结果的部分美化" class="headerlink" title="以下是对百度搜索结果的部分美化"></a>以下是对百度搜索结果的部分美化</h4><pre><code class="css"> body&#123;
  position:reactive;
  &#125;
@@ -1164,7 +1164,7 @@ $(&quot;font[class*=ec_tuiguang] span&quot;).each(function () &#123;
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1658498761559"></script>
+<script src="/js/app.js?v=1666616413027"></script>
 
 <script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -1181,8 +1181,6 @@ $(&quot;font[class*=ec_tuiguang] span&quot;).each(function () &#123;
 
 
 <!-- hexo injector body_end start -->
-<script src="/js/clock.js"></script>
-
 <script src="https://unpkg.com/clipboard@2.0.8/dist/clipboard.min.js"></script>
 
 <script src="/lib/codeBlock/codeBlockFuction.js"></script>
@@ -1194,6 +1192,8 @@ $(&quot;font[class*=ec_tuiguang] span&quot;).each(function () &#123;
 <script src="/lib/codeBlock/codeShrink.js"></script>
 
 <link rel="stylesheet" href="/lib/codeBlock/matery.css">
+
+<script src="/js/clock.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 

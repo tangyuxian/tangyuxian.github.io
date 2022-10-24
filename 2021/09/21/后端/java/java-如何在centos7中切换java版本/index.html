@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="糖羽仙">
 <meta property="og:description" content="在centos7上便捷安装和切换java版本">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/1632209282380.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/image-20210921153625084.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/image-20210921153916115.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/1632209282380.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/image-20210921153625084.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/image-20210921153916115.png">
 <meta property="article:published_time" content="2021-09-21T07:19:22.000Z">
-<meta property="article:modified_time" content="2022-05-17T09:36:05.997Z">
+<meta property="article:modified_time" content="2022-10-24T10:43:53.462Z">
 <meta property="article:author" content="tangyuxian">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="服务器">
 <meta property="article:tag" content="centos">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.tangyuxian.com/images/PicGo/1632209282380.png">
+<meta name="twitter:image" content="http://cdn.tangyuxian.com/PicGoImages/1632209282380.png">
   <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.15.8/styles/atom-one-dark.css" crossorigin>
   <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
   <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
@@ -42,7 +42,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1658498761575">
+  <link rel="stylesheet" href="/css/style.css?v=1666616413042">
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body class="mdui-drawer-body-left">
@@ -275,16 +275,16 @@
 
 <h2 id="一-查看JAVA版本"><a href="#一-查看JAVA版本" class="headerlink" title="一 查看JAVA版本"></a>一 查看JAVA版本</h2><pre><code class="powershell">java -version
 </code></pre>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/1632209282380.png" alt="1632209282380" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/1632209282380.png" alt="1632209282380" class="lazyload"></p>
 <h2 id="二-查看卸载库中已有的版本"><a href="#二-查看卸载库中已有的版本" class="headerlink" title="二 查看卸载库中已有的版本"></a>二 查看卸载库中已有的版本</h2><pre><code>rpm -qa | grep jdk
 rpm -e --nodeps java-1.8.0-openjdk-1.8.0.262.b10-0.el7_8.x86_64
 </code></pre>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/image-20210921153625084.png" alt="image-20210921153625084" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/image-20210921153625084.png" alt="image-20210921153625084" class="lazyload"></p>
 <h2 id="三-安装指定版本"><a href="#三-安装指定版本" class="headerlink" title="三 安装指定版本"></a>三 安装指定版本</h2><pre><code>yum install java-11-openjdk* -y
 </code></pre>
 <h2 id="四-切换版本"><a href="#四-切换版本" class="headerlink" title="四 切换版本"></a>四 切换版本</h2><pre><code> alternatives --config java
 </code></pre>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/image-20210921153916115.png" alt="image-20210921153916115" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/image-20210921153916115.png" alt="image-20210921153916115" class="lazyload"></p>
 <h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><p>执行<code>rpm</code>命令过程中如果出现<code>cannot open Packages database in /var/lib/rpm</code>,可执行如下操作</p>
 <pre><code>cd /var/lib/rpm
 ls
@@ -1048,7 +1048,7 @@ rpm --rebuilddb
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1658498761577"></script>
+<script src="/js/app.js?v=1666616413045"></script>
 
 <script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -1065,8 +1065,6 @@ rpm --rebuilddb
 
 
 <!-- hexo injector body_end start -->
-<script src="/js/clock.js"></script>
-
 <script src="https://unpkg.com/clipboard@2.0.8/dist/clipboard.min.js"></script>
 
 <script src="/lib/codeBlock/codeBlockFuction.js"></script>
@@ -1078,6 +1076,8 @@ rpm --rebuilddb
 <script src="/lib/codeBlock/codeShrink.js"></script>
 
 <link rel="stylesheet" href="/lib/codeBlock/matery.css">
+
+<script src="/js/clock.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 

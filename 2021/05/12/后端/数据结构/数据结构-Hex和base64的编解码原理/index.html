@@ -23,16 +23,16 @@
 <meta property="og:site_name" content="糖羽仙">
 <meta property="og:description" content="简要总结Hex和base64的编解码原理">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210512145736.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210512145656.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210512145618.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/20210512145736.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/20210512145656.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/20210512145618.png">
 <meta property="article:published_time" content="2021-05-12T06:21:40.000Z">
-<meta property="article:modified_time" content="2022-05-17T09:36:06.086Z">
+<meta property="article:modified_time" content="2022-10-24T10:43:53.528Z">
 <meta property="article:author" content="tangyuxian">
 <meta property="article:tag" content="数据结构">
 <meta property="article:tag" content="编解码">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.tangyuxian.com/images/PicGo/20210512145736.png">
+<meta name="twitter:image" content="http://cdn.tangyuxian.com/PicGoImages/20210512145736.png">
   <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.15.8/styles/atom-one-dark.css" crossorigin>
   <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
   <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
@@ -41,7 +41,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1658498761613">
+  <link rel="stylesheet" href="/css/style.css?v=1666616413082">
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body class="mdui-drawer-body-left">
@@ -443,7 +443,7 @@ public class HexTest &#123;
 &#125;
 </code></pre>
 <h2 id="二-Base64-编解码原理"><a href="#二-Base64-编解码原理" class="headerlink" title="二. Base64 编解码原理"></a>二. <strong>Base64</strong> 编解码原理</h2><p>Base64编解码是通过一个码表，将字符串与二进制数据进行相互转换的过程。</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/20210512145736.png" alt="image-20210512145733396" class="lazyload"> </p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/20210512145736.png" alt="image-20210512145733396" class="lazyload"> </p>
 <p>字符串原文：</p>
 <pre><code>Man is distinguished, not only by his reason, but by this singular passion from other animals, which is a lust of the mind, that by a perseverance of delight in the continued and indefatigable generation of knowledge, exceeds the short vehemence of any carnal pleasure.
 
@@ -454,10 +454,10 @@ public class HexTest &#123;
 </code></pre>
 <p>编码Man</p>
 <p>Base编码将原来的3个字节编码为4个字符，把24个比特按6个一组转换为字符。</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/20210512145656.png" alt="image-20210512145654633" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/20210512145656.png" alt="image-20210512145654633" class="lazyload"></p>
 <p>附:<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/ASCII">ASCII码表</a></p>
 <p>如果要编码的字节数不能被3整除，最后会多出1个或2个字节，那么可以使用下面的方法进行处理：先在末尾补充字节，使其能够被3整除，然后再进行Base64的编码。在编码后的Base64文本后加上一个或两个=号，代表补足的字节数。也就是说，当最后剩余两个八位(待补足)字节（2个byte）时，最后一个6位的Base64字节块有四位是0值，最后附加上两个等号；如果最后剩余一个八位(待补足)字节（1个byte）时，最后一个6位的base字节块有两位是0值，最后附加一个等号。 参考下表：</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/20210512145618.png" alt="image-20210512145615005" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/20210512145618.png" alt="image-20210512145615005" class="lazyload"></p>
 
         </article>
 
@@ -1217,7 +1217,7 @@ public class HexTest &#123;
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1658498761614"></script>
+<script src="/js/app.js?v=1666616413084"></script>
 
 <script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -1234,8 +1234,6 @@ public class HexTest &#123;
 
 
 <!-- hexo injector body_end start -->
-<script src="/js/clock.js"></script>
-
 <script src="https://unpkg.com/clipboard@2.0.8/dist/clipboard.min.js"></script>
 
 <script src="/lib/codeBlock/codeBlockFuction.js"></script>
@@ -1247,6 +1245,8 @@ public class HexTest &#123;
 <script src="/lib/codeBlock/codeShrink.js"></script>
 
 <link rel="stylesheet" href="/lib/codeBlock/matery.css">
+
+<script src="/js/clock.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 

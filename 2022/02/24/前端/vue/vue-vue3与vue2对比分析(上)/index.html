@@ -23,18 +23,18 @@
 <meta property="og:site_name" content="糖羽仙">
 <meta property="og:description" content="从使用和原理两方面分析">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202202242015382.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202202242117395.jpeg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202202242120711.png">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/202202242122974.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202202242015382.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202202242117395.jpeg">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202202242120711.png">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/202202242122974.png">
 <meta property="article:published_time" content="2022-02-24T12:01:27.000Z">
-<meta property="article:modified_time" content="2022-05-17T09:36:05.916Z">
+<meta property="article:modified_time" content="2022-10-24T10:43:53.332Z">
 <meta property="article:author" content="tangyuxian">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="vue">
 <meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.tangyuxian.com/images/PicGo/202202242015382.png">
+<meta name="twitter:image" content="http://cdn.tangyuxian.com/PicGoImages/202202242015382.png">
   <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.15.8/styles/atom-one-dark.css" crossorigin>
   <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
   <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
@@ -43,7 +43,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1658498761569">
+  <link rel="stylesheet" href="/css/style.css?v=1666616413036">
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body class="mdui-drawer-body-left">
@@ -274,7 +274,7 @@
             <p>从使用和原理两方面分析</p>
 <span id="more"></span>
 
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h4 id="1-vue2-选项式API与vue3组合式API"><a href="#1-vue2-选项式API与vue3组合式API" class="headerlink" title="1 vue2 选项式API与vue3组合式API"></a>1 vue2 选项式API与vue3组合式API</h4><p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202202242015382.png" alt="img" class="lazyload"></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h4 id="1-vue2-选项式API与vue3组合式API"><a href="#1-vue2-选项式API与vue3组合式API" class="headerlink" title="1 vue2 选项式API与vue3组合式API"></a>1 vue2 选项式API与vue3组合式API</h4><p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202202242015382.png" alt="img" class="lazyload"></p>
 <p>​    官方文档:<a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/guide/composition-api-introduction.html#%E5%9C%A8-setup-%E5%86%85%E6%B3%A8%E5%86%8C%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90">什么是组合式API</a></p>
 <p>​    为什么选择组合式API?通过上图可以看出,随着项目的迭代更新,必然会存在如下问题:</p>
 <ul>
@@ -283,10 +283,10 @@
 <li>对强类型约束Typescirpt的支持问题,<a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/typescript.html">参照官方文档</a></li>
 </ul>
 <p>组合式API恰恰解决了上述的痛点,逻辑可以整合在一起,使得代码编写的更加规整,而逻辑抽离部分可以采用hooks方式,<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/394159778">具体可参照本文</a>.</p>
-<h4 id="2-生命周期变化"><a href="#2-生命周期变化" class="headerlink" title="2 生命周期变化"></a>2 生命周期变化</h4><h6 id="vue2生命周期图"><a href="#vue2生命周期图" class="headerlink" title="vue2生命周期图"></a>vue2生命周期图</h6><p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202202242117395.jpeg" alt="img" class="lazyload"></p>
-<h6 id="vue3生命周期图"><a href="#vue3生命周期图" class="headerlink" title="vue3生命周期图"></a>vue3生命周期图</h6><p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202202242120711.png" alt="img" class="lazyload"></p>
+<h4 id="2-生命周期变化"><a href="#2-生命周期变化" class="headerlink" title="2 生命周期变化"></a>2 生命周期变化</h4><h6 id="vue2生命周期图"><a href="#vue2生命周期图" class="headerlink" title="vue2生命周期图"></a>vue2生命周期图</h6><p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202202242117395.jpeg" alt="img" class="lazyload"></p>
+<h6 id="vue3生命周期图"><a href="#vue3生命周期图" class="headerlink" title="vue3生命周期图"></a>vue3生命周期图</h6><p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202202242120711.png" alt="img" class="lazyload"></p>
 <p>vue2和vue3生命周期对比图</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/202202242122974.png" alt="img" class="lazyload"></p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/202202242122974.png" alt="img" class="lazyload"></p>
 <p>官方文档:<a target="_blank" rel="noopener" href="https://v3.cn.vuejs.org/api/composition-api.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90">生命周期钩子</a></p>
 <h4 id="3-多根节点"><a href="#3-多根节点" class="headerlink" title="3 多根节点"></a>3 多根节点</h4><pre><code class="html">&lt;!-- Layout.vue --&gt;
 &lt;template&gt;
@@ -1062,7 +1062,7 @@
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1658498761571"></script>
+<script src="/js/app.js?v=1666616413038"></script>
 
 <script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -1079,8 +1079,6 @@
 
 
 <!-- hexo injector body_end start -->
-<script src="/js/clock.js"></script>
-
 <script src="https://unpkg.com/clipboard@2.0.8/dist/clipboard.min.js"></script>
 
 <script src="/lib/codeBlock/codeBlockFuction.js"></script>
@@ -1092,6 +1090,8 @@
 <script src="/lib/codeBlock/codeShrink.js"></script>
 
 <link rel="stylesheet" href="/lib/codeBlock/matery.css">
+
+<script src="/js/clock.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 

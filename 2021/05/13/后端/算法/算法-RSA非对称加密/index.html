@@ -23,17 +23,17 @@
 <meta property="og:site_name" content="糖羽仙">
 <meta property="og:description" content="1977年，三位数学家Rivest[瑞斯特]、Shamir[沙米尔] 和 Adleman [阿德尔曼]设计了一种算法，可以实现非对称加密。这种算法用他们三个人的名字命名，叫做RSA算法。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210513172712.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210513172718.jpg">
-<meta property="og:image" content="https://www.tangyuxian.com/images/PicGo/20210513172723.jpg">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/20210513172712.jpg">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/20210513172718.jpg">
+<meta property="og:image" content="http://cdn.tangyuxian.com/PicGoImages/20210513172723.jpg">
 <meta property="og:image" content="https://www.ruanyifeng.com/blogimg/asset/201307/bg2013070302.png">
 <meta property="article:published_time" content="2021-05-13T08:50:42.000Z">
-<meta property="article:modified_time" content="2022-05-17T09:36:05.954Z">
+<meta property="article:modified_time" content="2022-10-24T10:43:53.318Z">
 <meta property="article:author" content="tangyuxian">
 <meta property="article:tag" content="算法">
 <meta property="article:tag" content="加密">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://www.tangyuxian.com/images/PicGo/20210513172712.jpg">
+<meta name="twitter:image" content="http://cdn.tangyuxian.com/PicGoImages/20210513172712.jpg">
   <link rel="stylesheet" href="https://unpkg.com/highlight.js@9.15.8/styles/atom-one-dark.css" crossorigin>
   <link rel="stylesheet" href="/lib/mdui_043tiny/css/mdui.css">
   <link rel="stylesheet" href="/lib/iconfont/iconfont.css">
@@ -42,7 +42,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1658498761608">
+  <link rel="stylesheet" href="/css/style.css?v=1666616413078">
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body class="mdui-drawer-body-left">
@@ -274,12 +274,12 @@
 <span id="more"></span>
 
 <h2 id="1-RSA算法的起源"><a href="#1-RSA算法的起源" class="headerlink" title="1. RSA算法的起源"></a>1. <strong>RSA</strong>算法的起源</h2><p>1977年，三位数学家Rivest[瑞斯特]、Shamir[沙米尔] 和 Adleman [阿德尔曼]设计了一种算法，可以实现非对称加密。这种算法用他们三个人的名字命名，叫做RSA算法。</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/20210513172712.jpg" alt="img" class="lazyload"> </p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/20210513172712.jpg" alt="img" class="lazyload"> </p>
 <h2 id="2-RSA算法的特点"><a href="#2-RSA算法的特点" class="headerlink" title="2. RSA算法的特点"></a>2. <strong>RSA</strong>算法的特点</h2><p>RSA非对称加密算法在加密和解密时需要二个秘钥，称为：公钥和私钥，也可称作密钥对。</p>
 <p>A. 公钥加密的数据只有与之对应的私钥才能解密。</p>
 <p>B. 私钥加密的数据只有与之对应的公钥才能解密。</p>
 <p>C. 我们可以创建很对的秘钥对，但是不同秘钥对之间不能够加密和解密。</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/20210513172718.jpg" alt="img" class="lazyload"> </p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/20210513172718.jpg" alt="img" class="lazyload"> </p>
 <h2 id="3-RSA数学定理"><a href="#3-RSA数学定理" class="headerlink" title="3. RSA数学定理"></a>3. <strong>RSA数学定理</strong></h2><p>加密定理：</p>
 <blockquote>
 <p> m^e ≡ c(mod n)</p>
@@ -289,7 +289,7 @@
 <p> c^d ≡ m (mod n)<br>其中[n,e]就是公钥[3233, 17]，[n,d]就是私钥[3233, 2753]。</p>
 </blockquote>
 <p>m是明文65 ，c是密文2790。</p>
-<p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/PicGo/20210513172723.jpg" alt="img" class="lazyload"> </p>
+<p><img data-fancybox="gallery" data-sizes="auto" data-src="http://cdn.tangyuxian.com/PicGoImages/20210513172723.jpg" alt="img" class="lazyload"> </p>
 <h2 id="4、密钥生成的步骤"><a href="#4、密钥生成的步骤" class="headerlink" title="4、密钥生成的步骤"></a><strong>4、密钥生成的步骤</strong></h2><p>我们通过一个例子，来理解RSA算法。假设<a target="_blank" rel="noopener" href="http://zh.wikipedia.org/wiki/%E7%88%B1%E4%B8%BD%E4%B8%9D%E4%B8%8E%E9%B2%8D%E4%BC%AF">爱丽丝</a>要与鲍勃进行加密通信，她该怎么生成公钥和私钥呢？</p>
 <p><img data-fancybox="gallery" data-sizes="auto" data-src="https://www.ruanyifeng.com/blogimg/asset/201307/bg2013070302.png" alt="img" class="lazyload"></p>
 <p><strong>第一步，随机选择两个不相等的质数p和q。</strong></p>
@@ -1213,7 +1213,7 @@
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1658498761609"></script>
+<script src="/js/app.js?v=1666616413079"></script>
 
 <script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -1230,8 +1230,6 @@
 
 
 <!-- hexo injector body_end start -->
-<script src="/js/clock.js"></script>
-
 <script src="https://unpkg.com/clipboard@2.0.8/dist/clipboard.min.js"></script>
 
 <script src="/lib/codeBlock/codeBlockFuction.js"></script>
@@ -1243,6 +1241,8 @@
 <script src="/lib/codeBlock/codeShrink.js"></script>
 
 <link rel="stylesheet" href="/lib/codeBlock/matery.css">
+
+<script src="/js/clock.js"></script>
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
