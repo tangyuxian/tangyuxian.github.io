@@ -7,7 +7,7 @@
   <meta name="baidu-site-verification" content="code-J1Qg17G6wT" />
   <title>echarts-多个折线图拖拽收尾自动闭合操作 - 糖羽仙</title>
   <meta charset="UTF-8">
-  <meta name="description" content="这是萌糖的官方网站">
+  <meta name="description" content="这是一个个人小网站">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
   
   
@@ -19,7 +19,7 @@
   <meta name="description" content="拖拽折线图的收尾自动闭合成面积图">
 <meta property="og:type" content="article">
 <meta property="og:title" content="echarts-多个折线图拖拽收尾自动闭合操作">
-<meta property="og:url" content="https://www.tangyuxian.com/2022/06/04/%E5%89%8D%E7%AB%AF/echarts/echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C/index.html">
+<meta property="og:url" content="https://tangyuxian.github.io/2022/06/04/%E5%89%8D%E7%AB%AF/echarts/echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="糖羽仙">
 <meta property="og:description" content="拖拽折线图的收尾自动闭合成面积图">
 <meta property="og:locale" content="zh_CN">
@@ -40,7 +40,7 @@
   
     <link rel="stylesheet" href="//at.alicdn.com/t/font_2421060_8z08qcz5sq3.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1667730670313">
+  <link rel="stylesheet" href="/css/style.css?v=1667731869635">
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 <body class="mdui-drawer-body-left">
@@ -299,7 +299,7 @@
 <h4 id="4-多条折线图存在的注意事项"><a href="#4-多条折线图存在的注意事项" class="headerlink" title="4 多条折线图存在的注意事项"></a>4 多条折线图存在的注意事项</h4><p>官方示例中均为单条折线,但是在多条线中,我们要考虑的问题便增加了,在拖拽的时候要注意我们拖拽的是第几条线,拖拽完毕还要将拖拽后的数值回填到定义的数据源中</p>
 <h4 id="5-限制拖拽端点数值"><a href="#5-限制拖拽端点数值" class="headerlink" title="5 限制拖拽端点数值"></a>5 限制拖拽端点数值</h4><p>若限制端点拖拽到坐标外,可在<code>ondrag</code>获取到当前数值的最大值最小值判定,然后<code>return</code>即可</p>
 <h2 id="三-示例"><a href="#三-示例" class="headerlink" title="三 示例"></a>三 示例</h2><p>本糖已经开出来有人看的还是有点懵,于是完整代码在下面了,复制到本地运行看看吧;</p>
-<p>也可点击 <a href="https://www.tangyuxian.com/web/line-draggable.html">在线示例</a> ,不过在线示例是放在本糖的服务器上,哪天本糖穷到没钱续费服务器就访问不到了,还是复制到本地看最保险</p>
+<p>也可点击 <a target="_blank" rel="noopener" href="https://www.tangyuxian.com/web/line-draggable.html">在线示例</a> ,不过在线示例是放在本糖的服务器上,哪天本糖穷到没钱续费服务器就访问不到了,还是复制到本地看最保险</p>
 <pre><code class="html">&lt;!--
     THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=line-draggable&amp;code=MYewdgzgLgBBCeBbARiANgZQJYC8CmMAvDAEwAMA3AFCiSwAmAhlI0TANpUwcAsZANDAC0ARjIBdflw5CAzAOEBWSdPZCA7ADYAdIsHkV3NZtm7BfQzJIltIwYolVx1EAAcoWcGwDe0j1DQ8AC4YX25uKDwADygQgHIAFQAneBgAESTGAHMsrDAsmCgACzwIAgAFEDyoCDipcJhAgDNYmDjgPDBIpLjpAF96wpB0D1cQsPCoJKwcvCSAeTB4sHA8OuluJpAkxGZukKaAVzBgDy8ACldGTMQIAEpQjfCkvChDpLAYc6eGuIANeIwADUP3CVxuEG0TBY7Ak2igIAAYlgonh6OcSA8QQ1fgAeZBJAB8AE1AdicdxwYxblDmIx2CJxPCkSi0Ri7qC7tQGn1-oMstN6OMngixm0ABwAUnWDVQUARiHiIhI0r50iiAEEolgIMKGog8iFRGQBE9dlEQupTQ0oPBXME2gA3RhoQ5rQbcRjaiAAGTyDu8MHAAC05iADi6yjBedwBtJ4FqdXrwgalsJ5B6YOaQpprZM7Q64s7Xe6nl6dX6wAGg2BQ0lwzAmpGCDHo4NoYxg8NFRwnhMbQX4hA0Fh6HMZTjNd6AJJgMcWmB5hpNLBoboAWRAY-Wq16PMz_fz9qHI7HPUz3ATM7n0RCS_CK7Xc0327aKyre_CcYah4ig7aeQQKOpYUlOOqzvOd4Xo2q4bluhbvmsTzfuEv6FP-cSAcBE4NFe4E3gu96bLBz7wTuH7IdIlhlNMpQhJwP6gqO8SMDhR6FiOH7QRAiDDMUIRTG60HXHgjAYLagTJhS2wzIacSdPQn77qCCAoOg2D4CEqmoJguB4NBHYhB2lHcOIVB9NQZRQAkWCIHgICHFA5xHCcZyfOcDwTAA9F5MAavQ9BwEUjD0CAADuMDAFgSTAIEEBfGFRRYMARQwDqMArLAjo6lgyCBA8CIwJ0jB5QQ9CZFk2jSIg8AAMLBUkUDaFZ8zuJ4YDnIeAqMK4SXAEZdLaLsrjOccpztV8WCRIgggdhB0SeaCLxvB8jwUn-x5tFFMWBGxDSuCAQFuSENX1dcTW0I6czWSA5Ssmg5xxAKo51Gl013NB3AQMFm1oQ0wCEZ94TAPAUGgg0SRaUgOkaQQvkkODbaI3k2VAaVAlJEJiPldkWQlZJhSY_piPgDjWQHGNblfPQUSzfAi3reE4CVNUGS43kWTnHNBGCOwxQ6totOFElkLwOIXKIyh0lgLxhxlLxV0U65E0eWtjNBeFCTDGuWAjdz84S4zUs4uAstlA5rQueNFwM-rSVjlrIy61zdLzVEhvrcbDQ4CEYhkKCFnIRysYSwMi4S2FeShWF2ghfQACiV1dH60CdHMj0vEB-CvYcrjQnglRHe1EunQ1TXgI9HZdiAiA53nzAF4dU3F9QVtU7n-eF83Fe26X53Na8rVuZ1Tzdb1yUDSwQ09aNysXFNeAzTA-sLWrEOvO8nx_TAB1F-AJ11WX2iXddWt3aiD1PYKr0L4gwc4oHPL330odUG3E3fZr2ujC7LBu73h9-70B1FcKAKUNTWw6oeW0m04ifzCjZVwbEaJYFKG7MGDQV4Liwf0V-78vD2zwI7HWetXYEQAWdRqUIQHMHAZAkeA5YGEMQZ-F-1BeT4M-MzKoXQ2Y5A5r_RgbtBC71th2dgWDxBsD7lQk-jVET1kQOfPAl9nqKREYdD2PkYAAFV66RGXnSaqgCqEtTahXQ8KC6K9gpNvZibRWJA0MoYlgAcnhmRDuwoAA
     请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
@@ -557,7 +557,7 @@
   <div class="nexmoe-post-copyright">
     <strong>本文作者：</strong>tangyuxian<br>
     
-    <strong>本文链接：</strong><a href="https://www.tangyuxian.com/2022/06/04/%E5%89%8D%E7%AB%AF/echarts/echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C/" title="https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2022&#x2F;06&#x2F;04&#x2F;%E5%89%8D%E7%AB%AF&#x2F;echarts&#x2F;echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;www.tangyuxian.com&#x2F;2022&#x2F;06&#x2F;04&#x2F;%E5%89%8D%E7%AB%AF&#x2F;echarts&#x2F;echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C&#x2F;</a><br>
+    <strong>本文链接：</strong><a href="https://tangyuxian.github.io/2022/06/04/%E5%89%8D%E7%AB%AF/echarts/echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C/" title="https:&#x2F;&#x2F;tangyuxian.github.io&#x2F;2022&#x2F;06&#x2F;04&#x2F;%E5%89%8D%E7%AB%AF&#x2F;echarts&#x2F;echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;tangyuxian.github.io&#x2F;2022&#x2F;06&#x2F;04&#x2F;%E5%89%8D%E7%AB%AF&#x2F;echarts&#x2F;echarts-%E5%A4%9A%E4%B8%AA%E6%8A%98%E7%BA%BF%E5%9B%BE%E6%8B%96%E6%8B%BD%E6%94%B6%E5%B0%BE%E8%87%AA%E5%8A%A8%E9%97%AD%E5%90%88%E6%93%8D%E4%BD%9C&#x2F;</a><br>
 
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
@@ -1306,7 +1306,7 @@
 <script src="/lib/fancybox/js/jquery.fancybox.min.js"></script>
 
 
-<script src="/js/app.js?v=1667730670314"></script>
+<script src="/js/app.js?v=1667731869636"></script>
 
 <script src="https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -1323,6 +1323,10 @@
 
 
 <!-- hexo injector body_end start -->
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<script src="/js/search.js"></script>
+
 <script src="/js/clock.js"></script>
 
 <script src="https://unpkg.com/clipboard@2.0.8/dist/clipboard.min.js"></script>
@@ -1336,10 +1340,6 @@
 <script src="/lib/codeBlock/codeShrink.js"></script>
 
 <link rel="stylesheet" href="/lib/codeBlock/matery.css">
-
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
-<script src="/js/search.js"></script>
 
 <script src="/js/webapp.js"></script>
 <!-- hexo injector body_end end --><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/xiaomai.model.json"},"display":{"position":"left","width":200,"height":500},"mobile":{"show":false},"react":{"opacity":0.9},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
